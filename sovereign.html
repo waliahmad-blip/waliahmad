@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>WALI AHMAD — Sovereign | Inventor · Founder ×3 · Cybersecurity Expert</title>
+<link rel="icon" type="image/png" href="assets/logo.png">
+<link rel="apple-touch-icon" href="assets/logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Space+Grotesk:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -49,13 +51,23 @@
 
   /* H mark */
   .h-mark { display:block; filter:drop-shadow(0 0 8px rgba(60,232,207,.5)); }
-  img.logo { display:block; object-fit:contain; border-radius:8px; filter:drop-shadow(0 0 8px rgba(60,232,207,.5)); }
+  img.logo { display:block; object-fit:contain; animation:logoBreathe 4.5s ease-in-out infinite; }
+  @keyframes logoBreathe {
+    0%,100% { filter:drop-shadow(0 0 6px rgba(60,232,207,.35)); }
+    50%     { filter:drop-shadow(0 0 14px rgba(60,232,207,.75)); }
+  }
 
   /* ---------- HERO ---------- */
   .hero { min-height:100vh; display:flex; flex-direction:column; justify-content:center; padding:130px 40px 70px; position:relative; z-index:1; }
   .hero .h-watermark {
     position:absolute; right:-4vw; top:50%; transform:translateY(-50%);
-    width:min(46vw,640px); opacity:.10; pointer-events:none;
+    width:min(46vw,640px); opacity:.42; pointer-events:none;
+    filter:drop-shadow(0 0 60px rgba(60,232,207,.22));
+    animation:heroFloat 9s ease-in-out infinite;
+  }
+  @keyframes heroFloat {
+    0%,100% { transform:translateY(-50%); }
+    50%     { transform:translateY(calc(-50% - 18px)); }
   }
   .hero .kicker {
     font-family:'Space Mono',monospace; font-size:11px; letter-spacing:.4em; text-transform:uppercase;
@@ -246,7 +258,7 @@
     .hero, .sec-head, .manifesto, .contact, .recognition { padding-left:22px; padding-right:22px; }
     .offers { padding:40px 22px 90px; }
     .lane-more { margin:0 22px; }
-    .hero .h-watermark { opacity:.06; }
+    .hero .h-watermark { opacity:.28; right:-30vw; }
   }
 </style>
 </head>
@@ -293,7 +305,7 @@
 
 <!-- HERO -->
 <header class="hero">
-  <img class="h-watermark" src="assets/logo.png" alt="">
+  <img class="h-watermark" src="assets/logo-animated.webp" alt="">
   <div class="kicker"><span class="livedot"></span> The Global Trust Layer for AI — Verified Nodes Online</div>
   <h1 class="display" data-split>Order the build. <em>Own the proof.</em></h1>
   <p class="sub">I'm <strong>Wali Ahmad</strong> — inventor, <strong>founder of three live ventures</strong> and a <strong>Harvard Master's candidate in Cybersecurity</strong>. I build <strong>ML models, AI agents, RAG systems, websites, blockchains and post-quantum cryptography</strong> — 72 offerings across five lanes: some you can buy <strong>instantly</strong> below, the rest I <strong>build to order</strong> and deliver with mathematical proof.</p>
@@ -699,13 +711,13 @@
 
 <!-- HARMOS AGENT WIDGET -->
 <button class="agent-fab" onclick="toggleAgent(event)" aria-label="Ask Harmos">
-  <img src="assets/logo.png" alt="Harmos agent">
+  <img src="assets/logo-animated.webp" alt="Harmos agent">
 </button>
 <span class="agent-tip">Ask Harmos — Agent Online</span>
 <div class="agent-panel" id="agentPanel">
   <button class="ap-close" onclick="toggleAgent(event)">✕</button>
   <div class="ap-head">
-    <img class="logo" src="assets/logo.png" alt="Harmos logo" width="34" height="34">
+    <img class="logo" src="assets/logo-animated.webp" alt="Harmos logo" width="34" height="34">
     <span class="st"><span class="livedot"></span>&nbsp; Harmos Agent · Online</span>
   </div>
   <h5>What can I help you create?</h5>
