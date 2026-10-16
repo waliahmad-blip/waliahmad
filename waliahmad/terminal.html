@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HARMOS VAULT — Encrypted Digital Products | Wali Ahmad</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root { --phos:#00F48E; --phos2:#00FF3C; --bg:#000; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body {
+    background:var(--bg); color:var(--phos); font-family:'Space Mono',monospace;
+    text-shadow:0 0 8px rgba(0,244,142,.35);
+    -webkit-font-smoothing:antialiased; overflow-x:hidden;
+  }
+  ::selection { background:var(--phos); color:#000; text-shadow:none; }
+  a { color:inherit; }
+
+  /* CRT overlays */
+  .scanlines {
+    position:fixed; inset:0; z-index:200; pointer-events:none;
+    background:repeating-linear-gradient(0deg, rgba(0,0,0,.25) 0px, rgba(0,0,0,.25) 1px, transparent 1px, transparent 3px);
+    mix-blend-mode:multiply;
+  }
+  .flicker {
+    position:fixed; inset:0; z-index:201; pointer-events:none; background:rgba(0,244,142,.02);
+    animation:flick 4s steps(2) infinite;
+  }
+  @keyframes flick { 0%,97%{opacity:.4;} 98%{opacity:.9;} 99%{opacity:.1;} 100%{opacity:.4;} }
+  .vignette {
+    position:fixed; inset:0; z-index:199; pointer-events:none;
+    background:radial-gradient(ellipse at center, transparent 55%, rgba(0,0,0,.55) 100%);
+  }
+
+  /* notched double frame */
+  .frame { position:fixed; inset:14px; z-index:150; pointer-events:none; }
+  .frame svg { width:100%; height:100%; }
+
+  /* ---------- BOOT GATE ---------- */
+  #gate {
+    position:fixed; inset:0; z-index:300; background:#000;
+    display:flex; flex-direction:column; justify-content:center; align-items:flex-start;
+    padding:8vh 10vw; transition:opacity .9s, visibility .9s;
+  }
+  #gate.gone { opacity:0; visibility:hidden; }
+  #bootlog { font-size:clamp(12px,1.6vw,16px); line-height:2.2; white-space:pre-wrap; min-height:40vh; }
+  #bootlog .ok { color:var(--phos2); }
+  #bootlog .warn { opacity:.7; }
+  .cursor { display:inline-block; width:.62em; height:1.1em; background:var(--phos); vertical-align:text-bottom; animation:blink .5s steps(1) infinite; box-shadow:0 0 12px var(--phos); }
+  @keyframes blink { 50% { opacity:0; } }
+  #launch {
+    margin-top:5vh; background:none; border:1px solid var(--phos); color:var(--phos);
+    font-family:'Space Mono',monospace; font-size:13px; letter-spacing:.35em; text-transform:uppercase;
+    padding:20px 44px; cursor:pointer; text-shadow:0 0 10px rgba(0,244,142,.5);
+    opacity:0; transform:translateY(14px); transition:opacity .6s, transform .6s, background .3s, color .3s;
+  }
+  #launch.ready { opacity:1; transform:none; }
+  #launch:hover { background:var(--phos); color:#000; text-shadow:none; box-shadow:0 0 30px rgba(0,244,142,.5); }
+
+  /* ---------- MAIN ---------- */
+  #main { opacity:0; transition:opacity 1.2s .2s; padding:56px; max-width:1180px; margin:0 auto; }
+  #main.live { opacity:1; }
+
+  header.t-head {
+    display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:14px;
+    border:1px solid rgba(0,244,142,.4); padding:16px 22px; font-size:11px; letter-spacing:.2em; text-transform:uppercase;
+    background:rgba(0,244,142,.04);
+  }
+  header.t-head .logo { font-weight:700; letter-spacing:.3em; color:var(--phos2); }
+  header.t-head nav { display:flex; gap:26px; }
+  header.t-head nav a { text-decoration:none; opacity:.75; transition:opacity .3s; }
+  header.t-head nav a:hover { opacity:1; }
+  header.t-head nav a::before { content:'> '; opacity:.6; }
+  #clock { font-variant-numeric:tabular-nums; }
+  #cartline { cursor:pointer; }
+
+  .hero-t { padding:11vh 0 7vh; }
+  .hero-t .sys { font-size:11px; letter-spacing:.3em; text-transform:uppercase; opacity:.7; margin-bottom:26px; }
+  .hero-t h1 {
+    font-size:clamp(34px,7vw,96px); line-height:1.02; font-weight:700; letter-spacing:-.01em;
+    text-transform:uppercase; text-shadow:0 0 24px rgba(0,244,142,.4);
+  }
+  .hero-t h1 .dim { opacity:.35; }
+  .hero-t .tagline { margin-top:30px; font-size:13px; letter-spacing:.15em; line-height:2; max-width:62ch; opacity:.85; text-transform:uppercase; }
+  .hero-t .tagline b { color:var(--phos2); }
+
+  /* ticker */
+  .t-ticker { border-top:1px solid rgba(0,244,142,.35); border-bottom:1px solid rgba(0,244,142,.35); overflow:hidden; padding:13px 0; margin:5vh 0 0; }
+  .t-track { display:flex; gap:56px; width:max-content; white-space:nowrap; animation:tt 30s linear infinite; font-size:10.5px; letter-spacing:.3em; text-transform:uppercase; }
+  .t-track b { font-weight:400; color:var(--phos2); }
+  @keyframes tt { to { transform:translateX(-50%); } }
+
+  /* product list */
+  .sec-label { font-size:10.5px; letter-spacing:.35em; text-transform:uppercase; opacity:.65; margin:9vh 0 0; }
+  .sec-label::before { content:'>> '; color:var(--phos2); }
+
+  .prod {
+    display:grid; grid-template-columns:64px 1.5fr 1.9fr 130px 130px; align-items:center; gap:0;
+    border-bottom:1px solid rgba(0,244,142,.25); padding:26px 0; transition:background .25s, padding-left .35s;
+  }
+  .prod:hover { background:rgba(0,244,142,.06); padding-left:14px; }
+  .prod .p-id { font-size:11px; opacity:.6; }
+  .prod .p-name { font-size:clamp(15px,1.9vw,21px); font-weight:700; text-transform:uppercase; letter-spacing:.05em; }
+  .prod .p-name .ext { opacity:.45; font-weight:400; }
+  .prod .p-desc { font-size:11px; line-height:1.9; opacity:.7; text-transform:uppercase; padding-right:20px; }
+  .prod .p-price { font-size:17px; text-align:right; color:var(--phos2); }
+  .prod .p-price small { display:block; font-size:9px; opacity:.6; letter-spacing:.2em; margin-top:5px; }
+  .prod .p-add {
+    justify-self:end; background:none; border:1px solid var(--phos); color:var(--phos);
+    font-family:'Space Mono',monospace; font-size:10px; letter-spacing:.22em; text-transform:uppercase;
+    padding:11px 16px; cursor:pointer; transition:background .25s, color .25s;
+  }
+  .prod .p-add:hover { background:var(--phos); color:#000; text-shadow:none; }
+  .prod .p-add.added { background:var(--phos2); border-color:var(--phos2); color:#000; text-shadow:none; }
+
+  /* console output */
+  #console {
+    margin-top:8vh; border:1px solid rgba(0,244,142,.4); background:rgba(0,244,142,.03);
+    padding:22px 24px; font-size:11.5px; line-height:2.1; min-height:120px; max-height:220px; overflow-y:auto;
+  }
+  #console .ln::before { content:'> '; color:var(--phos2); }
+  #console .ln.ok { color:var(--phos2); }
+
+  /* specs strip */
+  .specs { display:grid; grid-template-columns:repeat(4,1fr); border:1px solid rgba(0,244,142,.35); margin-top:9vh; }
+  .spec { padding:22px; border-right:1px solid rgba(0,244,142,.35); font-size:10px; letter-spacing:.2em; text-transform:uppercase; line-height:2; }
+  .spec:last-child { border-right:none; }
+  .spec b { display:block; font-size:20px; color:var(--phos2); letter-spacing:.05em; }
+
+  footer.t-foot { margin:9vh 0 4vh; border-top:1px solid rgba(0,244,142,.35); padding-top:26px;
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:14px; font-size:10px; letter-spacing:.25em; text-transform:uppercase; opacity:.8; }
+  footer.t-foot a { text-decoration:none; }
+  footer.t-foot a:hover { color:var(--phos2); }
+
+  ::-webkit-scrollbar { width:10px; }
+  ::-webkit-scrollbar-track { background:#000; border-left:1px solid rgba(0,244,142,.25); }
+  ::-webkit-scrollbar-thumb { background:rgba(0,244,142,.4); }
+
+  @media (max-width:900px) {
+    #main { padding:34px 22px; }
+    .prod { grid-template-columns:1fr 90px; }
+    .prod .p-id, .prod .p-desc { display:none; }
+    .prod .p-price { text-align:left; margin-top:8px; }
+    .specs { grid-template-columns:1fr 1fr; }
+    .spec:nth-child(2) { border-right:none; }
+    header.t-head nav { display:none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="scanlines"></div>
+<div class="flicker"></div>
+<div class="vignette"></div>
+
+<div class="frame">
+  <svg preserveAspectRatio="none" viewBox="0 0 100 100">
+    <path d="M 1.2 3 L 3 1.2 L 97 1.2 L 98.8 3 L 98.8 97 L 97 98.8 L 3 98.8 L 1.2 97 Z"
+          fill="none" stroke="rgba(0,244,142,.5)" stroke-width="0.14" vector-effect="non-scaling-stroke"/>
+    <path d="M 1.9 3.8 L 3.8 1.9 L 96.2 1.9 L 98.1 3.8 L 98.1 96.2 L 96.2 98.1 L 3.8 98.1 L 1.9 96.2 Z"
+          fill="none" stroke="rgba(0,244,142,.2)" stroke-width="0.1" vector-effect="non-scaling-stroke"/>
+  </svg>
+</div>
+
+<!-- BOOT GATE -->
+<div id="gate">
+  <div id="bootlog"></div>
+  <button id="launch">▸ Launch Interface</button>
+</div>
+
+<!-- MAIN -->
+<main id="main">
+  <header class="t-head">
+    <span class="logo">▙ HARMOS_VAULT</span>
+    <nav>
+      <a href="#catalog">catalog</a>
+      <a href="#console">console</a>
+      <a href="mailto:wali.ahmad@harmos.ai">contact</a>
+      <a href="index.html">exit()</a>
+    </nav>
+    <span id="clock">--:--:--</span>
+    <span id="cartline">cart[<b id="cartn" style="color:var(--phos2)">0</b>]</span>
+  </header>
+
+  <section class="hero-t">
+    <div class="sys">// secure_storefront · post_quantum_encrypted · est.2026</div>
+    <h1><span id="scramble">DIGITAL ARTIFACTS</span><br>
+        <span class="dim">FROM THE</span><br>
+        SOVEREIGN STACK.</h1>
+    <p class="tagline">Toolkits, whitepapers, templates and intelligence extracted directly from the Harmos AI build — <b>two patent filings, eighteen industries, one treasury protocol.</b> Instant delivery. No subscriptions. You buy the artifact, you own the edge.</p>
+  </section>
+
+  <div class="t-ticker">
+    <div class="t-track" id="ttrack">
+      <span>SHA-256 VERIFIED DOWNLOADS <b>◆</b></span><span>INSTANT DELIVERY <b>◆</b></span><span>PATENT-PENDING SOURCE MATERIAL <b>◆</b></span><span>70/20/10 TREASURY INSIDE <b>◆</b></span><span>NO DRM — YOU OWN IT <b>◆</b></span><span>UPDATED OCTOBER 2026 <b>◆</b></span>
+    </div>
+  </div>
+
+  <div class="sec-label" id="catalog">catalog // 8 artifacts indexed</div>
+
+  <div class="prod" data-name="PQC Migration Toolkit">
+    <span class="p-id">[01]</span>
+    <span class="p-name">pqc_migration_kit<span class="ext">.zip</span></span>
+    <span class="p-desc">NIST-standard transition policies, lattice-crypto checklists, vendor-interrogation scripts, crypto-agility runbook.</span>
+    <span class="p-price">$249<small>PDF + DOCX + XLSX</small></span>
+    <button class="p-add">add++</button>
+  </div>
+
+  <div class="prod" data-name="DBA Whitepaper (Annotated)">
+    <span class="p-id">[02]</span>
+    <span class="p-name">dba_whitepaper<span class="ext">.pdf</span></span>
+    <span class="p-desc">Deep Behavioral Alignment, annotated by the inventor — verified commercial outcomes vs. RLHF, with the math.</span>
+    <span class="p-price">$99<small>68 PAGES</small></span>
+    <button class="p-add">add++</button>
+  </div>
+
+  <div class="prod" data-name="Treasury Smart-Contract Templates">
+    <span class="p-id">[03]</span>
+    <span class="p-name">treasury_70_20_10<span class="ext">.sol</span></span>
+    <span class="p-desc">The Harmos treasury protocol as deployable Solidity — operational split, sovereign treasury, validator staking pool, governance thresholds at $1M / $10M.</span>
+    <span class="p-price">$399<small>BASE L2 READY</small></span>
+    <button class="p-add">add++</button>
+  </div>
+
+  <div class="prod" data-name="Patent Teardown — DBA & MLTA">
+    <span class="p-id">[04]</span>
+    <span class="p-name">patent_teardown<span class="ext">.pdf</span></span>
+    <span class="p-desc">Both USPTO/PCT filings decoded in plain language — claims maps, defensibility notes, licensing angles.</span>
+    <span class="p-price">$149<small>2 FILINGS</small></span>
+    <button class="p-add">add++</button>
+  </div>
+
+  <div class="prod" data-name="Sovereign AI Market Map">
+    <span class="p-id">[05]</span>
+    <span class="p-name">market_map_18<span class="ext">.pdf</span></span>
+    <span class="p-desc">All eighteen verticals sized and ranked — entry vectors, budget owners, procurement cycles, sovereign-AI gap analysis.</span>
+    <span class="p-price">$199<small>OCT 2026 EDITION</small></span>
+    <button class="p-add">add++</button>
+  </div>
+
+  <div class="prod" data-name="Validator Node Operator's Guide">
+    <span class="p-id">[06]</span>
+    <span class="p-name">validator_guide<span class="ext">.pdf</span></span>
+    <span class="p-desc">Run a node in the Harmos consensus layer — staking math, reward flows from the 10% pool, hardware sovereignty checklist.</span>
+    <span class="p-price">$129<small>MAINNET-READY</small></span>
+    <button class="p-add">add++</button>
+  </div>
+
+  <div class="prod" data-name="Agentic AI Prompt Vault">
+    <span class="p-id">[07]</span>
+    <span class="p-name">prompt_vault_500<span class="ext">.json</span></span>
+    <span class="p-desc">500+ production-tested prompts and multi-agent orchestration patterns from the Oxford Saïd + Google Cloud pipelines.</span>
+    <span class="p-price">$79<small>JSON + NOTION</small></span>
+    <button class="p-add">add++</button>
+  </div>
+
+  <div class="prod" data-name="ZKML Implementation Notes">
+    <span class="p-id">[08]</span>
+    <span class="p-name">zkml_fieldnotes<span class="ext">.pdf</span></span>
+    <span class="p-desc">zk-SNARK / zk-STARK execution proofs for ML inference — proving integrity without exposing model weights. Lab notes, not theory.</span>
+    <span class="p-price">$189<small>FIELD NOTES</small></span>
+    <button class="p-add">add++</button>
+  </div>
+
+  <div class="specs">
+    <div class="spec"><b>256-bit</b>Download integrity<br>hash on every file</div>
+    <div class="spec"><b>0</b>Subscriptions<br>rent-seeking forbidden</div>
+    <div class="spec"><b>2</b>Patent filings<br>behind the material</div>
+    <div class="spec"><b>24h</b>Email support<br>from the lab itself</div>
+  </div>
+
+  <div class="sec-label">console // transaction log</div>
+  <div id="console">
+    <div class="ln ok">harmos_vault v2.6.10 — session established</div>
+    <div class="ln">awaiting acquisition commands…</div>
+  </div>
+
+  <footer class="t-foot">
+    <span>© 2026 WALI AHMAD · HARMOS INC.</span>
+    <span><a href="index.html">PORTAL</a> · <a href="sovereign.html">ADVISORY</a> · <a href="academy.html">ACADEMY</a></span>
+    <span><a href="mailto:wali.ahmad@harmos.ai">WALI.AHMAD@HARMOS.AI</a></span>
+  </footer>
+</main>
+
+<script>
+/* ---------- boot sequence ---------- */
+const lines = [
+  ['run harmos_vault.sys', 0],
+  ['load core.module ............ <span class="ok">100%</span>', 420],
+  ['verify post-quantum handshake ......... <span class="ok">OK</span>', 420],
+  ['mount encrypted catalog [8 artifacts] .. <span class="ok">OK</span>', 380],
+  ['decrypt price ledger ................. <span class="ok">OK</span>', 380],
+  ['<span class="warn">WARNING: this terminal grants access to patent-pending source material.</span>', 520],
+  ['identity: <span class="ok">WALI AHMAD — FOUNDER & CEO, HARMOS AI</span>', 480],
+  ['status: <span class="ok">VAULT OPEN</span>', 420],
+];
+const bootlog = document.getElementById('bootlog');
+let li = 0;
+function typeLine() {
+  if (li >= lines.length) {
+    const c = document.createElement('span'); c.className = 'cursor';
+    bootlog.appendChild(c);
+    document.getElementById('launch').classList.add('ready');
+    return;
+  }
+  const [html, pause] = lines[li];
+  const div = document.createElement('div');
+  bootlog.appendChild(div);
+  /* type raw text feel: reveal by characters of stripped html */
+  const tmp = document.createElement('div'); tmp.innerHTML = html;
+  const full = tmp.textContent;
+  let ci = 0;
+  const iv = setInterval(() => {
+    ci += 2;
+    if (ci >= full.length) {
+      div.innerHTML = html;
+      clearInterval(iv);
+      li++;
+      setTimeout(typeLine, pause);
+    } else {
+      div.textContent = full.slice(0, ci);
+    }
+  }, 14);
+}
+window.addEventListener('load', () => setTimeout(typeLine, 500));
+
+document.getElementById('launch').addEventListener('click', () => {
+  document.getElementById('gate').classList.add('gone');
+  document.getElementById('main').classList.add('live');
+});
+
+/* ---------- clock ---------- */
+function clock() {
+  const d = new Date();
+  const p = n => String(n).padStart(2, '0');
+  document.getElementById('clock').textContent =
+    p(d.getHours()) + ':' + p(d.getMinutes()) + ':' + p(d.getSeconds()) + ' PKT';
+}
+setInterval(clock, 1000); clock();
+
+/* ---------- scramble headline ---------- */
+const CH = '█▓▒░<>/\\|=+*#01';
+function scramble(el, finalText) {
+  let frame = 0;
+  const total = finalText.length;
+  const iv = setInterval(() => {
+    frame++;
+    const done = Math.floor(frame * total / 22);
+    let out = '';
+    for (let i = 0; i < total; i++) {
+      out += i < done ? finalText[i] : CH[Math.floor(Math.random() * CH.length)];
+    }
+    el.textContent = out;
+    if (done >= total) clearInterval(iv);
+  }, 40);
+}
+const scrEl = document.getElementById('scramble');
+const finalT = scrEl.textContent;
+const scrObs = new MutationObserver(() => {
+  if (document.getElementById('main').classList.contains('live')) {
+    scramble(scrEl, finalT);
+    scrObs.disconnect();
+  }
+});
+scrObs.observe(document.getElementById('main'), { attributes: true });
+
+/* ---------- cart ---------- */
+let cart = 0;
+const consoleBox = document.getElementById('console');
+document.querySelectorAll('.p-add').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const prod = btn.closest('.prod');
+    const name = prod.dataset.name;
+    cart++;
+    document.getElementById('cartn').textContent = cart;
+    btn.classList.add('added'); btn.textContent = 'added ✓';
+    setTimeout(() => { btn.classList.remove('added'); btn.textContent = 'add++'; }, 1600);
+    const ln = document.createElement('div');
+    ln.className = 'ln ok';
+    ln.textContent = `add_to_cart --item "${name}" → reserved · checkout via wali.ahmad@harmos.ai`;
+    consoleBox.appendChild(ln);
+    consoleBox.scrollTop = consoleBox.scrollHeight;
+  });
+});
+document.getElementById('cartline').addEventListener('click', () => {
+  if (cart > 0) window.location.href = 'mailto:wali.ahmad@harmos.ai?subject=Vault%20Checkout%20—%20' + cart + '%20artifact(s)';
+});
+
+/* ---------- ticker loop ---------- */
+const tr = document.getElementById('ttrack');
+tr.innerHTML += tr.innerHTML;
+</script>
+</body>
+</html>
