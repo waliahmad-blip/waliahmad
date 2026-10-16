@@ -14,7 +14,70 @@
     --bg:#030c18; --panel:#061426; --line:rgba(60,232,207,.16);
     --teal:#3ce8cf; --teal-dim:#1d8f82; --gold:#f0b429;
     --ink:#eafaf6; --mut:#7fa3ad;
+    /* extended spectrum */
+    --violet:#a78bfa; --coral:#ff6b57; --sky:#4fb3ff; --rose:#f472b6;
   }
+  @property --ang { syntax:'<angle>'; initial-value:0deg; inherits:false; }
+
+  /* ---------- CARD LIGHT SYSTEM ---------- */
+  .cell, .offer { --hueRGB:60,232,207; }
+  .cell {
+    box-shadow:inset 0 2px 0 rgba(var(--hueRGB),.38);
+    transition:background .35s, box-shadow .45s;
+  }
+  .cell:hover {
+    background:rgba(var(--hueRGB),.045);
+    box-shadow:inset 0 2px 0 rgba(var(--hueRGB),.9),
+               0 0 46px rgba(var(--hueRGB),.16),
+               inset 0 0 34px rgba(var(--hueRGB),.05);
+  }
+  /* rotating aurora border on hover */
+  .cell::before {
+    content:''; position:absolute; inset:-1px; padding:1px; pointer-events:none;
+    background:conic-gradient(from var(--ang), transparent 0%, rgba(var(--hueRGB),.9) 12%, transparent 26%);
+    -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite:xor; mask-composite:exclude;
+    opacity:0; transition:opacity .45s;
+  }
+  .cell:hover::before { opacity:1; animation:spinHue 3.2s linear infinite; }
+  @keyframes spinHue { to { --ang:360deg; } }
+  /* cursor spotlight */
+  .cell::after {
+    content:''; position:absolute; inset:0; pointer-events:none;
+    background:radial-gradient(420px circle at var(--mx,50%) var(--my,-20%), rgba(var(--hueRGB),.12), transparent 55%);
+    opacity:0; transition:opacity .45s;
+  }
+  .cell:hover::after { opacity:1; }
+  .cell .c-id { color:rgba(var(--hueRGB),.85); transition:color .3s; }
+  .cell:hover .c-id { color:rgba(var(--hueRGB),1); }
+
+  /* Lane B: hue cycle on offers */
+  .offer:nth-of-type(6n+2) { --hueRGB:240,180,41; }
+  .offer:nth-of-type(6n+3) { --hueRGB:167,139,250; }
+  .offer:nth-of-type(6n+4) { --hueRGB:255,107,87; }
+  .offer:nth-of-type(6n+5) { --hueRGB:79,179,255; }
+  .offer:nth-of-type(6n+6) { --hueRGB:244,114,182; }
+  .offer .idx { border-color:rgba(var(--hueRGB),.5); color:rgba(var(--hueRGB),1); transition:box-shadow .4s; }
+  .offer.active .idx { box-shadow:0 0 16px rgba(var(--hueRGB),.4); }
+  .offer.active { box-shadow:inset 2px 0 0 rgba(var(--hueRGB),.9); }
+
+  /* flowing gradient on section labels + progress bar */
+  .sec-head .no {
+    background:linear-gradient(90deg, var(--teal), var(--violet), var(--gold), var(--teal));
+    background-size:300% 100%; -webkit-background-clip:text; background-clip:text; color:transparent;
+    animation:hueFlow 9s linear infinite; display:inline-block;
+  }
+  @keyframes hueFlow { to { background-position:300% 0; } }
+  .progress { background:linear-gradient(90deg, var(--teal), var(--violet), var(--gold));
+    background-size:200% 100%; animation:hueFlow 6s linear infinite; }
+
+  /* ventures: each startup its own hue */
+  #ventures .cell:nth-child(2) { --hueRGB:240,180,41; }
+  #ventures .cell:nth-child(3) { --hueRGB:167,139,250; }
+
+  /* third ambient orb — violet */
+  .glow.c { width:34vw; height:34vw; top:36%; left:32%; background:rgba(167,139,250,.055); animation:driftC 40s ease-in-out infinite alternate; }
+  @keyframes driftC { to { transform:translate(-7vw, 8vh) scale(1.15); } }
   * { margin:0; padding:0; box-sizing:border-box; }
   html { scroll-behavior:smooth; }
   body { background:var(--bg); color:var(--ink); font-family:'Space Grotesk',sans-serif; font-weight:300;
@@ -353,6 +416,7 @@
 
 <div class="glow a"></div>
 <div class="glow b"></div>
+<div class="glow c"></div>
 <div class="progress" id="progress"></div>
 
 <!-- HARMOS H MARK (defs reused page-wide) -->
@@ -841,6 +905,28 @@ const revObs = new IntersectionObserver(entries => {
   });
 }, { threshold: .12 });
 toReveal.forEach(el => revObs.observe(el));
+
+/* ---------- card light system: category hues + cursor spotlight ---------- */
+const HUES = {
+  rag:'60,232,207', web:'60,232,207', proof:'60,232,207', edge:'60,232,207',
+  agents:'167,139,250', pqc:'167,139,250', quantum:'167,139,250',
+  blockchain:'240,180,41', web3:'240,180,41', api:'240,180,41', growth:'240,180,41', books:'240,180,41',
+  models:'79,179,255', llm:'79,179,255', nlp:'79,179,255', policy:'79,179,255', intel:'79,179,255',
+  prompts:'244,114,182', ai:'244,114,182',
+  vision:'255,107,87', audit:'255,107,87', scanner:'255,107,87'
+};
+document.querySelectorAll('.cell').forEach(cell => {
+  const tag = cell.querySelector('.c-id');
+  if (tag) {
+    const cat = (tag.textContent.split('·')[1] || '').trim().toLowerCase();
+    if (HUES[cat]) cell.style.setProperty('--hueRGB', HUES[cat]);
+  }
+  cell.addEventListener('mousemove', e => {
+    const r = cell.getBoundingClientRect();
+    cell.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+    cell.style.setProperty('--my', (e.clientY - r.top) + 'px');
+  });
+});
 
 /* node counter */
 (function(){
