@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WALI AHMAD — The Clubhouse | Ventures · Store · Academy · Books</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,900;1,9..144,400&family=Oswald:wght@500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --rust:#9D3D2C; --cream:#f7eedd; --ink:#241512;
+    --mustard:#e3a92b; --forest:#3f6b4f; --sage:#a9bd8f; --coral:#e2603c; --violet:#7a5fa3;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body { background:var(--rust); color:var(--cream); font-family:'Oswald',sans-serif;
+         -webkit-font-smoothing:antialiased; overflow-x:hidden; }
+  ::selection { background:var(--mustard); color:var(--ink); }
+  a { color:inherit; }
+
+  /* grain */
+  .grain { position:fixed; inset:-50%; z-index:200; pointer-events:none; opacity:.5;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.06 0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
+    animation:gr .8s steps(2) infinite; }
+  @keyframes gr { 50% { transform:translate3d(1.5%,1%,0); } }
+
+  /* nav */
+  nav { position:fixed; top:0; left:0; right:0; z-index:100; display:flex; justify-content:space-between; align-items:center; padding:20px 34px; }
+  nav .nm { font-family:'Fraunces',serif; font-weight:900; font-size:19px; text-decoration:none; letter-spacing:.01em; }
+  nav .lk { display:flex; gap:8px; }
+  nav .lk a { font-family:'Space Mono',monospace; font-size:9.5px; letter-spacing:.2em; text-transform:uppercase; text-decoration:none;
+    border:2px solid var(--cream); border-radius:999px; padding:8px 16px; transition:.25s; }
+  nav .lk a:hover { background:var(--cream); color:var(--rust); }
+
+  /* wave dividers */
+  .wave { display:block; width:100%; height:36px; }
+  .wave.up { transform:scaleY(-1); }
+
+  /* hero */
+  .hero { min-height:100vh; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; padding:130px 20px 80px; position:relative; }
+  .hero .est { font-family:'Space Mono',monospace; font-size:11px; letter-spacing:.4em; text-transform:uppercase; margin-bottom:26px; opacity:.85; }
+  h1.club { font-family:'Fraunces',serif; font-weight:900; font-size:clamp(64px,14vw,220px); line-height:.84; letter-spacing:-.01em; }
+  h1.club span { display:block; }
+  h1.club .it { font-style:italic; font-weight:400; color:var(--mustard); }
+  .hero .tag { font-family:'Oswald',sans-serif; font-weight:500; letter-spacing:.34em; text-transform:uppercase; font-size:clamp(10px,1.3vw,14px); margin-top:34px; }
+  .hero .tag b { color:var(--mustard); font-weight:600; }
+
+  .badge { position:absolute; font-family:'Space Mono',monospace; font-size:9.5px; letter-spacing:.16em; text-transform:uppercase;
+    padding:12px 20px; border:2.5px solid var(--ink); color:var(--ink); font-weight:700; box-shadow:4px 4px 0 var(--ink);
+    transition:transform .3s; }
+  .badge:hover { transform:rotate(0deg) scale(1.06) !important; }
+  .b1 { top:16%; left:7%; background:var(--mustard); transform:rotate(-8deg); }
+  .b2 { top:24%; right:8%; background:var(--sage); transform:rotate(6deg); }
+  .b3 { bottom:26%; left:11%; background:var(--cream); transform:rotate(5deg); }
+  .b4 { bottom:18%; right:10%; background:var(--coral); color:var(--cream); transform:rotate(-6deg); }
+
+  /* generic section */
+  .zone { padding:90px 6vw 110px; position:relative; }
+  .k { font-family:'Space Mono',monospace; font-size:10.5px; letter-spacing:.36em; text-transform:uppercase; margin-bottom:20px; display:flex; gap:12px; align-items:center; }
+  .k::before { content:'✳'; }
+  h2.big { font-family:'Fraunces',serif; font-weight:900; font-size:clamp(42px,7vw,104px); line-height:.9; letter-spacing:-.01em; margin-bottom:20px; }
+  h2.big em { font-style:italic; font-weight:400; }
+  .lede { font-family:'Space Mono',monospace; font-size:12px; line-height:2; letter-spacing:.06em; text-transform:uppercase; max-width:58ch; margin-bottom:56px; opacity:.85; }
+
+  /* cyber zone — forest */
+  .cyber-zone { background:var(--forest); }
+  .cyber-zone .inner { border:3px solid var(--cream); border-radius:28px; padding:56px; display:grid; grid-template-columns:auto 1fr auto; gap:44px; align-items:center; box-shadow:8px 8px 0 rgba(0,0,0,.25); }
+  .cyber-zone h3 { font-family:'Fraunces',serif; font-weight:900; font-size:clamp(26px,3.4vw,46px); line-height:1; margin-bottom:16px; }
+  .cyber-zone h3 em { font-style:italic; font-weight:400; color:var(--mustard); }
+  .cyber-zone p { font-family:'Space Mono',monospace; font-size:11.5px; line-height:2; letter-spacing:.05em; text-transform:uppercase; opacity:.9; max-width:62ch; }
+  .cyber-zone .tagb { background:var(--mustard); color:var(--ink); border:2.5px solid var(--ink); box-shadow:4px 4px 0 var(--ink); font-family:'Space Mono',monospace; font-size:9px; font-weight:700; letter-spacing:.2em; text-transform:uppercase; padding:14px 22px; transform:rotate(3deg); white-space:nowrap; }
+
+  /* ventures — flip cards */
+  .vent-zone { background:var(--cream); color:var(--ink); }
+  .vents { display:grid; grid-template-columns:repeat(3,1fr); gap:30px; }
+  .flip { perspective:1400px; height:400px; }
+  .flip-in { position:relative; width:100%; height:100%; transform-style:preserve-3d; transition:transform .8s cubic-bezier(.19,1,.22,1); }
+  .flip:hover .flip-in { transform:rotateY(180deg); }
+  .face { position:absolute; inset:0; backface-visibility:hidden; -webkit-backface-visibility:hidden; border:3px solid var(--ink); border-radius:26px; padding:36px 30px; display:flex; flex-direction:column; box-shadow:8px 8px 0 rgba(36,21,18,.9); }
+  .face.bk { transform:rotateY(180deg); background:var(--ink); color:var(--cream); }
+  .face .num { font-family:'Space Mono',monospace; font-size:10px; letter-spacing:.24em; font-weight:700; }
+  .face h3 { font-family:'Fraunces',serif; font-weight:900; font-size:clamp(28px,3vw,44px); line-height:.95; margin:16px 0 8px; }
+  .face .vd { font-family:'Oswald',sans-serif; font-weight:500; letter-spacing:.26em; text-transform:uppercase; font-size:10.5px; margin-bottom:20px; }
+  .face p { font-family:'Space Mono',monospace; font-size:10.5px; line-height:1.95; letter-spacing:.04em; text-transform:uppercase; flex:1; }
+  .face .ft { display:flex; justify-content:space-between; font-family:'Space Mono',monospace; font-size:9.5px; letter-spacing:.2em; text-transform:uppercase; font-weight:700; }
+  .v1 .face.fr { background:var(--forest); color:var(--cream); }
+  .v2 .face.fr { background:var(--mustard); color:var(--ink); }
+  .v3 .face.fr { background:var(--violet); color:var(--cream); }
+  .face .hint { position:absolute; bottom:14px; right:20px; font-size:14px; }
+
+  /* store — diner menu cards */
+  .store-zone { background:var(--rust); }
+  .menus { display:grid; grid-template-columns:1fr 1fr; gap:34px; }
+  .menu { border:3px solid var(--ink); border-radius:8px; padding:44px 40px 48px; box-shadow:10px 10px 0 rgba(36,21,18,.9); position:relative; }
+  .menu.m1 { background:var(--mustard); color:var(--ink); transform:rotate(-1.2deg); }
+  .menu.m2 { background:var(--cream); color:var(--ink); transform:rotate(1deg); }
+  .menu .tape { position:absolute; top:-16px; left:50%; transform:translateX(-50%) rotate(-3deg); width:120px; height:30px; background:rgba(255,255,255,.55); border:1px solid rgba(36,21,18,.2); }
+  .menu h3 { font-family:'Fraunces',serif; font-weight:900; font-size:clamp(26px,3vw,40px); text-align:center; margin-bottom:6px; }
+  .menu .msub { font-family:'Space Mono',monospace; font-size:9.5px; letter-spacing:.3em; text-transform:uppercase; text-align:center; margin-bottom:34px; font-weight:700; }
+  .mi { display:flex; align-items:baseline; gap:12px; padding:13px 0; text-decoration:none; }
+  .mi .t { font-family:'Oswald',sans-serif; font-weight:600; font-size:16px; letter-spacing:.04em; text-transform:uppercase; }
+  .mi .t small { display:block; font-family:'Space Mono',monospace; font-weight:400; font-size:8.5px; letter-spacing:.16em; color:rgba(36,21,18,.65); margin-top:4px; }
+  .mi .dots { flex:1; border-bottom:2.5px dotted rgba(36,21,18,.55); transform:translateY(-4px); }
+  .mi .p { font-family:'Fraunces',serif; font-weight:900; font-size:19px; white-space:nowrap; }
+  .mi:hover .t { color:var(--rust); }
+  .menu.m2 .mi:hover .t { color:var(--forest); }
+  .menu.m3 { background:var(--forest); color:var(--cream); transform:rotate(1deg); }
+  .menu.m4 { background:var(--violet); color:var(--cream); transform:rotate(-1deg); }
+  .menu.m3 .mi .t small, .menu.m4 .mi .t small { color:rgba(247,238,221,.7); }
+  .menu.m3 .mi .dots, .menu.m4 .mi .dots { border-bottom-color:rgba(247,238,221,.5); }
+  .menu.m3 .mi:hover .t { color:var(--mustard); }
+  .menu.m4 .mi:hover .t { color:var(--sage); }
+
+  /* academy — recipe card */
+  .acad-zone { background:var(--sage); color:var(--ink); }
+  .acad-grid { display:grid; grid-template-columns:1.15fr .85fr; gap:34px; }
+  .rcard { background:var(--cream); border:3px solid var(--ink); border-radius:18px; padding:42px 38px; box-shadow:8px 8px 0 rgba(36,21,18,.85); }
+  .rcard h3 { font-family:'Fraunces',serif; font-weight:900; font-size:clamp(24px,2.6vw,36px); margin-bottom:26px; }
+  .rcard h3 em { font-style:italic; font-weight:400; color:var(--rust); }
+  .rcard ol { list-style:none; counter-reset:s; }
+  .rcard ol li { counter-increment:s; font-family:'Space Mono',monospace; font-size:10.5px; letter-spacing:.1em; text-transform:uppercase; line-height:2; padding:12px 0; border-bottom:1.5px dashed rgba(36,21,18,.35); display:flex; gap:18px; }
+  .rcard ol li::before { content:counter(s,decimal-leading-zero); font-family:'Fraunces',serif; font-weight:900; font-size:22px; color:var(--rust); }
+  .bkc { background:var(--ink); color:var(--cream); border-radius:18px; padding:42px 38px; box-shadow:8px 8px 0 rgba(36,21,18,.4); }
+  .bkc h3 { font-family:'Fraunces',serif; font-weight:900; font-size:clamp(24px,2.6vw,36px); color:var(--mustard); margin-bottom:26px; }
+  .bkc .bkt { font-family:'Fraunces',serif; font-style:italic; font-size:24px; margin-bottom:6px; }
+  .bkc .bkm { font-family:'Space Mono',monospace; font-size:9px; letter-spacing:.2em; text-transform:uppercase; opacity:.7; margin-bottom:26px; }
+  .bkc .bkp { font-family:'Fraunces',serif; font-weight:900; font-size:20px; color:var(--sage); margin-bottom:30px; }
+
+  /* quote pill */
+  .quote-zone { background:var(--coral); display:flex; justify-content:center; }
+  .qpill { background:var(--cream); color:var(--ink); border-radius:22vw; padding:70px 8vw; text-align:center; max-width:1000px;
+    font-family:'Fraunces',serif; font-weight:900; font-size:clamp(24px,3.6vw,52px); line-height:1.15; box-shadow:10px 10px 0 rgba(36,21,18,.85); }
+  .qpill em { font-style:italic; font-weight:400; color:var(--rust); }
+
+  /* footer */
+  .foot-zone { background:var(--ink); color:var(--cream); text-align:center; }
+  .foot-zone h2 { font-family:'Fraunces',serif; font-weight:900; font-size:clamp(44px,9vw,140px); line-height:.88; }
+  .foot-zone h2 em { font-style:italic; font-weight:400; color:var(--mustard); }
+  .foot-zone .mail { display:inline-block; margin-top:40px; background:var(--mustard); color:var(--ink); border:3px solid var(--cream); border-radius:999px; padding:18px 42px; font-family:'Space Mono',monospace; font-size:12px; font-weight:700; letter-spacing:.16em; text-decoration:none; box-shadow:6px 6px 0 rgba(247,238,221,.3); transition:transform .25s; }
+  .foot-zone .mail:hover { transform:translate(-2px,-2px) rotate(-1deg); }
+  .foot-zone .fin { margin-top:80px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; font-family:'Space Mono',monospace; font-size:9px; letter-spacing:.24em; text-transform:uppercase; opacity:.65; }
+  .foot-zone .fin a { text-decoration:none; } .foot-zone .fin a:hover { opacity:1; color:var(--mustard); }
+
+  /* FAB */
+  .fab { position:fixed; bottom:26px; right:26px; z-index:150; width:68px; height:68px; border-radius:50%;
+    background:var(--cream); border:3px solid var(--ink); box-shadow:5px 5px 0 var(--ink);
+    display:flex; align-items:center; justify-content:center; cursor:pointer; transition:transform .3s; }
+  .fab:hover { transform:rotate(-8deg) scale(1.07); }
+  .fab svg { width:34px; height:34px; }
+  .apanel { position:fixed; bottom:110px; right:26px; z-index:160; width:min(330px,calc(100vw - 52px));
+    background:var(--cream); color:var(--ink); border:3px solid var(--ink); border-radius:22px; box-shadow:8px 8px 0 var(--ink);
+    padding:28px; transform:translateY(14px) rotate(1deg); opacity:0; visibility:hidden; transition:.4s cubic-bezier(.19,1,.22,1); }
+  .apanel.open { transform:none; opacity:1; visibility:visible; }
+  .apanel .st { font-family:'Space Mono',monospace; font-size:9px; letter-spacing:.22em; text-transform:uppercase; color:var(--forest); font-weight:700; margin-bottom:12px; }
+  .apanel h5 { font-family:'Fraunces',serif; font-weight:900; font-size:22px; margin-bottom:10px; }
+  .apanel p { font-family:'Space Mono',monospace; font-size:10.5px; line-height:1.9; letter-spacing:.04em; text-transform:uppercase; margin-bottom:18px; opacity:.85; }
+  .apanel .b { display:block; text-align:center; text-decoration:none; font-family:'Space Mono',monospace; font-size:10px; letter-spacing:.2em; text-transform:uppercase; background:var(--rust); color:var(--cream); font-weight:700; border-radius:999px; padding:14px; border:2.5px solid var(--ink); }
+  .apanel .x { position:absolute; top:10px; right:14px; background:none; border:none; cursor:pointer; font-family:'Space Mono',monospace; font-size:14px; font-weight:700; color:var(--ink); }
+
+  @media (max-width:960px) {
+    .vents, .menus, .acad-grid { grid-template-columns:1fr; }
+    .cyber-zone .inner { grid-template-columns:1fr; gap:26px; padding:36px 26px; }
+    .badge { display:none; }
+    nav .lk a:not(:last-child) { display:none; }
+    .menu.m1, .menu.m2, .menu.m3, .menu.m4 { transform:none; }
+  }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute"><defs>
+  <linearGradient id="chrome" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#e8f2f4"/><stop offset=".5" stop-color="#7d939c"/><stop offset="1" stop-color="#c8dade"/>
+  </linearGradient>
+  <g id="hMark">
+    <rect x="6" y="4" width="14" height="56" rx="2" fill="url(#chrome)"/>
+    <rect x="44" y="4" width="14" height="56" rx="2" fill="url(#chrome)"/>
+    <rect x="20" y="27" width="24" height="10" rx="2" fill="url(#chrome)"/>
+    <polygon points="32,22 40.4,27 40.4,37 32,42 23.6,37 23.6,27" fill="#0e5a4f" stroke="#3ce8cf" stroke-width="1.2"/>
+  </g>
+  <g id="wavePath"><path d="M0 18 Q 25 0 50 18 T 100 18 T 150 18 T 200 18 T 250 18 T 300 18 T 350 18 T 400 18 T 450 18 T 500 18 T 550 18 T 600 18 T 650 18 T 700 18 T 750 18 T 800 18 T 850 18 T 900 18 T 950 18 T 1000 18 T 1050 18 T 1100 18 T 1150 18 T 1200 18 T 1250 18 T 1300 18 T 1350 18 T 1400 18 T 1450 18 T 1500 18 T 1550 18 T 1600 18 V36 H0 Z"/></g>
+</defs></svg>
+
+<div class="grain"></div>
+
+<nav>
+  <a class="nm" href="index.html">Wali Ahmad ☼</a>
+  <div class="lk">
+    <a href="#ventures">Ventures</a><a href="#store">Store</a><a href="#authority">Authority</a><a href="#academy">Academy</a><a href="#contact">Say hello</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="est">✳ Est. 2026 · Lahore → The World ✳</div>
+  <h1 class="club"><span>WALI</span><span class="it">Ahmad's</span><span>CLUBHOUSE</span></h1>
+  <div class="tag">Inventor <b>·</b> Founder ×3 <b>·</b> Cybersecurity Expert <b>·</b> Author</div>
+  <span class="badge b1">3 ventures live ☺</span>
+  <span class="badge b2">2 patents filed ✳</span>
+  <span class="badge b3">72 offerings · 5 lanes</span>
+  <span class="badge b4">Harvard cybersecurity ☼</span>
+</header>
+
+<svg class="wave" viewBox="0 0 1600 36" preserveAspectRatio="none" style="background:var(--rust)"><use href="#wavePath" fill="var(--forest)"/></svg>
+
+<!-- CYBER -->
+<section class="zone cyber-zone">
+  <div class="inner">
+    <svg width="76" height="76" viewBox="0 0 72 72" fill="none">
+      <path d="M36 4 L62 14 V34 C62 50 50 62 36 68 C22 62 10 50 10 34 V14 Z" stroke="#f7eedd" stroke-width="2.4" fill="rgba(247,238,221,.08)"/>
+      <path d="M24 36 L32 44 L50 26" stroke="#e3a92b" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <div>
+      <h3>Security is the foundation — <em>not the storefront.</em></h3>
+      <p>Harvard CS50 Cybersecurity (A+) · IBM Gen-AI for Cybersecurity · zero-trust &amp; applied cryptography across seven programs — and now a Harvard Master's candidate in Cybersecurity. Nothing security-flavored is for sale yet. When it is, you'll read it here first ☼</p>
+    </div>
+    <span class="tagb">Harvard · Master's Candidate</span>
+  </div>
+</section>
+
+<svg class="wave" viewBox="0 0 1600 36" preserveAspectRatio="none" style="background:var(--forest)"><use href="#wavePath" fill="var(--cream)"/></svg>
+
+<!-- VENTURES -->
+<section class="zone vent-zone" id="ventures">
+  <div class="k" style="color:var(--rust)">The Ventures</div>
+  <h2 class="big">Three startups.<br><em>All live. All mine.</em></h2>
+  <p class="lede" style="color:rgba(36,21,18,.75)">Hover a card — flip it over. Every venture is online right now, no decks, no vaporware.</p>
+  <div class="vents">
+    <div class="flip v1"><div class="flip-in">
+      <div class="face fr">
+        <span class="num">V-01 ● LIVE</span>
+        <h3>harmos.ai</h3>
+        <div class="vd">The Global Trust Layer for AI</div>
+        <p>Verifiable intelligence — every computation cryptographically proven. Post-quantum secured. Two filed patents.</p>
+        <div class="ft"><span>SOVEREIGN AI</span><span>HOVER TO FLIP ↻</span></div>
+        <span class="hint">✳</span>
+      </div>
+      <div class="face bk">
+        <span class="num" style="color:var(--sage)">V-01 / DETAIL</span>
+        <h3 style="color:var(--sage)">Proof,<br>not promises.</h3>
+        <p>Datasets sovereignty-tracked. Models behaviorally aligned. Zero black boxes — mathematical truth only.</p>
+        <div class="ft"><span>FOUNDER &amp; CEO</span><a href="https://harmos.ai" target="_blank" rel="noopener" style="color:var(--mustard);text-decoration:none">VISIT ↗</a></div>
+      </div>
+    </div></div>
+    <div class="flip v2"><div class="flip-in">
+      <div class="face fr">
+        <span class="num">V-02 ● LIVE</span>
+        <h3>nooriva.ai</h3>
+        <div class="vd">Natural Glow Rituals</div>
+        <p>Twelve botanical glow rituals — rose hydrosol, saffron, mastic. One golden amber elixir. Halal-compliant, made for Pakistan.</p>
+        <div class="ft"><span>WELLNESS</span><span>HOVER TO FLIP ↻</span></div>
+        <span class="hint">☼</span>
+      </div>
+      <div class="face bk">
+        <span class="num" style="color:var(--mustard)">V-02 / DETAIL</span>
+        <h3 style="color:var(--mustard)">Drink<br>your glow.</h3>
+        <p>Quiz-led ritual finder, the NOORIVA Club community — respect first, authentic only, everyone blooms.</p>
+        <div class="ft"><span>FOUNDER</span><a href="https://nooriva.ai" target="_blank" rel="noopener" style="color:var(--mustard);text-decoration:none">VISIT ↗</a></div>
+      </div>
+    </div></div>
+    <div class="flip v3"><div class="flip-in">
+      <div class="face fr">
+        <span class="num">V-03 ● LIVE</span>
+        <h3>ourchemistry.ai</h3>
+        <div class="vd">The Third Venture</div>
+        <p>The newest member of the clubhouse — live now. Visit to see what shipped most recently.</p>
+        <div class="ft"><span>NEW</span><span>HOVER TO FLIP ↻</span></div>
+        <span class="hint">☺</span>
+      </div>
+      <div class="face bk">
+        <span class="num" style="color:var(--violet)">V-03 / DETAIL</span>
+        <h3 style="color:var(--sage)">Fresh<br>from the lab.</h3>
+        <p>Details revealed on the site itself — the lab's most recent ship, live and public.</p>
+        <div class="ft"><span>FOUNDER</span><a href="https://ourchemistry.ai" target="_blank" rel="noopener" style="color:var(--mustard);text-decoration:none">VISIT ↗</a></div>
+      </div>
+    </div></div>
+  </div>
+</section>
+
+<svg class="wave" viewBox="0 0 1600 36" preserveAspectRatio="none" style="background:var(--cream)"><use href="#wavePath" fill="var(--rust)"/></svg>
+
+<!-- STORE -->
+<section class="zone store-zone" id="store">
+  <div class="k" style="color:var(--mustard)">The Store — 72 dishes, 5 lanes</div>
+  <h2 class="big">Today's menu:<br><em>instant or made-to-order.</em></h2>
+  <p class="lede">Lane A ships in seconds — pay, download, deploy. Lane B is cooked to order: fixed quote in 24h, weekly proof drops, delivery cryptographically sealed. Lane C rents the chef. Lane E seats you at the table.</p>
+  <div class="menus">
+    <div class="menu m1">
+      <span class="tape"></span>
+      <h3>LANE A</h3>
+      <div class="msub">— Instant · Automated · 26 Items · No DRM —</div>
+      <a class="mi" href="mailto:wali.ahmad@harmos.ai?subject=Order%20A-01"><span class="t">A-01 · RAG Pipeline Kit<small>python · vector store · evals</small></span><span class="dots"></span><span class="p">$149</span></a>
+      <a class="mi" href="mailto:wali.ahmad@harmos.ai?subject=Order%20A-02"><span class="t">A-02 · AI Agent Pack<small>support · sales · research</small></span><span class="dots"></span><span class="p">$99</span></a>
+      <a class="mi" href="mailto:wali.ahmad@harmos.ai?subject=Order%20A-03"><span class="t">A-03 · ML Model Zoo<small>churn · fraud · sentiment</small></span><span class="dots"></span><span class="p">$199</span></a>
+      <a class="mi" href="mailto:wali.ahmad@harmos.ai?subject=Order%20A-04"><span class="t">A-04 · LLM Adapter Packs<small>LoRA · task-tuned</small></span><span class="dots"></span><span class="p">$129</span></a>
+      <a class="mi" href="mailto:wali.ahmad@harmos.ai?subject=Order%20A-05"><span class="t">A-05 · Agentic Prompt Vault<small>400+ system prompts</small></span><span class="dots"></span><span class="p">$79</span></a>
+      <a class="mi" href="mailto:wali.ahmad@harmos.ai?subject=Order%20A-06"><span class="t">A-06 · Quantization Toolkit<small>GGUF · 4-bit · edge</small></span><span class="dots"></span><span class="p">$89</span></a>
+      <a class="mi" href="mailto:wali.ahmad@harmos.ai?subject=Order%20A-07"><span class="t">A-07 · NLP Doc Pipelines<small>extraction · OCR</small></span><span class="dots"></span><span class="p">$119</span></a>
+      <a class="mi" href="mailto:wali.ahmad@harmos.ai?subject=Order%20A-08"><span class="t">A-08 · Vision Starter Models<small>detection · segmentation</small></span><span class="dots"></span><span class="p">$159</span></a>
+      <a class="mi" href="mailto:wali.ahmad@harmos.ai?subject=Order%20A-09"><span class="t">A-09 · Smart Contract Library<small>escrow · treasury · Base L2</small></span><span class="dots"></span><span class="p">$299</span></a>
+      <a class="mi" href="mailto:wali.ahmad@harmos.ai?subject=Order%20A-10"><span class="t">A-10 · Tokenomics Calculator<small>supply · vesting sim</small></span><span class="dots"></span><span class="p">$49</span></a>
+      <a class="mi" href="mailto:wali.ahmad@harmos.ai?subject=Order%20A-11"><span class="t">A-11 · dApp Templates<small>wallet-wired React kits</small></span><span class="dots"></span><span class="p">$139</span></a>
+      <a class="mi" href="mailto:wali.ahmad@harmos.ai?subject=Order%20A-12"><span class="t">A-12 · Validator Node Guide<small>setup · ops · defense</small></span><span class="dots"></span><span class="p">$129</span></a>
+      <a class="mi" href="mailto:wali.ahmad@harmos.ai?subject=Order%20A-13"><span class="t">A-13 · PQC Migration Toolkit<small>NIST policies · runbooks</small></span><span class="dots"></span><span class="p">$249</span></a>
+      <a class="mi" href="mailto:wali.ahmad@harmos.ai?subject=Order%20A-14"><span class="t">A-14 · Quantum Notebook Pack<small>Qiskit · circuits · labs</small></span><span class="dots"></span><span class="p">$79</span></a>
+      <a class="mi" href="mailto:wali.ahmad@harmos.ai?subject=Order%20A-15"><span class="t">A-15 · Zero-Trust Bundle<small>policies · arch maps</small></span><span class="dots"></span><span class="p">$99</span></a>
+      <a class="mi" href="mailto:wali.ahmad@harmos.ai?subject=Order%20A-16"><span class="t">A-16 · AI Website Audit<small>instant auto report</small></span><span class="dots"></span><span class="p">$29</span></a>
+      <a class="mi" href="mailto:wali.ahmad@harmos.ai?subject=Order%20A-17"><span class="t">A-17 · PQC Readiness Scanner<small>auto posture score</small></span><span class="dots"></span><span class="p">$79</span></a>
+      <a class="mi" href="mailto:wali.ahmad@harmos.ai?subject=Order%20A-18"><span class="t">A-18 · Contract Analyzer<small>auto vuln scan</small></span><span class="dots"></span><span class="p">$49</span></a>
+      <a class="mi" href="mailto:wali.ahmad@harmos.ai?subject=Order%20A-19"><span class="t">A-19 · Summarizer API<small>instant key · per call</small></span><span class="dots"></span><span class="p">usage</span></a>
+      <a class="mi" href="mailto:wali.ahmad@harmos.ai?subject=Order%20A-20"><span class="t">A-20 · Verified Seals<small>crypto proof badges</small></span><span class="dots"></span><span class="p">$5–25</span></a>
+      <a class="mi" href="mailto:wali.ahmad@harmos.ai?subject=Order%20A-21"><span class="t">A-21 · Pitch-Deck Reviewer<small>instant scored feedback</small></span><span class="dots"></span><span class="p">$39</span></a>
+      <a class="mi" href="mailto:wali.ahmad@harmos.ai?subject=Order%20A-22"><span class="t">A-22 · Website Templates<small>HTML/React · agent slot</small></span><span class="dots"></span><span class="p">$129</span></a>
+      <a class="mi" href="mailto:wali.ahmad@harmos.ai?subject=Order%20A-23"><span class="t">A-23 · SEO Content Engine<small>automated pipeline</small></span><span class="dots"></span><span class="p">$99/mo</span></a>
+      <a class="mi" href="mailto:wali.ahmad@harmos.ai?subject=Order%20A-24"><span class="t">A-24 · Market Intel Brief<small>weekly · automated</small></span><span class="dots"></span><span class="p">$15/mo</span></a>
+      <a class="mi" href="mailto:wali.ahmad@harmos.ai?subject=Order%20A-25"><span class="t">A-25 · Agent Persona Packs<small>voices · guardrails</small></span><span class="dots"></span><span class="p">$39</span></a>
+      <a class="mi" href="mailto:wali.ahmad@harmos.ai?subject=Order%20A-26"><span class="t">A-26 · Books — Digital<small>both titles · PDF/ePub</small></span><span class="dots"></span><span class="p">$19–29</span></a>
+    </div>
+    <div class="menu m2">
+      <span class="tape"></span>
+      <h3>LANE B</h3>
+      <div class="msub">— Order → Build → Deliver · 23 Builds —</div>
+      <a class="mi" href="mailto:wali.ahmad@harmos.ai?subject=Commission%20B-01"><span class="t">B-01 · Custom ML Models<small>prediction · forecasting</small></span><span class="dots"></span><span class="p">$5,000+</span></a>
+      <a class="mi" href="mailto:wali.ahmad@harmos.ai?subject=Commission%20B-02"><span class="t">B-02 · Custom AI Agents<small>tools · memory · orchestration</small></span><span class="dots"></span><span class="p">$3,500+</span></a>
+      <a class="mi" href="mailto:wali.ahmad@harmos.ai?subject=Commission%20B-03"><span class="t">B-03 · Enterprise RAG<small>knowledge base · cited</small></span><span class="dots"></span><span class="p">$4,000+</span></a>
+      <a class="mi" href="mailto:wali.ahmad@harmos.ai?subject=Commission%20B-04"><span class="t">B-04 · LLM Fine-Tuning<small>domain adapt · evals</small></span><span class="dots"></span><span class="p">$6,000+</span></a>
+      <a class="mi" href="mailto:wali.ahmad@harmos.ai?subject=Commission%20B-05"><span class="t">B-05 · Computer Vision<small>detection · inspection</small></span><span class="dots"></span><span class="p">$7,000+</span></a>
+      <a class="mi" href="mailto:wali.ahmad@harmos.ai?subject=Commission%20B-06"><span class="t">B-06 · Legal/Medical NLP<small>compliant doc intel</small></span><span class="dots"></span><span class="p">$5,000+</span></a>
+      <a class="mi" href="mailto:wali.ahmad@harmos.ai?subject=Commission%20B-07"><span class="t">B-07 · Recommendation Engines<small>personalization</small></span><span class="dots"></span><span class="p">$4,500+</span></a>
+      <a class="mi" href="mailto:wali.ahmad@harmos.ai?subject=Commission%20B-08"><span class="t">B-08 · Chatbot Integration<small>site · WhatsApp · Slack</small></span><span class="dots"></span><span class="p">$2,000+</span></a>
+      <a class="mi" href="mailto:wali.ahmad@harmos.ai?subject=Commission%20B-09"><span class="t">B-09 · Automation Pipelines<small>ops · back-office</small></span><span class="dots"></span><span class="p">$3,500+</span></a>
+      <a class="mi" href="mailto:wali.ahmad@harmos.ai?subject=Commission%20B-10"><span class="t">B-10 · Award-Grade Websites<small>design + engineering</small></span><span class="dots"></span><span class="p">$2,500+</span></a>
+      <a class="mi" href="mailto:wali.ahmad@harmos.ai?subject=Commission%20B-11"><span class="t">B-11 · SaaS MVPs<small>full product · 6–10 wks</small></span><span class="dots"></span><span class="p">$8,000+</span></a>
+      <a class="mi" href="mailto:wali.ahmad@harmos.ai?subject=Commission%20B-12"><span class="t">B-12 · Analytics Dashboards<small>real-time · exec grade</small></span><span class="dots"></span><span class="p">$3,000+</span></a>
+      <a class="mi" href="mailto:wali.ahmad@harmos.ai?subject=Commission%20B-13"><span class="t">B-13 · Mobile App AI<small>on-device ML</small></span><span class="dots"></span><span class="p">$5,000+</span></a>
+      <a class="mi" href="mailto:wali.ahmad@harmos.ai?subject=Commission%20B-14"><span class="t">B-14 · Founder Bundle<small>site + agent + automation</small></span><span class="dots"></span><span class="p">$6,500+</span></a>
+      <a class="mi" href="mailto:wali.ahmad@harmos.ai?subject=Commission%20B-15"><span class="t">B-15 · dApp Development<small>tokens · escrow · treasury</small></span><span class="dots"></span><span class="p">$8,000+</span></a>
+      <a class="mi" href="mailto:wali.ahmad@harmos.ai?subject=Commission%20B-16"><span class="t">B-16 · Contracts + Audit<small>written &amp; reviewed</small></span><span class="dots"></span><span class="p">$4,000+</span></a>
+      <a class="mi" href="mailto:wali.ahmad@harmos.ai?subject=Commission%20B-17"><span class="t">B-17 · Token Launch<small>end-to-end</small></span><span class="dots"></span><span class="p">$10,000+</span></a>
+      <a class="mi" href="mailto:wali.ahmad@harmos.ai?subject=Commission%20B-18"><span class="t">B-18 · Escrow/Marketplace<small>full-stack Web3</small></span><span class="dots"></span><span class="p">$12,000+</span></a>
+      <a class="mi" href="mailto:wali.ahmad@harmos.ai?subject=Commission%20B-19"><span class="t">B-19 · PQC Migration<small>enterprise · gov $75K+</small></span><span class="dots"></span><span class="p">$15,000+</span></a>
+      <a class="mi" href="mailto:wali.ahmad@harmos.ai?subject=Commission%20B-20"><span class="t">B-20 · Custom Crypto Protocols<small>novel primitives</small></span><span class="dots"></span><span class="p">$12,000+</span></a>
+      <a class="mi" href="mailto:wali.ahmad@harmos.ai?subject=Commission%20B-21"><span class="t">B-21 · Air-Gapped Deploys<small>sovereign · state $150K+</small></span><span class="dots"></span><span class="p">$25,000+</span></a>
+      <a class="mi" href="mailto:wali.ahmad@harmos.ai?subject=Commission%20B-22"><span class="t">B-22 · ZKML Systems<small>verifiable inference</small></span><span class="dots"></span><span class="p">$18,000+</span></a>
+      <a class="mi" href="mailto:wali.ahmad@harmos.ai?subject=Commission%20B-23"><span class="t">B-23 · White-Label Agents<small>your brand, my engine</small></span><span class="dots"></span><span class="p">$20,000+</span></a>
+    </div>
+  </div>
+  <div class="k" id="authority" style="color:var(--mustard);margin-top:100px">More menus — the chef &amp; the table</div>
+  <div class="menus">
+    <div class="menu m3">
+      <span class="tape"></span>
+      <h3>LANE C</h3>
+      <div class="msub">— Authority · 9 Engagements · Vetted —</div>
+      <a class="mi" href="mailto:wali.ahmad@harmos.ai?subject=Engage%20C-01"><span class="t">C-01 · Advisory Retainer<small>fractional CTO / CAIO</small></span><span class="dots"></span><span class="p">$10K/mo</span></a>
+      <a class="mi" href="mailto:wali.ahmad@harmos.ai?subject=Engage%20C-02"><span class="t">C-02 · Boardroom Briefings<small>executive session</small></span><span class="dots"></span><span class="p">$12K/day</span></a>
+      <a class="mi" href="mailto:wali.ahmad@harmos.ai?subject=Engage%20C-03"><span class="t">C-03 · Keynote<small>global stage</small></span><span class="dots"></span><span class="p">$15,000</span></a>
+      <a class="mi" href="mailto:wali.ahmad@harmos.ai?subject=Engage%20C-04"><span class="t">C-04 · Expert Witness<small>AI/crypto · $25K min</small></span><span class="dots"></span><span class="p">$950+/hr</span></a>
+      <a class="mi" href="mailto:wali.ahmad@harmos.ai?subject=Engage%20C-05"><span class="t">C-05 · Due Diligence<small>VC / PE deal support</small></span><span class="dots"></span><span class="p">$15K+</span></a>
+      <a class="mi" href="mailto:wali.ahmad@harmos.ai?subject=Engage%20C-06"><span class="t">C-06 · Patent Licensing<small>2 filed · USPTO/PCT</small></span><span class="dots"></span><span class="p">royalties</span></a>
+      <a class="mi" href="mailto:wali.ahmad@harmos.ai?subject=Engage%20C-07"><span class="t">C-07 · Sovereign Stack License<small>white-label architecture</small></span><span class="dots"></span><span class="p">6 figures</span></a>
+      <a class="mi" href="mailto:wali.ahmad@harmos.ai?subject=Engage%20C-08"><span class="t">C-08 · Gov &amp; Defense Advisory<small>national programs</small></span><span class="dots"></span><span class="p">program</span></a>
+      <a class="mi" href="mailto:wali.ahmad@harmos.ai?subject=Engage%20C-09"><span class="t">C-09 · Book Tours &amp; Lectures<small>universities · forums</small></span><span class="dots"></span><span class="p">ask</span></a>
+    </div>
+    <div class="menu m4">
+      <span class="tape"></span>
+      <h3>LANE E</h3>
+      <div class="msub">— Network · 5 Programs · Earn With Us —</div>
+      <a class="mi" href="mailto:wali.ahmad@harmos.ai?subject=Network%20E-01"><span class="t">E-01 · B2B Matchmaking<small>curated introductions</small></span><span class="dots"></span><span class="p">% deal</span></a>
+      <a class="mi" href="mailto:wali.ahmad@harmos.ai?subject=Network%20E-02"><span class="t">E-02 · Sponsored Intelligence<small>brief sponsorships</small></span><span class="dots"></span><span class="p">campaign</span></a>
+      <a class="mi" href="mailto:wali.ahmad@harmos.ai?subject=Network%20E-03"><span class="t">E-03 · Equity-for-Advisory<small>select startups</small></span><span class="dots"></span><span class="p">0.5–2%</span></a>
+      <a class="mi" href="mailto:wali.ahmad@harmos.ai?subject=Network%20E-04"><span class="t">E-04 · Validator Rev Share<small>network participation</small></span><span class="dots"></span><span class="p">rev %</span></a>
+      <a class="mi" href="mailto:wali.ahmad@harmos.ai?subject=Network%20E-05"><span class="t">E-05 · Builders Circle<small>private community</small></span><span class="dots"></span><span class="p">$50–150/mo</span></a>
+    </div>
+  </div>
+</section>
+
+<svg class="wave" viewBox="0 0 1600 36" preserveAspectRatio="none" style="background:var(--rust)"><use href="#wavePath" fill="var(--sage)"/></svg>
+
+<!-- ACADEMY -->
+<section class="zone acad-zone" id="academy">
+  <div class="k" style="color:var(--ink)">The Academy</div>
+  <h2 class="big">The recipe<br><em>for proof.</em></h2>
+  <div class="acad-grid">
+    <div class="rcard">
+      <h3>Lane D — <em>the full curriculum</em></h3>
+      <ol>
+        <li>D-01 · PQC for Executives — 4 weeks · $1,450</li>
+        <li>D-02 · Generative &amp; Agentic AI Strategy — 4 weeks · $1,200</li>
+        <li>D-03 · Quantum Mechanics → Computing — 6 weeks · $980</li>
+        <li>D-04 · DBA Masterclass — doctoral methods · $2,400</li>
+        <li>D-05 · Blockchain &amp; FinTech — 4 weeks · $890</li>
+        <li>D-06 · AI Cybersecurity Operations — teaching only · $760</li>
+        <li>D-07 · 1:1 Mentorship — Reader / Builder / Sovereign · from $180/mo</li>
+        <li>D-08 · Corporate Training — teams · $20K–60K</li>
+        <li>D-09 · Certification Coaching — 1:1 exam prep · $500</li>
+      </ol>
+      <p style="font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;margin-top:26px;opacity:.7">Enroll: <a href="mailto:wali.ahmad@harmos.ai?subject=Academy" style="color:var(--rust)">wali.ahmad@harmos.ai</a> ✳ Forbes Council ✳ Marquis Who's Who</p>
+    </div>
+    <div class="bkc">
+      <h3>The Books ☼</h3>
+      <div class="bkt">The Thinking Millionaire</div>
+      <div class="bkm">Wealth architecture · signed hardcover</div>
+      <div class="bkp">$49</div>
+      <div class="bkt">The 1/137 Blue Print</div>
+      <div class="bkm">The physics of precision · signed hardcover</div>
+      <div class="bkp">$59</div>
+      <a href="mailto:wali.ahmad@harmos.ai?subject=Books" style="color:var(--mustard);font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;text-decoration:none;border-bottom:2px solid var(--mustard);padding-bottom:4px">Order both, signed — $98</a>
+    </div>
+  </div>
+</section>
+
+<svg class="wave" viewBox="0 0 1600 36" preserveAspectRatio="none" style="background:var(--sage)"><use href="#wavePath" fill="var(--coral)"/></svg>
+
+<!-- QUOTE -->
+<section class="zone quote-zone">
+  <div class="qpill">"Anyone can sell you a black box.<br>I sell <em>mathematical proof</em> —<br>and I teach you to build it." ☺</div>
+</section>
+
+<svg class="wave" viewBox="0 0 1600 36" preserveAspectRatio="none" style="background:var(--coral)"><use href="#wavePath" fill="var(--ink)"/></svg>
+
+<!-- FOOTER -->
+<footer class="zone foot-zone" id="contact">
+  <h2>Pull up a chair.<br><em>Order something.</em></h2>
+  <a class="mail" href="mailto:wali.ahmad@harmos.ai">wali.ahmad@harmos.ai</a>
+  <div class="fin">
+    <span>© 2026 Wali Ahmad · Harmos Inc.</span>
+    <span><a href="index.html">All designs</a> · Lahore → Delaware → The World</span>
+  </div>
+</footer>
+
+<button class="fab" onclick="toggleAgent(event)" aria-label="Harmos AI Agent">
+  <img src="assets/logo.png" alt="Harmos agent" style="width:100%;height:100%;border-radius:50%;object-fit:contain;padding:14%">
+</button>
+<div class="apanel" id="apanel">
+  <button class="x" onclick="toggleAgent(event)">✕</button>
+  <div class="st">● Harmos Agent · Online</div>
+  <h5>What can I help you create? ☺</h5>
+  <p>The Harmos agent is integrating into this site — soon it scopes builds and takes orders directly. For now, it routes you to the founder.</p>
+  <a class="b" href="mailto:wali.ahmad@harmos.ai?subject=Via%20Harmos%20Agent">Message through Harmos →</a>
+</div>
+
+<script>
+function toggleAgent(e){ e.preventDefault(); document.getElementById('apanel').classList.toggle('open'); }
+/* gentle parallax on badges */
+const badges = [...document.querySelectorAll('.badge')];
+addEventListener('scroll', () => {
+  const y = scrollY;
+  badges.forEach((b, i) => {
+    const base = [-8, 6, 5, -6][i];
+    b.style.transform = `rotate(${base}deg) translateY(${y * (0.03 + i * 0.015)}px)`;
+  });
+}, { passive: true });
+</script>
+</body>
+</html>

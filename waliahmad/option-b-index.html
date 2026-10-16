@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WALI AHMAD — INDEX OF WORKS | Ventures · Store · Academy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black:#000; --white:#fff; --blue:#0c5eff; --red:#ff550c; --salmon:rgba(255,85,12,.08);
+    --line:rgba(0,0,0,.14); --mut:#525252;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body { background:var(--white); color:var(--black); font-family:'Archivo',sans-serif;
+         -webkit-font-smoothing:antialiased; overflow-x:hidden; }
+  ::selection { background:var(--blue); color:#fff; }
+  ::-webkit-scrollbar { width:5px; } ::-webkit-scrollbar-track { background:#fff; } ::-webkit-scrollbar-thumb { background:#000; }
+  a { color:inherit; }
+  :focus-visible { outline:2px solid var(--blue); outline-offset:2px; }
+
+  /* drafting grid background */
+  .gridbg { position:fixed; inset:0; z-index:0; pointer-events:none;
+    background:
+      linear-gradient(to right, var(--line) 1px, transparent 1px) 0 0 / calc(100%/5) 100% no-repeat,
+      linear-gradient(to right, rgba(0,0,0,.035) 1px, transparent 1px) 0 0 / calc(100%/20) 100%;
+  }
+
+  /* marquee banner */
+  .banner { background:var(--red); color:#fff; overflow:hidden; padding:9px 0; position:relative; z-index:60; }
+  .banner .trk { display:flex; gap:48px; width:max-content; white-space:nowrap; animation:mq 26s linear infinite;
+    font-family:'Space Mono',monospace; font-size:10px; letter-spacing:.3em; text-transform:uppercase; }
+  @keyframes mq { to { transform:translateX(-50%); } }
+
+  /* header */
+  header.hd { position:sticky; top:0; z-index:55; background:var(--white); border-bottom:1px solid var(--line);
+    display:grid; grid-template-columns:1fr 2fr 1fr; align-items:center; }
+  header.hd .cell { padding:16px 24px; border-right:1px solid var(--line); }
+  header.hd .cell:last-child { border-right:none; text-align:right; }
+  .logo { font-weight:800; letter-spacing:-.02em; font-size:17px; text-transform:uppercase; text-decoration:none; }
+  .logo span { color:var(--blue); }
+  header.hd nav { display:flex; gap:26px; }
+  header.hd nav a { font-family:'Space Mono',monospace; font-size:10px; letter-spacing:.2em; text-transform:uppercase; text-decoration:none; color:var(--mut); transition:color .2s; }
+  header.hd nav a:hover { color:var(--blue); }
+  .orderbtn { font-family:'Space Mono',monospace; font-size:10px; letter-spacing:.2em; text-transform:uppercase; font-weight:700; color:var(--red); text-decoration:none; }
+  .orderbtn:hover { text-decoration:underline; }
+
+  main { position:relative; z-index:1; }
+
+  /* hero */
+  .hero { min-height:88vh; display:flex; flex-direction:column; justify-content:flex-end; border-bottom:1px solid var(--line); position:relative; }
+  .hero .idx { position:absolute; top:90px; left:24px; font-family:'Space Mono',monospace; font-size:10px; letter-spacing:.26em; text-transform:uppercase; color:var(--mut); line-height:2.4; }
+  .hero .idx b { color:var(--black); }
+  .hero h1 { font-weight:800; text-transform:uppercase; letter-spacing:-.045em; line-height:.86;
+    font-size:clamp(56px,12.6vw,196px); padding:0 24px; }
+  .hero h1 .l2 { color:var(--blue); display:block; }
+  .hero .meta { display:grid; grid-template-columns:repeat(4,1fr); border-top:1px solid var(--line); margin-top:40px; }
+  .hero .meta div { padding:18px 24px; border-right:1px solid var(--line); font-family:'Space Mono',monospace; font-size:9.5px; letter-spacing:.2em; text-transform:uppercase; color:var(--mut); line-height:1.9; }
+  .hero .meta div:last-child { border-right:none; }
+  .hero .meta b { display:block; color:var(--black); font-size:15px; font-family:'Archivo',sans-serif; font-weight:700; letter-spacing:0; }
+
+  /* section scaffolding */
+  .sec { border-bottom:1px solid var(--line); }
+  .sec-head { display:grid; grid-template-columns:1fr 2fr 1fr; border-bottom:1px solid var(--line); }
+  .sec-head .c { padding:30px 24px; border-right:1px solid var(--line); }
+  .sec-head .c:last-child { border-right:none; }
+  .sec-head .no { font-family:'Space Mono',monospace; font-size:10px; letter-spacing:.26em; text-transform:uppercase; color:var(--red); }
+  .sec-head h2 { font-weight:800; text-transform:uppercase; letter-spacing:-.03em; font-size:clamp(30px,4.4vw,64px); line-height:.92; }
+  .sec-head h2 span { color:var(--blue); }
+  .sec-head .note { font-family:'Space Mono',monospace; font-size:9.5px; letter-spacing:.16em; text-transform:uppercase; color:var(--mut); line-height:2; }
+
+  /* cyber strip */
+  .cyber { display:grid; grid-template-columns:1fr 3fr 1fr; border-bottom:1px solid var(--line); background:var(--salmon); }
+  .cyber > div { padding:34px 24px; border-right:1px solid var(--line); }
+  .cyber > div:last-child { border-right:none; }
+  .cyber .tag { font-family:'Space Mono',monospace; font-size:10px; letter-spacing:.26em; text-transform:uppercase; color:var(--red); font-weight:700; }
+  .cyber h3 { font-weight:800; text-transform:uppercase; font-size:clamp(19px,2vw,28px); letter-spacing:-.02em; margin-bottom:12px; }
+  .cyber h3 span { color:var(--blue); }
+  .cyber p { font-size:14px; line-height:1.8; color:#333; max-width:70ch; }
+  .cyber .badge { font-family:'Space Mono',monospace; font-size:9px; letter-spacing:.2em; text-transform:uppercase; border:2px solid #000; padding:12px 18px; display:inline-block; font-weight:700; }
+
+  /* ventures */
+  .vents { display:grid; grid-template-columns:repeat(3,1fr); }
+  .ven { border-right:1px solid var(--line); padding:38px 26px 44px; text-decoration:none; position:relative; transition:background .25s; display:flex; flex-direction:column; min-height:360px; }
+  .ven:last-child { border-right:none; }
+  .ven:hover { background:var(--salmon); }
+  .ven .v-no { font-family:'Space Mono',monospace; font-size:10px; letter-spacing:.24em; color:var(--red); font-weight:700; }
+  .ven h3 { font-weight:800; font-size:clamp(26px,3vw,44px); letter-spacing:-.03em; text-transform:uppercase; margin:16px 0 4px; }
+  .ven .vd { font-family:'Space Mono',monospace; font-size:9.5px; letter-spacing:.2em; text-transform:uppercase; color:var(--blue); margin-bottom:20px; }
+  .ven p { font-size:13.5px; line-height:1.8; color:#333; flex:1; }
+  .ven .st { margin-top:24px; display:flex; justify-content:space-between; align-items:center; font-family:'Space Mono',monospace; font-size:9.5px; letter-spacing:.2em; text-transform:uppercase; }
+  .ven .st .live { color:var(--red); font-weight:700; }
+  .ven .st .live::before { content:'●'; margin-right:8px; animation:bl 1.4s infinite; }
+  @keyframes bl { 50% { opacity:.25; } }
+  .ven .st .arr { color:var(--blue); }
+
+  /* catalog rows */
+  .lanehead { display:grid; grid-template-columns:1fr 1fr; border-bottom:1px solid var(--line); background:#000; color:#fff; }
+  .lanehead div { padding:20px 24px; font-family:'Space Mono',monospace; font-size:10px; letter-spacing:.24em; text-transform:uppercase; }
+  .lanehead div:last-child { border-left:1px solid rgba(255,255,255,.2); color:var(--red); }
+  .lanehead div:first-child { color:#7fb0ff; }
+  .cat { display:grid; grid-template-columns:1fr 1fr; }
+  .col { border-right:1px solid var(--line); }
+  .col:last-child { border-right:none; }
+  .row { display:grid; grid-template-columns:76px 1fr auto; align-items:center; gap:18px; padding:20px 24px; border-bottom:1px solid var(--line); text-decoration:none; transition:background .2s; }
+  .row:hover { background:var(--salmon); }
+  .row .id { font-family:'Space Mono',monospace; font-size:10px; letter-spacing:.14em; color:var(--mut); }
+  .row .nm { font-weight:600; font-size:16.5px; letter-spacing:-.01em; }
+  .row .nm small { display:block; font-family:'Space Mono',monospace; font-weight:400; font-size:9px; letter-spacing:.16em; text-transform:uppercase; color:var(--mut); margin-top:5px; }
+  .row .pr { font-family:'Space Mono',monospace; font-size:13px; font-weight:700; white-space:nowrap; }
+  .col.a .row .pr { color:var(--blue); }
+  .col.b .row .pr { color:var(--red); }
+  .col.c .row .pr { color:#000; }
+  .col.e .row .pr { color:var(--blue); }
+  .row:hover .nm { color:var(--blue); }
+  .col.b .row:hover .nm { color:var(--red); }
+
+  /* academy */
+  .acad { display:grid; grid-template-columns:2fr 1fr 1fr; }
+  .acad > div { padding:34px 26px 40px; border-right:1px solid var(--line); }
+  .acad > div:last-child { border-right:none; }
+  .acad h4 { font-family:'Space Mono',monospace; font-size:10px; letter-spacing:.24em; text-transform:uppercase; color:var(--red); margin-bottom:22px; font-weight:700; }
+  .acad .row { padding:16px 0; grid-template-columns:1fr auto; }
+  .acad .row:first-of-type { border-top:none; }
+  .bk { margin-bottom:26px; }
+  .bk .t { font-weight:800; font-size:clamp(21px,2.2vw,30px); text-transform:uppercase; letter-spacing:-.02em; line-height:1.05; }
+  .bk .m { font-family:'Space Mono',monospace; font-size:9px; letter-spacing:.18em; text-transform:uppercase; color:var(--mut); margin-top:8px; }
+  .bk .p { color:var(--blue); font-family:'Space Mono',monospace; font-weight:700; font-size:13px; margin-top:10px; }
+  .recog { padding:30px 24px; display:flex; flex-wrap:wrap; gap:10px; border-top:1px solid var(--line); }
+  .recog span { font-family:'Space Mono',monospace; font-size:9.5px; letter-spacing:.18em; text-transform:uppercase; border:1px solid var(--line); padding:10px 18px; }
+  .recog span b { color:var(--blue); font-weight:700; }
+  .recog span:hover { background:#000; color:#fff; }
+
+  /* footer */
+  .foot { background:#000; color:#fff; }
+  .foot .big { padding:80px 24px 60px; }
+  .foot h2 { font-weight:800; text-transform:uppercase; letter-spacing:-.04em; font-size:clamp(40px,8.5vw,130px); line-height:.88; }
+  .foot h2 span { color:var(--red); }
+  .foot .mail { display:inline-block; margin-top:36px; font-family:'Space Mono',monospace; font-size:clamp(11px,1.3vw,15px); letter-spacing:.14em; color:#fff; text-decoration:none; border-bottom:2px solid var(--red); padding-bottom:6px; }
+  .foot .mail:hover { color:var(--red); }
+  .foot .bar { display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; border-top:1px solid rgba(255,255,255,.18); padding:22px 24px; font-family:'Space Mono',monospace; font-size:9px; letter-spacing:.22em; text-transform:uppercase; color:rgba(255,255,255,.55); }
+  .foot .bar a { text-decoration:none; } .foot .bar a:hover { color:#fff; }
+
+  /* Harmos agent FAB */
+  .fab { position:fixed; bottom:26px; right:26px; z-index:150; width:66px; height:66px; background:#000; border:2px solid #000;
+    display:flex; align-items:center; justify-content:center; cursor:pointer; transition:transform .3s;
+    box-shadow:6px 6px 0 var(--red); }
+  .fab:hover { transform:translate(-2px,-2px); box-shadow:9px 9px 0 var(--red); }
+  .fab svg { width:32px; height:32px; }
+  .apanel { position:fixed; bottom:108px; right:26px; z-index:160; width:min(330px,calc(100vw - 52px));
+    background:#fff; border:2px solid #000; box-shadow:8px 8px 0 var(--blue); padding:26px;
+    transform:translateY(12px); opacity:0; visibility:hidden; transition:.35s cubic-bezier(.19,1,.22,1); }
+  .apanel.open { transform:none; opacity:1; visibility:visible; }
+  .apanel .st { font-family:'Space Mono',monospace; font-size:9px; letter-spacing:.22em; text-transform:uppercase; color:var(--red); font-weight:700; margin-bottom:12px; }
+  .apanel h5 { font-weight:800; text-transform:uppercase; font-size:19px; letter-spacing:-.01em; margin-bottom:10px; }
+  .apanel p { font-size:13px; line-height:1.75; color:#333; margin-bottom:18px; }
+  .apanel .b { display:block; text-align:center; text-decoration:none; font-family:'Space Mono',monospace; font-size:10px; letter-spacing:.22em; text-transform:uppercase; background:var(--red); color:#fff; font-weight:700; padding:14px; border:2px solid #000; }
+  .apanel .x { position:absolute; top:10px; right:14px; background:none; border:none; cursor:pointer; font-family:'Space Mono',monospace; font-size:14px; font-weight:700; }
+
+  @media (max-width:960px) {
+    header.hd { grid-template-columns:1fr auto; }
+    header.hd nav { display:none; }
+    .sec-head, .cyber { grid-template-columns:1fr; }
+    .sec-head .c, .cyber > div { border-right:none; border-bottom:1px solid var(--line); }
+    .vents, .cat, .acad { grid-template-columns:1fr; }
+    .ven, .col, .acad > div { border-right:none; border-bottom:1px solid var(--line); }
+    .lanehead { display:none; }
+    .hero .meta { grid-template-columns:1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute"><defs>
+  <linearGradient id="chrome" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#e8f2f4"/><stop offset=".5" stop-color="#7d939c"/><stop offset="1" stop-color="#c8dade"/>
+  </linearGradient>
+  <g id="hMark">
+    <rect x="6" y="4" width="14" height="56" rx="2" fill="url(#chrome)"/>
+    <rect x="44" y="4" width="14" height="56" rx="2" fill="url(#chrome)"/>
+    <rect x="20" y="27" width="24" height="10" rx="2" fill="url(#chrome)"/>
+    <polygon points="32,22 40.4,27 40.4,37 32,42 23.6,37 23.6,27" fill="#0e5a4f" stroke="#3ce8cf" stroke-width="1.2"/>
+  </g>
+</defs></svg>
+
+<div class="gridbg"></div>
+
+<div class="banner"><div class="trk" id="mq">
+  <span>3 VENTURES LIVE ✳ 2 PATENTS FILED ✳ HARVARD CYBERSECURITY · MASTER'S CANDIDATE ✳ FORBES TECHNOLOGY COUNCIL ✳ 72 OFFERINGS · 5 LANES ✳ INSTANT DELIVERY + COMMISSIONED BUILDS ✳ </span>
+</div></div>
+
+<header class="hd">
+  <div class="cell"><a class="logo" href="index.html">WALI AHMAD <span>/ INDEX</span></a></div>
+  <div class="cell"><nav>
+    <a href="#ventures">Ventures</a><a href="#store">Store</a><a href="#authority">Authority</a><a href="#academy">Academy</a><a href="#contact">Contact</a>
+  </nav></div>
+  <div class="cell"><a class="orderbtn" href="mailto:wali.ahmad@harmos.ai?subject=New%20Order">Place an order ↗</a></div>
+</header>
+
+<main>
+<!-- HERO -->
+<section class="hero">
+  <div class="idx">
+    REF. <b>WA-2026</b><br>STATUS. <b>OPEN FOR ORDERS</b><br>BASE. <b>LAHORE → DELAWARE</b>
+  </div>
+  <h1>WALI AHMAD<span class="l2">INDEX OF WORKS</span></h1>
+  <div class="meta">
+    <div><b>Inventor · Founder ×3</b>Sovereign AI · wellness · new ventures</div>
+    <div><b>Cybersecurity Expert</b>Harvard — Master's candidate</div>
+    <div><b>Author</b>The Thinking Millionaire · 1/137 Blue Print</div>
+    <div><b>72 Offerings · 5 Lanes</b>Stanford · Oxford · Harvard · UT Austin</div>
+  </div>
+</section>
+
+<!-- CYBER -->
+<section class="cyber">
+  <div><span class="tag">SPEC / SECURITY</span></div>
+  <div>
+    <h3>Cybersecurity is the <span>foundation</span> — not the storefront.</h3>
+    <p>Harvard CS50 Cybersecurity (A+), IBM Generative AI for Cybersecurity, zero-trust frameworks and applied cryptography across seven completed programs — now deepening as a Harvard Master's candidate in Cybersecurity. No security engagements are sold here yet; when they launch, this index entry goes live first.</p>
+  </div>
+  <div><span class="badge">HARVARD · IN PROGRESS</span></div>
+</section>
+
+<!-- VENTURES -->
+<section class="sec" id="ventures">
+  <div class="sec-head">
+    <div class="c"><span class="no">SEC. 01 / VENTURES</span></div>
+    <div class="c"><h2>THREE STARTUPS. <span>ALL LIVE.</span></h2></div>
+    <div class="c"><p class="note">Not decks. Not ideas. Three products online right now — click through and use them.</p></div>
+  </div>
+  <div class="vents">
+    <a class="ven" href="https://harmos.ai" target="_blank" rel="noopener">
+      <span class="v-no">V-01</span>
+      <h3>harmos.ai</h3>
+      <div class="vd">The Global Trust Layer for AI</div>
+      <p>The verifiable intelligence ecosystem — every computation cryptographically proven, every dataset sovereignty-tracked, every model behaviorally aligned. Post-quantum secured; built on two filed patents.</p>
+      <div class="st"><span class="live">LIVE</span><span class="arr">VISIT ↗</span></div>
+    </a>
+    <a class="ven" href="https://nooriva.ai" target="_blank" rel="noopener">
+      <span class="v-no">V-02</span>
+      <h3>nooriva.ai</h3>
+      <div class="vd">Natural Glow Rituals</div>
+      <p>Twelve botanical glow rituals on one golden base — rose hydrosol, saffron, mastic — a deep amber elixir for luminous skin. Halal-compliant, crafted for Pakistan; quiz-led ritual finder + NOORIVA Club community.</p>
+      <div class="st"><span class="live">LIVE</span><span class="arr">VISIT ↗</span></div>
+    </a>
+    <a class="ven" href="https://ourchemistry.ai" target="_blank" rel="noopener">
+      <span class="v-no">V-03</span>
+      <h3>ourchemistry.ai</h3>
+      <div class="vd">The Third Venture</div>
+      <p>The newest entry in the index — live now. Visit the site to see what the lab shipped most recently.</p>
+      <div class="st"><span class="live">LIVE</span><span class="arr">VISIT ↗</span></div>
+    </a>
+  </div>
+</section>
+
+<!-- STORE -->
+<section class="sec" id="store">
+  <div class="sec-head">
+    <div class="c"><span class="no">SEC. 02 / STORE — LANES A + B</span></div>
+    <div class="c"><h2>BUY INSTANTLY. <span>OR COMMISSION.</span></h2></div>
+    <div class="c"><p class="note">Lane A: 26 products ship in seconds. Lane B: 23 builds to order — fixed quote in 24h, delivery cryptographically sealed.</p></div>
+  </div>
+  <div class="lanehead"><div>LANE A — AUTOMATED · INSTANT DOWNLOAD · 26 ITEMS</div><div>PAY → DOWNLOAD → DEPLOY TONIGHT</div></div>
+  <div class="cat">
+    <div class="col a">
+      <a class="row" href="mailto:wali.ahmad@harmos.ai?subject=Order%20A-01"><span class="id">A-01</span><span class="nm">RAG Pipeline Starter Kit<small>Python · vector store · eval harness</small></span><span class="pr">$149</span></a>
+      <a class="row" href="mailto:wali.ahmad@harmos.ai?subject=Order%20A-02"><span class="id">A-02</span><span class="nm">AI Agent Template Pack<small>support · sales · research</small></span><span class="pr">$99</span></a>
+      <a class="row" href="mailto:wali.ahmad@harmos.ai?subject=Order%20A-03"><span class="id">A-03</span><span class="nm">ML Model Zoo<small>churn · fraud · sentiment + notebooks</small></span><span class="pr">$199</span></a>
+      <a class="row" href="mailto:wali.ahmad@harmos.ai?subject=Order%20A-04"><span class="id">A-04</span><span class="nm">LLM Adapter Packs<small>LoRA adapters · task-tuned</small></span><span class="pr">$129</span></a>
+      <a class="row" href="mailto:wali.ahmad@harmos.ai?subject=Order%20A-05"><span class="id">A-05</span><span class="nm">Agentic Prompt Vault<small>400+ tested system prompts</small></span><span class="pr">$79</span></a>
+      <a class="row" href="mailto:wali.ahmad@harmos.ai?subject=Order%20A-06"><span class="id">A-06</span><span class="nm">Model Quantization Toolkit<small>GGUF · 4-bit · edge deploy</small></span><span class="pr">$89</span></a>
+      <a class="row" href="mailto:wali.ahmad@harmos.ai?subject=Order%20A-07"><span class="id">A-07</span><span class="nm">NLP Document Pipelines<small>extraction · classification · OCR</small></span><span class="pr">$119</span></a>
+      <a class="row" href="mailto:wali.ahmad@harmos.ai?subject=Order%20A-08"><span class="id">A-08</span><span class="nm">Vision Starter Models<small>detection · segmentation kits</small></span><span class="pr">$159</span></a>
+      <a class="row" href="mailto:wali.ahmad@harmos.ai?subject=Order%20A-09"><span class="id">A-09</span><span class="nm">Smart Contract Library<small>escrow · treasury · Base L2</small></span><span class="pr">$299</span></a>
+      <a class="row" href="mailto:wali.ahmad@harmos.ai?subject=Order%20A-10"><span class="id">A-10</span><span class="nm">Tokenomics Calculator<small>supply · vesting · emissions sim</small></span><span class="pr">$49</span></a>
+      <a class="row" href="mailto:wali.ahmad@harmos.ai?subject=Order%20A-11"><span class="id">A-11</span><span class="nm">dApp Frontend Templates<small>wallet-wired React kits</small></span><span class="pr">$139</span></a>
+      <a class="row" href="mailto:wali.ahmad@harmos.ai?subject=Order%20A-12"><span class="id">A-12</span><span class="nm">Validator Node Guide<small>setup · ops · slashing defense</small></span><span class="pr">$129</span></a>
+      <a class="row" href="mailto:wali.ahmad@harmos.ai?subject=Order%20A-13"><span class="id">A-13</span><span class="nm">PQC Migration Toolkit<small>NIST policies · checklists · runbooks</small></span><span class="pr">$249</span></a>
+    </div>
+    <div class="col a">
+      <a class="row" href="mailto:wali.ahmad@harmos.ai?subject=Order%20A-14"><span class="id">A-14</span><span class="nm">Quantum Notebook Pack<small>Qiskit · circuits · labs</small></span><span class="pr">$79</span></a>
+      <a class="row" href="mailto:wali.ahmad@harmos.ai?subject=Order%20A-15"><span class="id">A-15</span><span class="nm">Zero-Trust Policy Bundle<small>policies · architecture maps</small></span><span class="pr">$99</span></a>
+      <a class="row" href="mailto:wali.ahmad@harmos.ai?subject=Order%20A-16"><span class="id">A-16</span><span class="nm">AI Website Audit<small>instant automated report</small></span><span class="pr">$29</span></a>
+      <a class="row" href="mailto:wali.ahmad@harmos.ai?subject=Order%20A-17"><span class="id">A-17</span><span class="nm">PQC Readiness Scanner<small>automated posture score</small></span><span class="pr">$79</span></a>
+      <a class="row" href="mailto:wali.ahmad@harmos.ai?subject=Order%20A-18"><span class="id">A-18</span><span class="nm">Smart Contract Analyzer<small>automated vulnerability scan</small></span><span class="pr">$49</span></a>
+      <a class="row" href="mailto:wali.ahmad@harmos.ai?subject=Order%20A-19"><span class="id">A-19</span><span class="nm">Contract Summarizer API<small>instant key · pay per call</small></span><span class="pr">usage</span></a>
+      <a class="row" href="mailto:wali.ahmad@harmos.ai?subject=Order%20A-20"><span class="id">A-20</span><span class="nm">Verified Delivery Seals<small>cryptographic proof badges</small></span><span class="pr">$5–25</span></a>
+      <a class="row" href="mailto:wali.ahmad@harmos.ai?subject=Order%20A-21"><span class="id">A-21</span><span class="nm">Pitch-Deck AI Reviewer<small>instant scored feedback</small></span><span class="pr">$39</span></a>
+      <a class="row" href="mailto:wali.ahmad@harmos.ai?subject=Order%20A-22"><span class="id">A-22</span><span class="nm">Sovereign Website Templates<small>HTML/React · agent slot wired</small></span><span class="pr">$129</span></a>
+      <a class="row" href="mailto:wali.ahmad@harmos.ai?subject=Order%20A-23"><span class="id">A-23</span><span class="nm">SEO Content Engine<small>automated pipeline</small></span><span class="pr">$99/mo</span></a>
+      <a class="row" href="mailto:wali.ahmad@harmos.ai?subject=Order%20A-24"><span class="id">A-24</span><span class="nm">Market Intelligence Brief<small>weekly · automated</small></span><span class="pr">$15/mo</span></a>
+      <a class="row" href="mailto:wali.ahmad@harmos.ai?subject=Order%20A-25"><span class="id">A-25</span><span class="nm">Agent Persona Packs<small>voices · behaviors · guardrails</small></span><span class="pr">$39</span></a>
+      <a class="row" href="mailto:wali.ahmad@harmos.ai?subject=Order%20A-26"><span class="id">A-26</span><span class="nm">Books — Digital Editions<small>both titles · PDF / ePub</small></span><span class="pr">$19–29</span></a>
+    </div>
+  </div>
+  <div class="lanehead"><div>LANE B — ORDER → BUILD → DELIVER · 23 BUILDS</div><div>FIXED QUOTE 24H · YOU OWN EVERYTHING</div></div>
+  <div class="cat">
+    <div class="col b">
+      <a class="row" href="mailto:wali.ahmad@harmos.ai?subject=Commission%20B-01"><span class="id">B-01</span><span class="nm">Custom ML Models<small>prediction · classification · forecasting</small></span><span class="pr">$5,000+</span></a>
+      <a class="row" href="mailto:wali.ahmad@harmos.ai?subject=Commission%20B-02"><span class="id">B-02</span><span class="nm">Custom AI Agents<small>tool use · memory · orchestration</small></span><span class="pr">$3,500+</span></a>
+      <a class="row" href="mailto:wali.ahmad@harmos.ai?subject=Commission%20B-03"><span class="id">B-03</span><span class="nm">Enterprise RAG Systems<small>knowledge base · cited answers</small></span><span class="pr">$4,000+</span></a>
+      <a class="row" href="mailto:wali.ahmad@harmos.ai?subject=Commission%20B-04"><span class="id">B-04</span><span class="nm">LLM Fine-Tuning<small>domain adaptation · eval suite</small></span><span class="pr">$6,000+</span></a>
+      <a class="row" href="mailto:wali.ahmad@harmos.ai?subject=Commission%20B-05"><span class="id">B-05</span><span class="nm">Computer Vision Systems<small>detection · tracking · inspection</small></span><span class="pr">$7,000+</span></a>
+      <a class="row" href="mailto:wali.ahmad@harmos.ai?subject=Commission%20B-06"><span class="id">B-06</span><span class="nm">Legal &amp; Medical NLP<small>compliant document intelligence</small></span><span class="pr">$5,000+</span></a>
+      <a class="row" href="mailto:wali.ahmad@harmos.ai?subject=Commission%20B-07"><span class="id">B-07</span><span class="nm">Recommendation Engines<small>personalization · ranking</small></span><span class="pr">$4,500+</span></a>
+      <a class="row" href="mailto:wali.ahmad@harmos.ai?subject=Commission%20B-08"><span class="id">B-08</span><span class="nm">AI Chatbot Integration<small>site · WhatsApp · Slack</small></span><span class="pr">$2,000+</span></a>
+      <a class="row" href="mailto:wali.ahmad@harmos.ai?subject=Commission%20B-09"><span class="id">B-09</span><span class="nm">AI Automation Pipelines<small>ops · back-office · agents</small></span><span class="pr">$3,500+</span></a>
+      <a class="row" href="mailto:wali.ahmad@harmos.ai?subject=Commission%20B-10"><span class="id">B-10</span><span class="nm">Award-Grade Websites<small>design + engineering</small></span><span class="pr">$2,500+</span></a>
+      <a class="row" href="mailto:wali.ahmad@harmos.ai?subject=Commission%20B-11"><span class="id">B-11</span><span class="nm">SaaS MVPs<small>full product · 6–10 weeks</small></span><span class="pr">$8,000+</span></a>
+      <a class="row" href="mailto:wali.ahmad@harmos.ai?subject=Commission%20B-12"><span class="id">B-12</span><span class="nm">Analytics Dashboards<small>real-time · executive grade</small></span><span class="pr">$3,000+</span></a>
+    </div>
+    <div class="col b">
+      <a class="row" href="mailto:wali.ahmad@harmos.ai?subject=Commission%20B-13"><span class="id">B-13</span><span class="nm">Mobile App AI Features<small>on-device ML</small></span><span class="pr">$5,000+</span></a>
+      <a class="row" href="mailto:wali.ahmad@harmos.ai?subject=Commission%20B-14"><span class="id">B-14</span><span class="nm">Founder Bundle<small>site + agent + automation</small></span><span class="pr">$6,500+</span></a>
+      <a class="row" href="mailto:wali.ahmad@harmos.ai?subject=Commission%20B-15"><span class="id">B-15</span><span class="nm">dApp Development<small>tokens · escrow · treasury protocols</small></span><span class="pr">$8,000+</span></a>
+      <a class="row" href="mailto:wali.ahmad@harmos.ai?subject=Commission%20B-16"><span class="id">B-16</span><span class="nm">Smart Contracts + Audit<small>written &amp; reviewed</small></span><span class="pr">$4,000+</span></a>
+      <a class="row" href="mailto:wali.ahmad@harmos.ai?subject=Commission%20B-17"><span class="id">B-17</span><span class="nm">Token Design &amp; Launch<small>end-to-end</small></span><span class="pr">$10,000+</span></a>
+      <a class="row" href="mailto:wali.ahmad@harmos.ai?subject=Commission%20B-18"><span class="id">B-18</span><span class="nm">Escrow &amp; Marketplace Platforms<small>full-stack Web3</small></span><span class="pr">$12,000+</span></a>
+      <a class="row" href="mailto:wali.ahmad@harmos.ai?subject=Commission%20B-19"><span class="id">B-19</span><span class="nm">PQC Migration Implementation<small>enterprise · government $75K+</small></span><span class="pr">$15,000+</span></a>
+      <a class="row" href="mailto:wali.ahmad@harmos.ai?subject=Commission%20B-20"><span class="id">B-20</span><span class="nm">Custom Cryptographic Protocols<small>novel primitives</small></span><span class="pr">$12,000+</span></a>
+      <a class="row" href="mailto:wali.ahmad@harmos.ai?subject=Commission%20B-21"><span class="id">B-21</span><span class="nm">Air-Gapped Deployments<small>sovereign infra · state $150K+</small></span><span class="pr">$25,000+</span></a>
+      <a class="row" href="mailto:wali.ahmad@harmos.ai?subject=Commission%20B-22"><span class="id">B-22</span><span class="nm">ZKML Systems<small>verifiable inference</small></span><span class="pr">$18,000+</span></a>
+      <a class="row" href="mailto:wali.ahmad@harmos.ai?subject=Commission%20B-23"><span class="id">B-23</span><span class="nm">White-Label Agent Deployment<small>your brand, my engine</small></span><span class="pr">$20,000+</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- AUTHORITY + NETWORK -->
+<section class="sec" id="authority">
+  <div class="sec-head">
+    <div class="c"><span class="no">SEC. 03 / AUTHORITY + NETWORK</span></div>
+    <div class="c"><h2>RENT THE MIND. <span>JOIN THE NETWORK.</span></h2></div>
+    <div class="c"><p class="note">Lane C: the founder himself — retainers, stages, courtrooms, licensing. Lane E: the ecosystem — deals, equity, the Builders Circle.</p></div>
+  </div>
+  <div class="lanehead"><div>LANE C — AUTHORITY · 9 ENGAGEMENTS · VETTED CLIENTS</div><div>LANE E — NETWORK · 5 PROGRAMS · EARN WITH US</div></div>
+  <div class="cat">
+    <div class="col c">
+      <a class="row" href="mailto:wali.ahmad@harmos.ai?subject=Engage%20C-01"><span class="id">C-01</span><span class="nm">Advisory Retainer<small>fractional CTO / Chief AI Officer</small></span><span class="pr">$10K/mo</span></a>
+      <a class="row" href="mailto:wali.ahmad@harmos.ai?subject=Engage%20C-02"><span class="id">C-02</span><span class="nm">Boardroom Briefings<small>executive session</small></span><span class="pr">$12K/day</span></a>
+      <a class="row" href="mailto:wali.ahmad@harmos.ai?subject=Engage%20C-03"><span class="id">C-03</span><span class="nm">Keynote<small>global stage</small></span><span class="pr">$15,000</span></a>
+      <a class="row" href="mailto:wali.ahmad@harmos.ai?subject=Engage%20C-04"><span class="id">C-04</span><span class="nm">Expert Witness<small>AI / crypto litigation · $25K min</small></span><span class="pr">$950–1.5K/hr</span></a>
+      <a class="row" href="mailto:wali.ahmad@harmos.ai?subject=Engage%20C-05"><span class="id">C-05</span><span class="nm">Technical Due Diligence<small>VC / PE deal support</small></span><span class="pr">$15,000+</span></a>
+      <a class="row" href="mailto:wali.ahmad@harmos.ai?subject=Engage%20C-06"><span class="id">C-06</span><span class="nm">Patent Licensing<small>2 filed · USPTO / PCT</small></span><span class="pr">royalties</span></a>
+      <a class="row" href="mailto:wali.ahmad@harmos.ai?subject=Engage%20C-07"><span class="id">C-07</span><span class="nm">White-Label Sovereign Stack<small>license the architecture</small></span><span class="pr">six figures</span></a>
+      <a class="row" href="mailto:wali.ahmad@harmos.ai?subject=Engage%20C-08"><span class="id">C-08</span><span class="nm">Government &amp; Defense Advisory<small>national programs</small></span><span class="pr">program</span></a>
+      <a class="row" href="mailto:wali.ahmad@harmos.ai?subject=Engage%20C-09"><span class="id">C-09</span><span class="nm">Book Tours &amp; Lectures<small>universities · forums</small></span><span class="pr">on request</span></a>
+    </div>
+    <div class="col e">
+      <a class="row" href="mailto:wali.ahmad@harmos.ai?subject=Network%20E-01"><span class="id">E-01</span><span class="nm">B2B Matchmaking<small>curated introductions</small></span><span class="pr">% of deal</span></a>
+      <a class="row" href="mailto:wali.ahmad@harmos.ai?subject=Network%20E-02"><span class="id">E-02</span><span class="nm">Sponsored Intelligence<small>brief sponsorships</small></span><span class="pr">campaign</span></a>
+      <a class="row" href="mailto:wali.ahmad@harmos.ai?subject=Network%20E-03"><span class="id">E-03</span><span class="nm">Equity-for-Advisory<small>select startups</small></span><span class="pr">0.5–2%</span></a>
+      <a class="row" href="mailto:wali.ahmad@harmos.ai?subject=Network%20E-04"><span class="id">E-04</span><span class="nm">Validator Revenue Share<small>network participation</small></span><span class="pr">rev share</span></a>
+      <a class="row" href="mailto:wali.ahmad@harmos.ai?subject=Network%20E-05"><span class="id">E-05</span><span class="nm">Builders Circle<small>private community</small></span><span class="pr">$50–150/mo</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ACADEMY -->
+<section class="sec" id="academy">
+  <div class="sec-head">
+    <div class="c"><span class="no">SEC. 04 / ACADEMY — LANE D</span></div>
+    <div class="c"><h2>LEARN THE <span>ARCHITECTURE.</span></h2></div>
+    <div class="c"><p class="note">Nine education offerings drawn from shipped systems and graded elite programs. Proof first, payment second.</p></div>
+  </div>
+  <div class="acad">
+    <div>
+      <h4>LANE D — COURSES · MENTORSHIP · TRAINING</h4>
+      <a class="row" href="mailto:wali.ahmad@harmos.ai?subject=Course%20D-01"><span class="nm">D-01 · PQC for Executives<small>4-week cohort</small></span><span class="pr" style="color:var(--blue)">$1,450</span></a>
+      <a class="row" href="mailto:wali.ahmad@harmos.ai?subject=Course%20D-02"><span class="nm">D-02 · Generative &amp; Agentic AI<small>4-week cohort</small></span><span class="pr" style="color:var(--blue)">$1,200</span></a>
+      <a class="row" href="mailto:wali.ahmad@harmos.ai?subject=Course%20D-03"><span class="nm">D-03 · Quantum → Computing<small>6-week cohort</small></span><span class="pr" style="color:var(--blue)">$980</span></a>
+      <a class="row" href="mailto:wali.ahmad@harmos.ai?subject=Course%20D-04"><span class="nm">D-04 · DBA Masterclass<small>doctoral research methods</small></span><span class="pr" style="color:var(--blue)">$2,400</span></a>
+      <a class="row" href="mailto:wali.ahmad@harmos.ai?subject=Course%20D-05"><span class="nm">D-05 · Blockchain &amp; FinTech<small>4-week cohort</small></span><span class="pr" style="color:var(--blue)">$890</span></a>
+      <a class="row" href="mailto:wali.ahmad@harmos.ai?subject=Course%20D-06"><span class="nm">D-06 · AI Cybersecurity Operations<small>teaching only · no services</small></span><span class="pr" style="color:var(--blue)">$760</span></a>
+      <a class="row" href="mailto:wali.ahmad@harmos.ai?subject=Course%20D-07"><span class="nm">D-07 · 1:1 Mentorship<small>Reader $180/mo · Builder $1.5K/mo · Sovereign $12K/qtr</small></span><span class="pr" style="color:var(--blue)">$180/mo+</span></a>
+      <a class="row" href="mailto:wali.ahmad@harmos.ai?subject=Course%20D-08"><span class="nm">D-08 · Corporate Training<small>teams · on-site or remote</small></span><span class="pr" style="color:var(--blue)">$20K–60K</span></a>
+      <a class="row" href="mailto:wali.ahmad@harmos.ai?subject=Course%20D-09"><span class="nm">D-09 · Certification Coaching<small>exam prep · 1:1</small></span><span class="pr" style="color:var(--blue)">$500</span></a>
+    </div>
+    <div>
+      <h4>BOOK I</h4>
+      <div class="bk"><div class="t">The Thinking Millionaire</div><div class="m">Wealth architecture · signed hardcover</div><div class="p">$49</div></div>
+    </div>
+    <div>
+      <h4>BOOK II</h4>
+      <div class="bk"><div class="t">The 1/137 Blue Print</div><div class="m">The physics of precision · signed hardcover</div><div class="p">$59</div></div>
+    </div>
+  </div>
+  <div class="recog">
+    <span><b>Forbes</b> Technology Council</span>
+    <span><b>Marquis</b> Who's Who</span>
+    <span><b>Harvard</b> Cybersecurity · Master's Candidate</span>
+    <span><b>Stanford</b> Quantum · A</span>
+    <span><b>Oxford Saïd</b> Agentic AI · A+</span>
+    <span><b>UT Austin</b> McCombs · 4.33 GPA</span>
+    <span><b>IBM</b> GenAI Security · A</span>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="foot" id="contact">
+  <div class="big">
+    <h2>PLACE THE ORDER.<br><span>OWN THE PROOF.</span></h2>
+    <a class="mail" href="mailto:wali.ahmad@harmos.ai">wali.ahmad@harmos.ai</a>
+  </div>
+  <div class="bar">
+    <span>© 2026 WALI AHMAD · HARMOS INC.</span>
+    <span><a href="index.html">ALL DESIGNS</a> · LAHORE → DELAWARE → THE WORLD</span>
+  </div>
+</footer>
+</main>
+
+<button class="fab" onclick="toggleAgent(event)" aria-label="Harmos AI Agent">
+  <img src="assets/logo.png" alt="Harmos agent" style="width:100%;height:100%;border-radius:50%;object-fit:contain;padding:14%">
+</button>
+<div class="apanel" id="apanel">
+  <button class="x" onclick="toggleAgent(event)">✕</button>
+  <div class="st">● Harmos Agent · Online</div>
+  <h5>What can I help you create?</h5>
+  <p>The Harmos agent is integrating into this site — soon it scopes builds and takes orders directly. For now, it routes you to the founder.</p>
+  <a class="b" href="mailto:wali.ahmad@harmos.ai?subject=Via%20Harmos%20Agent">Message through Harmos →</a>
+</div>
+
+<script>
+function toggleAgent(e){ e.preventDefault(); document.getElementById('apanel').classList.toggle('open'); }
+document.getElementById('mq').innerHTML += document.getElementById('mq').innerHTML;
+</script>
+</body>
+</html>
