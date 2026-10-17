@@ -3,8 +3,37 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Wali Ahmad — Order the Build. Own the Proof.</title>
+<title>Wali Ahmad — This Is Wali’s Universe</title>
 <meta name="description" content="72 offerings across five lanes — instant AI systems, commissioned builds, authority engagements, academy cohorts and the Harmos network. Built by Wali Ahmad, founder of harmos.ai, nooriva.ai and ourchemistry.ai.">
+<link rel="icon" type="image/png" href="assets/logo.png">
+<link rel="canonical" href="https://wali.harmos.ai/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Wali Ahmad">
+<meta property="og:url" content="https://wali.harmos.ai/">
+<meta property="og:title" content="Wali Ahmad — This Is Wali’s Universe">
+<meta property="og:description" content="72 offerings across five lanes — instant AI systems, commissioned builds, authority engagements, academy cohorts and the Harmos network. Three live ventures. 28 elite programs. Two filed patents.">
+<meta property="og:image" content="https://wali.harmos.ai/assets/logo.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Wali Ahmad — This Is Wali’s Universe">
+<meta name="twitter:description" content="Order the build. Own the proof. AI systems, RAG, blockchain, PQC — instant downloads and commissioned builds from the founder of Harmos AI.">
+<meta name="twitter:image" content="https://wali.harmos.ai/assets/logo.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Wali Ahmad",
+  "url": "https://wali.harmos.ai/",
+  "email": "mailto:wali.ahmad@harmos.ai",
+  "telephone": "+1-737-282-8249",
+  "jobTitle": "Founder & CEO, Harmos AI",
+  "description": "Inventor of Sovereign AI Infrastructure · Post-Quantum Cryptography Architect · Forbes Technology Council Member · Marquis Who's Who Honoree",
+  "affiliation": [
+    { "@type": "Organization", "name": "Harmos Inc.", "url": "https://harmos.ai" },
+    { "@type": "Organization", "name": "Forbes Technology Council" }
+  ],
+  "sameAs": ["https://harmos.ai", "https://nooriva.ai", "https://ourchemistry.ai"]
+}
+</script>
 <link rel="icon" type="image/png" href="assets/logo.png">
 <link rel="apple-touch-icon" href="assets/logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -295,6 +324,22 @@ a.rec-item:hover{background:rgba(60,232,207,.045); padding-left:14px}
 .rec-item .t{font-size:14.5px; color:var(--ink)}
 .rec-item .d{font-family:"JetBrains Mono",monospace; font-size:9.5px; letter-spacing:.1em; color:var(--dim);
   text-align:right; text-transform:uppercase; flex-shrink:0}
+
+/* launch countdown + notify form */
+.v-launch{font-family:"JetBrains Mono",monospace; font-size:9px; letter-spacing:.18em; text-transform:uppercase;
+  color:var(--gold); margin-top:12px}
+.v-launch span{color:var(--teal)}
+.notify{margin-top:44px; text-align:center}
+.nf-label{font-family:"JetBrains Mono",monospace; font-size:9px; letter-spacing:.26em; text-transform:uppercase;
+  color:var(--dim); margin-bottom:16px}
+.nf-row{display:flex; gap:10px; justify-content:center; flex-wrap:wrap}
+.nf-row input{background:rgba(255,255,255,.05); border:1px solid var(--hair2); border-radius:100px;
+  padding:14px 26px; color:var(--ink); font-family:"Space Grotesk",sans-serif; font-size:14px; outline:none; min-width:260px}
+.nf-row input:focus{border-color:rgba(240,180,41,.6)}
+.nf-row button{background:var(--gold); color:#0a0e14; border:none; border-radius:100px; padding:14px 30px;
+  font-family:"JetBrains Mono",monospace; font-size:10px; letter-spacing:.18em; text-transform:uppercase;
+  cursor:pointer; font-weight:600; transition:transform .3s var(--ease)}
+.nf-row button:hover{transform:translateY(-2px)}
 </style>
 <style>
 /* ---------- credentials wall ---------- */
@@ -557,7 +602,8 @@ a.rec-item:hover{background:rgba(60,232,207,.045); padding-left:14px}
 
   /* ---- segbar (Build view) ---- */
   .segbar{position:sticky; top:64px; z-index:50; gap:8px; overflow-x:auto; padding:10px 18px;
-    margin:0 -18px 8px; background:rgba(5,8,16,.9); backdrop-filter:blur(16px);
+    width:100vw; max-width:100vw; box-sizing:border-box; margin:0 0 8px calc(50% - 50vw);
+    background:rgba(5,8,16,.9); backdrop-filter:blur(16px);
     scrollbar-width:none; border-bottom:1px solid var(--hair)}
   .segbar::-webkit-scrollbar{display:none}
   .segbar button{flex-shrink:0; font-family:"JetBrains Mono",monospace; font-size:9px; letter-spacing:.14em;
@@ -678,10 +724,10 @@ a.rec-item:hover{background:rgba(60,232,207,.045); padding-left:14px}
   <div class="hero-copy">
     <div class="kicker"><span class="livedot"></span> The Global Trust Layer for AI<span class="k2"> — Verified Nodes Online</span></div>
     <h1 class="display" id="heroTitle">
-      <span class="lm"><span class="lm-i">Order the build.</span></span>
-      <span class="lm"><span class="lm-i"><em>Own the proof.</em></span></span>
+      <span class="lm"><span class="lm-i">This is Wali’s</span></span>
+      <span class="lm"><span class="lm-i"><em>universe.</em></span></span>
     </h1>
-    <p class="sub" data-reveal>I'm <strong>Wali Ahmad</strong> — inventor, <strong>founder of three live ventures</strong> and a <strong>Harvard Master's candidate in Cybersecurity</strong>. I build <strong>ML models, AI agents, RAG systems, websites, blockchains and post-quantum cryptography</strong> — 72 offerings across five lanes: some you can buy <strong>instantly</strong> below, the rest I <strong>build to order</strong> and deliver with mathematical proof.</p>
+    <p class="sub" data-reveal>I'm <strong>Wali Ahmad</strong> — inventor, <strong>founder of three live ventures</strong> and a <strong>Harvard Master's candidate in Cybersecurity &amp; Ethical Hacking</strong>. I build <strong>ML models, AI agents, RAG systems, websites, blockchains and post-quantum cryptography</strong> — 72 offerings across five lanes: some you can buy <strong>instantly</strong> below, the rest I <strong>build to order</strong> and deliver with mathematical proof.</p>
     <div class="hero-lanes" data-reveal>
       <a class="lane-btn gold" href="#instant">⚡ Lane A — Buy Instantly</a>
       <a class="lane-btn" href="#commissioned">◈ Lane B — Commission a Build</a>
@@ -694,7 +740,7 @@ a.rec-item:hover{background:rgba(60,232,207,.045); padding-left:14px}
     <a class="ochip" style="top:16%; right:4%" data-depth="0.8" href="#commissioned">Lane B<b>Commissioned · 23</b></a>
     <a class="ochip" style="bottom:26%; left:2%" data-depth="1.1" href="#authority">Lane C + E<b>Authority · Network</b></a>
     <a class="ochip" style="bottom:8%; right:14%" data-depth="1.6" href="#academy">Lane D<b>The Academy</b></a>
-    <a class="ochip" style="top:46%; right:-2%" data-depth="0.6" href="#credentials">Credentials<b>22+ Elite Programs</b></a>
+    <a class="ochip" style="top:46%; right:-2%" data-depth="0.6" href="#credentials">Credentials<b>28 Elite Programs</b></a>
     <a class="ochip" style="bottom:44%; left:-4%" data-depth="0.9" href="#ventures">Ventures<b>3 Startups Live</b></a>
   </div>
 </header>
@@ -706,7 +752,7 @@ a.rec-item:hover{background:rgba(60,232,207,.045); padding-left:14px}
   <div class="tele"><div class="n">100<span>%</span></div><div class="l">IP-clean data<br>provably licensed</div></div>
   <div class="tele"><div class="n">PQC</div><div class="l">Post-quantum<br>every transaction</div></div>
   <div class="tele"><div class="n">&lt;100<span>ms</span></div><div class="l">Sovereign latency<br>global jurisdiction</div></div>
-  <div class="tele"><div class="n">22<span>+</span></div><div class="l">Elite programs<br>2 patents filed</div></div>
+  <div class="tele"><div class="n">28</div><div class="l">Elite programs<br>2 patents filed</div></div>
 </div>
 
 <!-- SECURITY -->
@@ -718,7 +764,7 @@ a.rec-item:hover{background:rgba(60,232,207,.045); padding-left:14px}
     </svg>
     <div>
       <h3>Security is the <em>foundation</em> — not the storefront.</h3>
-      <p>Harvard CS50 Cybersecurity (A+) · IBM Generative AI for Cybersecurity · zero-trust and applied cryptography across seven completed programs — and currently enrolled in the <strong>Harvard Master's in Cybersecurity</strong>. No security engagements are sold here yet; when they launch, they get announced on this page first.</p>
+      <p>Harvard CS50 Cybersecurity (A+) · IBM Generative AI for Cybersecurity · zero-trust and applied cryptography across seven completed programs — and currently enrolled in the <strong>Harvard Master's in Cybersecurity &amp; Ethical Hacking</strong>. No security engagements are sold here yet; when they launch, they get announced on this page first.</p>
     </div>
     <span class="cyber-badge">Harvard · Master's Candidate</span>
   </div>
@@ -728,16 +774,17 @@ a.rec-item:hover{background:rgba(60,232,207,.045); padding-left:14px}
 <section id="ventures">
   <div class="sec-head">
     <div class="no" data-reveal>The Ventures — All Live</div>
-    <h2 data-split>Three startups. <em>One founder.</em></h2>
+    <h2 data-split>Three startups. <em>One universe.</em></h2>
     <p data-reveal>Not decks. Not vaporware. Three living products, online right now — each a different answer to the same obsession with verifiable craft.</p>
   </div>
   <div class="venture-grid">
     <div class="cell venture" style="--hueRGB:60,232,207">
-      <span class="auto-tag">Live · Launch 1 Sept 2026</span>
+      <span class="auto-tag">Preview Live · Global Launch 1 Jan 2027</span>
       <span class="c-id">V-01 · Sovereign AI</span>
       <h3>harmos.ai</h3>
       <span class="v-url">The Global Trust Layer for Artificial Intelligence</span>
-      <div class="v-stats"><span class="v-stat">Free · Pro · Max tiers</span><span class="v-stat">Base L2 Web3</span><span class="v-stat">18 global markets</span><span class="v-stat">Delaware C-Corp</span></div>
+      <div class="v-stats"><span class="v-stat">Free · Pro · Max tiers</span><span class="v-stat">Base L2 Web3</span><span class="v-stat">18 global markets</span><span class="v-stat">Delaware C-Corp</span><span class="v-stat">Alibaba Cloud sovereign compute</span><span class="v-stat">Phase 2 · air-gapped QRNG/PUF hardware</span></div>
+      <div class="v-launch">Global launch · 1 Jan 2027 — <span id="launchCd">…</span></div>
       <p>The only AI ecosystem where every computation is cryptographically proven, every dataset sovereignty-tracked, every model behaviorally aligned. A Global Creative OS — Create. Research. Collaborate. No black boxes. No toxic data. Mathematical truth only.</p>
       <div class="buy"><span class="c-id">Founder &amp; CEO</span><a class="bt" href="https://harmos.ai" target="_blank" rel="noopener">Visit ↗</a></div>
     </div>
@@ -770,7 +817,7 @@ a.rec-item:hover{background:rgba(60,232,207,.045); padding-left:14px}
 <section id="instant">
   <div class="sec-head">
     <div class="no" data-reveal>Lane A — Automated · Instant Delivery</div>
-    <h2 data-split>Buy it now. <em>Deploy it tonight.</em></h2>
+    <h2 data-split>Order the build. <em>Own the proof.</em></h2>
     <p data-reveal>Twenty-six production-grade artifacts from the Harmos build — pay, download, deploy. No calls, no waiting, no black boxes. Every file ships with a SHA-256 integrity hash.</p>
   </div>
   <div class="instant-grid">
@@ -1037,10 +1084,10 @@ a.rec-item:hover{background:rgba(60,232,207,.045); padding-left:14px}
   <div class="sec-head">
     <div class="no" data-reveal>The Credential Ledger — Verifiable</div>
     <h2 data-split>Every grade. <em>Every credential ID.</em></h2>
-    <p data-reveal>All twenty-seven concurrent and completed programs from dossier EXEC-2026-005 — seven tracks spanning AI, quantum, post-quantum cryptography, deep learning, data science, security, blockchain and systems. Stanford, Harvard, Oxford, Google, IBM and more. Credential IDs printed where issued; verify them with the institution directly.</p>
+    <p data-reveal>Twenty-eight concurrent and completed programs from dossier EXEC-2026-005 — seven tracks spanning AI, quantum, post-quantum cryptography, deep learning, data science, security, blockchain and systems. Stanford, Harvard, Oxford, Google, IBM and more. Credential IDs printed where issued; verify them with the institution directly.</p>
   </div>
   <div class="cred-wall">
-<div class="cred-group" data-reveal><h4>Dual Post-Grad Track</h4><span class="cg-sub">1 program</span><div class="cred-row"><span class="cr-prog">PG Program — AI, Generative AI & ML: Business Applications</span><span class="cr-inst">UT Austin · McCombs School of Business</span><span class="cr-grade g-prog">Current · 4.33 GPA</span></div></div>
+<div class="cred-group" data-reveal><h4>Post-Grad Track</h4><span class="cg-sub">2 programs</span><div class="cred-row"><span class="cr-prog">Master's in Cybersecurity &amp; Ethical Hacking</span><span class="cr-inst">Harvard University</span><span class="cr-grade g-prog">Candidate</span></div><div class="cred-row"><span class="cr-prog">PG Program — AI, Generative AI & ML: Business Applications</span><span class="cr-inst">UT Austin · McCombs School of Business</span><span class="cr-grade g-prog">Current · 4.33 GPA</span></div></div>
 <div class="cred-group" data-reveal><h4>Quantum & Post-Quantum</h4><span class="cg-sub">6 programs</span><div class="cred-row"><span class="cr-prog">Quantum Mechanics for Scientists & Engineers</span><span class="cr-inst">Stanford University</span><span class="cr-grade g-a">A</span><span class="cr-id">Credential · <b>cad5470698724c48a070a9ce9669c940</b></span></div><div class="cred-row"><span class="cr-prog">Introduction to Post-Quantum Cryptography</span><span class="cr-inst">University of Maryland · Baltimore County</span><span class="cr-grade g-a">A</span></div><div class="cred-row"><span class="cr-prog">Exploring Quantum Physics</span><span class="cr-inst">University of Maryland · College Park</span><span class="cr-grade g-prog">In progress</span></div><div class="cred-row"><span class="cr-prog">Quantum Computing with Qiskit & Advanced Algorithms</span><span class="cr-inst">Packt</span><span class="cr-grade g-prog">In progress</span></div><div class="cred-row"><span class="cr-prog">Complete Quantum Computing — Beginners Specialization</span><span class="cr-inst">Packt</span><span class="cr-grade g-prog">In progress</span></div><div class="cred-row"><span class="cr-prog">Python Programming for Quantum Computing</span><span class="cr-inst">Packt</span><span class="cr-grade g-prog">In progress</span></div></div>
 <div class="cred-group" data-reveal><h4>Deep Learning & Generative AI</h4><span class="cg-sub">4 programs</span><div class="cred-row"><span class="cr-prog">Deep Learning Essentials</span><span class="cr-inst">Université de Montréal · IVADO/Mila</span><span class="cr-grade g-a">A</span><span class="cr-id">Credential · <b>d07c48091c8549ca9d93ccefd99634ff</b></span></div><div class="cred-row"><span class="cr-prog">Generative and Agentic AI</span><span class="cr-inst">Oxford · Saïd Business School</span><span class="cr-grade g-aplus">A+</span><span class="cr-id">Credential · <b>GAA6HR0DG79D</b></span></div><div class="cred-row"><span class="cr-prog">Generative AI Professional Path</span><span class="cr-inst">Google Cloud Skills Boost</span><span class="cr-grade g-aplus">A+ · 100%</span></div><div class="cred-row"><span class="cr-prog">Quantization in Depth</span><span class="cr-inst">DeepLearning.AI</span><span class="cr-grade g-prog">In progress</span></div></div>
 <div class="cred-group" data-reveal><h4>Machine Learning & AI</h4><span class="cg-sub">4 programs</span><div class="cred-row"><span class="cr-prog">Machine Learning Specialization</span><span class="cr-inst">Stanford + DeepLearning.AI</span><span class="cr-grade g-a">A</span></div><div class="cred-row"><span class="cr-prog">AI & Machine Learning Essentials with Python</span><span class="cr-inst">University of Pennsylvania</span><span class="cr-grade g-aplus">A+</span></div><div class="cred-row"><span class="cr-prog">Machine Learning Foundations: Case Study</span><span class="cr-inst">University of Washington</span><span class="cr-grade g-aplus">A+</span><span class="cr-id">Credential · <b>Q0GV3D3N2UBV</b></span></div><div class="cred-row"><span class="cr-prog">Supervised ML: Regression & Classification</span><span class="cr-inst">Stanford Online</span><span class="cr-grade g-aplus">A+</span><span class="cr-id">Credential · <b>A32E7NZGO3QH</b></span></div></div>
@@ -1053,7 +1100,7 @@ a.rec-item:hover{background:rgba(60,232,207,.045); padding-left:14px}
       <span class="p-tag">Patent 01 · Filed 2025 · USPTO / PCT</span>
       <h4>Verifiable, Sovereign AI Ecosystem with MLTA &amp; DBA</h4>
       <p>The Harmos architecture itself. <strong style="color:var(--ink)">MLTA</strong> — Multi-Layer Trust Architecture: lattice-based post-quantum data provenance, QRNG/PUF hardware sovereignty, and zk-SNARK/STARK verification. <strong style="color:var(--ink)">DBA</strong> — Deep Behavioral Alignment: models aligned on verified commercial outcomes, not RLHF guesswork.</p>
-      <div class="mlta"><span>Lattice PQC Provenance</span><span>QRNG / PUF Hardware</span><span>zk-SNARK · STARK Verify</span></div>
+      <div class="mlta"><span>Lattice PQC Provenance</span><span>QRNG / PUF Hardware</span><span>zk-SNARK · STARK Verify</span><span>Alibaba Cloud · Compute Only, Keys Ours</span><span>Phase 2 · Fully Air-Gapped</span></div>
     </div>
     <div class="patent" data-reveal>
       <span class="p-tag">Patent 02 · Filed 2025 · USPTO / PCT</span>
@@ -1086,6 +1133,7 @@ a.rec-item:hover{background:rgba(60,232,207,.045); padding-left:14px}
     <div class="recog" data-reveal><div class="r-t">Marquis Who's Who</div><div class="r-d">Honoree</div></div>
     <div class="recog" data-reveal><div class="r-t">USPTO / PCT</div><div class="r-d">2 Patent Applications</div></div>
     <div class="recog" data-reveal><div class="r-t">1M+ Organic Followers</div><div class="r-d">Across the network</div></div>
+    <div class="recog" data-reveal><div class="r-t">Bootstrapped Path to $1B</div><div class="r-d">Zero external funding · full founder control</div></div>
   </div>
 </section>
 
@@ -1098,6 +1146,15 @@ a.rec-item:hover{background:rgba(60,232,207,.045); padding-left:14px}
     <span>Base · <b>Lahore → Delaware → The World</b></span>
     <span>Entity · <b>Harmos Inc. · Delaware C-Corp</b></span>
   </div>
+  <form class="notify" name="launch-notify" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+    <input type="hidden" name="form-name" value="launch-notify">
+    <p hidden><label>Skip: <input name="bot-field"></label></p>
+    <div class="nf-label">The universe expands 1 Jan 2027 — get the signal first</div>
+    <div class="nf-row">
+      <input type="email" name="email" required placeholder="you@company.com" aria-label="Email">
+      <button type="submit">Notify me →</button>
+    </div>
+  </form>
   <div class="foot">
     <span>© 2026 Wali Ahmad · Harmos Inc. · Harmos AI™ · Hamzista™ · Harmos Zen™ · DBA™ · MLTA™</span>
     <span><a href="designs.html">Alternate designs</a> &nbsp;·&nbsp; <a href="https://harmos.ai" target="_blank" rel="noopener">harmos.ai</a> &nbsp;·&nbsp; <a href="https://nooriva.ai" target="_blank" rel="noopener">nooriva.ai</a> &nbsp;·&nbsp; <a href="https://ourchemistry.ai" target="_blank" rel="noopener">ourchemistry.ai</a></span>
@@ -1135,7 +1192,7 @@ a.rec-item:hover{background:rgba(60,232,207,.045); padding-left:14px}
       <input id="hmInput" type="text" placeholder="Ask anything, create, reason about the 72 offerings…" autocomplete="off">
       <button class="hm-send" type="submit" aria-label="Send">↑</button>
     </form>
-    <div class="hm-note">Preview build — the live sovereign agent docks here at the 1 Sept 2026 launch · orders route to wali.ahmad@harmos.ai</div>
+    <div class="hm-note">Preview build — the live sovereign agent docks here at the 1 Jan 2027 launch · orders route to wali.ahmad@harmos.ai</div>
   </div>
 </div>
 
@@ -1485,7 +1542,7 @@ const BRAIN = [
   { k:['instant','buy','store','lane a','download'], r:'Lane A holds <b>26 instant-download builds</b> — RAG pipelines, agent packs, smart-contract kits, dashboards and more, $29–$299. Pay, download, deploy tonight. Each ships with a SHA-256 integrity hash.', c:['Browse the store','#instant'] },
   { k:['rag','retrieval','docs','document','knowledge'], r:'The <b>A-01 RAG Pipeline Starter Kit</b> ($149) is a production retrieval stack — chunking, embeddings, vector store, eval harness. Plug your docs in. For a custom enterprise build, commission <b>B-03</b>.', c:['Get A-01 — $149','mailto:wali.ahmad@harmos.ai?subject=Order%20A-01'] },
   { k:['ml model','machine learning','custom model','predict','forecast','churn','fraud'], r:'Commissioned ML starts at <b>B-01 · Custom ML Models, from $5,000</b> — training notebooks, eval reports and a deployment pipeline included. Fixed quote within 24 hours of your email.', c:['Commission B-01','mailto:wali.ahmad@harmos.ai?subject=Commission%20B-01'] },
-  { k:['harmos','trust layer','verifiable','sovereign','node'], r:'<b>harmos.ai</b> — the Global Trust Layer for AI. Every computation cryptographically proven, every dataset sovereignty-tracked, every model behaviorally aligned. Free, Pro and Max tiers; public launch <b>1 September 2026</b> across 18 markets.', c:['Visit harmos.ai','https://harmos.ai'] },
+  { k:['harmos','trust layer','verifiable','sovereign','node'], r:'<b>harmos.ai</b> — the Global Trust Layer for AI. Every computation cryptographically proven, every dataset sovereignty-tracked, every model behaviorally aligned. Free, Pro and Max tiers; public launch <b>1 January 2027</b> across 18 markets.', c:['Visit harmos.ai','https://harmos.ai'] },
   { k:['dba','mlta','patent','alignment','zk','proof'], r:'Two patents filed 2025 (USPTO/PCT): <b>MLTA</b> — Multi-Layer Trust Architecture: lattice PQC provenance, QRNG/PUF hardware sovereignty, zk-SNARK/STARK verification. <b>DBA</b> — Deep Behavioral Alignment: models aligned on verified commercial outcomes, not RLHF guesswork.', c:['See the credential ledger','#credentials'] },
   { k:['keynote','speak','stage','talk','lecture'], r:'<b>C-03 · Keynote — $15,000</b>, global stage. Also boardroom briefings at $12,000/day and university book tours on request.', c:['Book the keynote','mailto:wali.ahmad@harmos.ai?subject=Engage%20C-03'] },
   { k:['agent','chatbot','automation'], r:'Start with <b>A-02 · AI Agent Template Pack ($99)</b> — support, sales and research agents with orchestration configs and memory patterns. Custom agentic systems: commission <b>B-02</b>.', c:['Get A-02 — $99','mailto:wali.ahmad@harmos.ai?subject=Order%20A-02'] },
@@ -1498,7 +1555,7 @@ const BRAIN = [
   { k:['chemistry','matchmaking','ourchemistry'], r:'<b>ourchemistry.ai</b> — the third venture: a Web3 global platform for AI-driven professional matchmaking, covered by the second filed patent. In the lab now; the reveal lands on the site first.', c:['Visit ourchemistry.ai','https://ourchemistry.ai'] },
   { k:['price','cost','quote','how much','budget'], r:'Instant builds: <b>$19–$299</b>. Commissioned systems: <b>from $2,500</b>. Authority engagements: retainers at $10,000/mo, keynotes $15,000, expert witness $950–1,500/hr. Email any item ID for a fixed quote within 24 hours.', c:['Request a quote','mailto:wali.ahmad@harmos.ai?subject=Quote%20Request'] },
   { k:['contact','email','phone','call','reach'], r:'Direct line to the founder: <b>wali.ahmad@harmos.ai</b> · +1-737-282-8249. Lahore → Delaware → the world.', c:['Email Wali','mailto:wali.ahmad@harmos.ai'] },
-  { k:['security','cyber','harvard','hack'], r:'Security is the foundation, not the storefront — Harvard CS50 Cybersecurity (A+), IBM GenAI for Cybersecurity, and the Harvard Master\u2019s in progress. No security engagements are sold yet; they get announced on the page first.', c:['See credentials','#credentials'] },
+  { k:['security','cyber','harvard','hack'], r:'Security is the foundation, not the storefront — Harvard Master\u2019s candidate in Cybersecurity & Ethical Hacking, Harvard CS50 Cybersecurity (A+), IBM GenAI for Cybersecurity (A), UMBC Post-Quantum Cryptography (A) and Maryland Cryptography (A+). No security engagements are sold yet; they get announced on the page first.', c:['See credentials','#credentials'] },
 ];
 function botReply(q){
   const s = q.toLowerCase();
@@ -1719,6 +1776,20 @@ BRAIN.find(b => b.k.includes('ml model')).card = 'B-01';
 BRAIN.find(b => b.k.includes('blockchain')).card = 'A-09';
 BRAIN.find(b => b.k.includes('website')).card = 'A-22';
 BRAIN.find(b => b.k.includes('quantum')).card = 'D-01';
+
+/* ============ LAUNCH COUNTDOWN ============ */
+(function(){
+  const el = document.getElementById('launchCd'); if (!el) return;
+  const T = Date.UTC(2027, 0, 1);
+  (function tick(){
+    const d = Math.max(0, T - Date.now());
+    el.textContent = Math.floor(d/864e5) + 'D : ' +
+      String(Math.floor(d/36e5)%24).padStart(2,'0') + 'H : ' +
+      String(Math.floor(d/6e4)%60).padStart(2,'0') + 'M : ' +
+      String(Math.floor(d/1e3)%60).padStart(2,'0') + 'S';
+    setTimeout(tick, 1000);
+  })();
+})();
 </script>
 </body>
 </html>
