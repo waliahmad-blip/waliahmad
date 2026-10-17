@@ -97,7 +97,9 @@ em{font-family:"Cormorant Garamond",serif; font-style:italic; font-weight:400}
 #loader.done{opacity:0; visibility:hidden}
 #loader img{width:74px; height:74px; filter:drop-shadow(0 0 24px rgba(60,232,207,.45)); animation:lbreathe 2.2s ease-in-out infinite}
 @keyframes lbreathe{0%,100%{transform:scale(1); filter:drop-shadow(0 0 18px rgba(60,232,207,.35))}50%{transform:scale(1.06); filter:drop-shadow(0 0 34px rgba(60,232,207,.6))}}
-#loader .ring{width:120px; height:120px; position:absolute}
+#loader .l-stack{position:relative; width:120px; height:120px; display:flex; align-items:center; justify-content:center}
+#loader .l-stack .ring{width:120px; height:120px; position:absolute; inset:0}
+#loader .l-stack img{width:74px; height:74px; position:relative; z-index:1}
 #loader .ring circle{fill:none; stroke:rgba(255,255,255,.08); stroke-width:1.5}
 #loader .ring .arc{stroke:var(--teal); stroke-linecap:round; stroke-dasharray:330; stroke-dashoffset:330;
   transform:rotate(-90deg); transform-origin:center; transition:stroke-dashoffset .3s linear; filter:drop-shadow(0 0 6px rgba(60,232,207,.7))}
@@ -775,8 +777,10 @@ a.rec-item:hover{background:rgba(60,232,207,.045); padding-left:14px}
 
 <!-- LOADER GATE -->
 <div id="loader">
-  <svg class="ring" viewBox="0 0 120 120"><circle cx="60" cy="60" r="53"/><circle class="arc" id="larc" cx="60" cy="60" r="53"/></svg>
-  <img src="assets/logo-animated.webp" alt="Harmos">
+  <div class="l-stack">
+    <svg class="ring" viewBox="0 0 120 120"><circle cx="60" cy="60" r="53"/><circle class="arc" id="larc" cx="60" cy="60" r="53"/></svg>
+    <img src="assets/logo-animated.webp" alt="Harmos">
+  </div>
   <div class="l-word">Entering Orbit</div>
 </div>
 
