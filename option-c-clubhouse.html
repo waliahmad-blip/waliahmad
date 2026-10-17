@@ -483,5 +483,84 @@ document.querySelectorAll('h1, h2, .sec-head, .of, .item, .bkc, .mail, footer, .
   })();
 })();
 </script>
+
+<!-- ===== NO-SCROLL GATEWAY SHELL (CLUBHOUSE) ===== -->
+<style>
+html,body{overflow:hidden!important;height:100dvh}
+.ns-stage nav, body>nav{display:none!important}
+.ns-stage{position:fixed;inset:0;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch}
+.ns-off{display:none!important}
+
+.ns-stage{padding-bottom:96px}
+.ns-nav{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);z-index:400;display:flex;align-items:center;gap:6px;
+  background:rgba(26,14,12,.72);border:1px solid rgba(251,113,133,.25);border-radius:100px;padding:7px 8px;
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 12px 44px rgba(120,40,50,.28)}
+.ns-brand{font-family:"JetBrains Mono",monospace;font-size:9px;letter-spacing:.22em;color:#fb7185;text-decoration:none;
+  padding:8px 14px;border-right:1px solid rgba(251,113,133,.2);margin-right:4px;white-space:nowrap}
+.ns-items{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none;max-width:72vw}
+.ns-items::-webkit-scrollbar{display:none}
+.ns-items button{font-family:"JetBrains Mono",monospace;font-size:9px;letter-spacing:.18em;text-transform:uppercase;
+  background:none;border:none;color:rgba(255,235,230,.5);padding:9px 13px;border-radius:100px;cursor:pointer;
+  white-space:nowrap;transition:all .3s}
+.ns-items button:hover{color:#fff}
+.ns-items button.on{background:#fb7185;color:#1a0e0c;font-weight:500}
+@media (max-width:900px){.ns-nav{bottom:10px;max-width:94vw}.ns-stage{padding-bottom:84px}}
+
+</style>
+<div class="ns-nav"><a class="ns-brand" href="index.html">◂ GATE</a><div class="ns-items">
+<button data-vw="origin" class="on">Origin</button><button data-vw="ventures">Ventures</button><button data-vw="store">Store</button><button data-vw="academy">Academy</button><button data-vw="words">Words</button><button data-vw="contact">Say hello</button>
+</div></div>
+<script>
+(function(){
+  const MAP = {
+    origin: ['header.hero', '.cyber-zone'],
+    ventures: ['#ventures'],
+    store: ['#store'],
+    academy: ['#academy'],
+    words: ['.quote-zone'],
+    contact: ['#contact']
+  };
+  const stage = document.createElement('div'); stage.className = 'ns-stage';
+  const nav = document.querySelector('.ns-nav');
+  // move flow children into the stage; UNWRAP <main>; drop legacy <nav>
+  [...document.body.children].forEach(el => {
+    if (el.matches('script,style,link,.ns-nav')) return;
+    if (el.tagName === 'NAV') { el.remove(); return; }
+    if (el.tagName === 'MAIN') { [...el.children].forEach(c => stage.appendChild(c)); el.remove(); return; }
+    stage.appendChild(el);
+  });
+  document.body.appendChild(stage);
+  // collect mapped elements (descendant selectors, robust to depth)
+  const views = {};
+  Object.entries(MAP).forEach(([k, sels]) => {
+    views[k] = [];
+    sels.forEach(s => stage.querySelectorAll(s).forEach(e => { if (!views[k].includes(e)) views[k].push(e); }));
+  });
+  // top-level strays that are content sections -> origin; utility/fixed layers stay always-visible
+  const mapped = new Set(Object.values(views).flat());
+  [...stage.children].forEach(el => {
+    if (mapped.has(el)) return;
+    const cs = getComputedStyle(el);
+    const utility = cs.position === 'fixed' || el.tagName === 'CANVAS' || el.tagName === 'SVG' || el.tagName === 'BUTTON';
+    if (!utility && !el.matches('.fab,#apanel,.apanel')) views.origin.push(el);
+  });
+  const items = [...nav.querySelectorAll('[data-vw]')];
+  function show(name){
+    Object.values(views).flat().forEach(e => e.classList.add('ns-off'));
+    (views[name]||[]).forEach(e => e.classList.remove('ns-off'));
+    stage.scrollTop = 0;
+    items.forEach(b => b.classList.toggle('on', b.dataset.vw === name));
+  }
+  items.forEach(b => b.addEventListener('click', () => show(b.dataset.vw)));
+  addEventListener('keydown', e => {
+    if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+    const order = items.map(b => b.dataset.vw);
+    const cur = order.indexOf(nav.querySelector('[data-vw].on')?.dataset.vw || 'origin');
+    show(order[(cur + (e.key === 'ArrowRight' ? 1 : order.length - 1)) % order.length]);
+  });
+  show('origin');
+})();
+</script>
+
 </body>
 </html>

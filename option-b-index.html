@@ -457,5 +457,94 @@ document.querySelectorAll('h1, h2, .ven, .flip, .sec-head, .of, .item, .bk, .bkc
   })();
 })();
 </script>
+
+<!-- ===== NO-SCROLL GATEWAY SHELL (LEDGER) ===== -->
+<style>
+html,body{overflow:hidden!important;height:100dvh}
+.ns-stage nav, body>nav{display:none!important}
+.ns-stage{position:fixed;inset:0;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch}
+.ns-off{display:none!important}
+
+.ns-stage{padding-left:172px}
+.ns-nav{position:fixed;left:0;top:0;bottom:0;width:172px;z-index:400;display:flex;flex-direction:column;
+  border-right:1px solid rgba(240,180,41,.16);background:rgba(6,7,10,.72);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  padding:26px 0}
+.ns-brand{font-family:"JetBrains Mono",monospace;font-size:9px;letter-spacing:.24em;color:#f0b429;text-decoration:none;
+  padding:0 22px 20px;border-bottom:1px solid rgba(240,180,41,.14);margin-bottom:14px}
+.ns-items{display:flex;flex-direction:column}
+.ns-items button{display:flex;align-items:baseline;gap:12px;background:none;border:none;cursor:pointer;text-align:left;
+  font-family:"JetBrains Mono",monospace;font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;
+  color:rgba(237,240,244,.45);padding:13px 22px;border-left:2px solid transparent;transition:all .3s}
+.ns-items button i{font-style:normal;font-size:8px;color:rgba(240,180,41,.5)}
+.ns-items button:hover{color:#fff}
+.ns-items button.on{color:#f0b429;border-left-color:#f0b429;background:rgba(240,180,41,.06)}
+@media (max-width:900px){
+  .ns-stage{padding-left:0;padding-bottom:64px}
+  .ns-nav{top:auto;bottom:0;left:0;right:0;width:auto;flex-direction:row;align-items:center;padding:8px 10px calc(8px + env(safe-area-inset-bottom,0px));
+    border-right:none;border-top:1px solid rgba(240,180,41,.16)}
+  .ns-brand{border:none;padding:8px 10px;margin:0;white-space:nowrap}
+  .ns-items{flex-direction:row;overflow-x:auto;scrollbar-width:none}
+  .ns-items::-webkit-scrollbar{display:none}
+  .ns-items button{border-left:none;border-bottom:2px solid transparent;padding:8px 10px;white-space:nowrap}
+  .ns-items button i{display:none}
+  .ns-items button.on{border-bottom-color:#f0b429}
+}
+
+</style>
+<div class="ns-nav"><a class="ns-brand" href="index.html">◂ GATE</a><div class="ns-items">
+<button data-vw="origin" class="on"><i>01</i>Origin</button><button data-vw="ventures"><i>02</i>Ventures</button><button data-vw="store"><i>03</i>Store</button><button data-vw="authority"><i>04</i>Authority</button><button data-vw="academy"><i>05</i>Academy</button><button data-vw="contact"><i>06</i>Contact</button>
+</div></div>
+<script>
+(function(){
+  const MAP = {
+    origin: ['section.hero', 'section.cyber'],
+    ventures: ['#ventures'],
+    store: ['#store'],
+    authority: ['#authority'],
+    academy: ['#academy'],
+    contact: ['#contact']
+  };
+  const stage = document.createElement('div'); stage.className = 'ns-stage';
+  const nav = document.querySelector('.ns-nav');
+  // move flow children into the stage; UNWRAP <main>; drop legacy <nav>
+  [...document.body.children].forEach(el => {
+    if (el.matches('script,style,link,.ns-nav')) return;
+    if (el.tagName === 'NAV') { el.remove(); return; }
+    if (el.tagName === 'MAIN') { [...el.children].forEach(c => stage.appendChild(c)); el.remove(); return; }
+    stage.appendChild(el);
+  });
+  document.body.appendChild(stage);
+  // collect mapped elements (descendant selectors, robust to depth)
+  const views = {};
+  Object.entries(MAP).forEach(([k, sels]) => {
+    views[k] = [];
+    sels.forEach(s => stage.querySelectorAll(s).forEach(e => { if (!views[k].includes(e)) views[k].push(e); }));
+  });
+  // top-level strays that are content sections -> origin; utility/fixed layers stay always-visible
+  const mapped = new Set(Object.values(views).flat());
+  [...stage.children].forEach(el => {
+    if (mapped.has(el)) return;
+    const cs = getComputedStyle(el);
+    const utility = cs.position === 'fixed' || el.tagName === 'CANVAS' || el.tagName === 'SVG' || el.tagName === 'BUTTON';
+    if (!utility && !el.matches('.fab,#apanel,.apanel')) views.origin.push(el);
+  });
+  const items = [...nav.querySelectorAll('[data-vw]')];
+  function show(name){
+    Object.values(views).flat().forEach(e => e.classList.add('ns-off'));
+    (views[name]||[]).forEach(e => e.classList.remove('ns-off'));
+    stage.scrollTop = 0;
+    items.forEach(b => b.classList.toggle('on', b.dataset.vw === name));
+  }
+  items.forEach(b => b.addEventListener('click', () => show(b.dataset.vw)));
+  addEventListener('keydown', e => {
+    if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+    const order = items.map(b => b.dataset.vw);
+    const cur = order.indexOf(nav.querySelector('[data-vw].on')?.dataset.vw || 'origin');
+    show(order[(cur + (e.key === 'ArrowRight' ? 1 : order.length - 1)) % order.length]);
+  });
+  show('origin');
+})();
+</script>
+
 </body>
 </html>

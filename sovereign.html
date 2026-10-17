@@ -673,14 +673,19 @@ a.rec-item:hover{background:rgba(60,232,207,.045); padding-left:14px}
   .foot{flex-direction:column; align-items:center; text-align:center; gap:10px; margin-top:60px}
   .cyber{padding:26px 20px; gap:20px}
 
+  /* ---- venture cards: badge + countdown fixes ---- */
+  .venture .auto-tag{position:static; align-self:flex-start; margin-bottom:10px}
+  .v-launch{font-size:8.5px; letter-spacing:.14em}
+  .lcd{white-space:nowrap; display:inline-block}
+
   /* ---- bottom sheet ---- */
   .sheet-backdrop{display:block; position:fixed; inset:0; z-index:340; background:rgba(3,5,9,.62);
     backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px);
     opacity:0; pointer-events:none; transition:opacity .4s}
   .sheet{display:flex; flex-direction:column; position:fixed; left:0; right:0; bottom:0; z-index:345;
     background:#0a0f1a; border:1px solid var(--hair2); border-bottom:none; border-radius:26px 26px 0 0;
-    transform:translateY(105%); transition:transform .55s var(--ease); max-height:80vh}
-  body.sheet-open .sheet{transform:translateY(0)}
+    transform:translateY(calc(105% + 24px)); visibility:hidden; transition:transform .55s var(--ease); max-height:80vh}
+  body.sheet-open .sheet{transform:translateY(0); visibility:visible}
   body.sheet-open .sheet-backdrop{opacity:1; pointer-events:auto}
   .sheet-grab{width:44px; height:4px; border-radius:100px; background:rgba(255,255,255,.22); margin:12px auto 2px; flex-shrink:0}
   .sheet-body{padding:16px 26px calc(30px + env(safe-area-inset-bottom,0px)); overflow-y:auto}
@@ -707,6 +712,62 @@ a.rec-item:hover{background:rgba(60,232,207,.045); padding-left:14px}
 .chat-card .cc-buy{font-family:"JetBrains Mono",monospace; font-size:9px; letter-spacing:.14em;
   text-transform:uppercase; background:var(--gold); color:#0a0e14 !important; border:none !important;
   padding:8px 16px; border-radius:100px; font-weight:500}
+
+/* ================= DESKTOP APP-SHELL (>=901px): no page scroll, view router ================= */
+@media (min-width:901px){
+  body[data-view]{overflow:hidden}
+  body[data-view] section, body[data-view] .telemetry, body[data-view] .hero{display:none}
+  body[data-view="orbit"] .hero{display:grid}
+  body[data-view="orbit"] .telemetry{display:grid}
+  body[data-view="orbit"] #security, body[data-view="orbit"] #ventures,
+  body[data-view="orbit"] .manifesto, body[data-view="orbit"] #recognition,
+  body[data-view="orbit"] #contact{display:block}
+  body[data-view="store"] #instant{display:block}
+  body[data-view="store"] .store-tools{display:block}
+  body[data-view="proof"] #credentials{display:block}
+  body[data-view="build"] .build-sec{display:none}
+  body[data-view="build"] .build-sec.on{display:block}
+  body[data-view="build"] .segbar{display:flex}
+  body[data-view] section, body[data-view] .hero, body[data-view] .telemetry{
+    height:100dvh; overflow-y:auto; overflow-x:hidden; scrollbar-width:none}
+  body[data-view] section::-webkit-scrollbar, body[data-view] .hero::-webkit-scrollbar{display:none}
+  /* left rail dock */
+  .tabbar{display:flex; position:fixed; left:26px; top:50%; transform:translateY(-50%); bottom:auto; right:auto; width:auto;
+    flex-direction:column; gap:6px; padding:12px 10px; border-radius:22px; z-index:400;
+    background:rgba(8,12,20,.72); border:1px solid var(--hair2); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px)}
+  .tabbar .tb{display:flex; flex-direction:column; align-items:center; gap:6px; padding:12px 14px; border-radius:14px;
+    background:none; border:none; cursor:pointer; color:var(--dim);
+    font-family:"JetBrains Mono",monospace; font-size:8.5px; letter-spacing:.22em; text-transform:uppercase; transition:all .3s}
+  .tabbar .tb svg{width:20px;height:20px}
+  .tabbar .tb.on{color:var(--teal); background:rgba(60,232,207,.08); box-shadow:inset 0 0 0 1px rgba(60,232,207,.22)}
+  .tabbar .tab-ai{width:44px;height:44px;border-radius:50%;margin:4px auto}
+  /* bottom sheets become centered dialogs on desktop */
+  .sheet-backdrop{display:block; position:fixed; inset:0; z-index:340; background:rgba(3,5,9,.62);
+    backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); opacity:0; pointer-events:none; transition:opacity .4s}
+  .sheet{display:flex; flex-direction:column; position:fixed; left:50%; top:50%; bottom:auto; z-index:345;
+    width:min(680px, 92vw); max-height:82vh; background:#0a0f1a; border:1px solid var(--hair2); border-radius:22px;
+    transform:translate(-50%,-46%) scale(.96); opacity:0; visibility:hidden; pointer-events:none;
+    transition:transform .45s var(--ease), opacity .45s, visibility .45s}
+  body.sheet-open .sheet{transform:translate(-50%,-50%) scale(1); opacity:1; visibility:visible; pointer-events:auto}
+  body.sheet-open .sheet-backdrop{opacity:1; pointer-events:auto}
+  .sheet-grab{display:none}
+  /* views clear the rail */
+  body[data-view] section, body[data-view] .telemetry, body[data-view] .hero{padding-left:130px}
+  .kicker{white-space:nowrap; font-size:9px; letter-spacing:.18em}
+  /* store tools on desktop */
+  .store-tools{margin:0 0 22px}
+  .store-search{width:100%; background:rgba(255,255,255,.045); border:1px solid var(--hair2);
+    border-radius:100px; padding:13px 22px; color:var(--ink); font-family:"Space Grotesk"; font-size:14px;
+    outline:none; margin-bottom:12px}
+  .store-search:focus{border-color:rgba(60,232,207,.55)}
+  .store-chips{display:flex; gap:8px; flex-wrap:wrap}
+  .f-chip{font-family:"JetBrains Mono",monospace; font-size:9px; letter-spacing:.16em; text-transform:uppercase;
+    padding:8px 14px; border-radius:100px; border:1px solid var(--hair2); background:none; color:var(--dim); cursor:pointer}
+  .f-chip.on{color:var(--teal); border-color:rgba(60,232,207,.5); background:rgba(60,232,207,.07)}
+  /* header nav anchors retired in app mode */
+  .nav-links{display:none}
+}
+
 </style>
 </head>
 <body data-view="orbit">
@@ -1164,7 +1225,7 @@ a.rec-item:hover{background:rgba(60,232,207,.045); padding-left:14px}
     <span>Base · <b>Lahore → Delaware → The World</b></span>
     <span>Entity · <b>Harmos Inc. · Delaware C-Corp</b></span>
   </div>
-  <form class="notify" name="launch-notify" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+  <form class="notify" id="notifyForm" name="launch-notify" method="POST" action="/" netlify data-netlify="true" netlify-honeypot="bot-field">
     <input type="hidden" name="form-name" value="launch-notify">
     <p hidden><label>Skip: <input name="bot-field"></label></p>
     <div class="nf-label">The universe expands 1 Jan 2027 — get the signal first</div>
@@ -1175,7 +1236,7 @@ a.rec-item:hover{background:rgba(60,232,207,.045); padding-left:14px}
   </form>
   <div class="foot">
     <span>© 2026 Wali Ahmad · Harmos Inc. · Harmos AI™ · DBA™ · MLTA™</span>
-    <span><a href="designs.html">Alternate designs</a> &nbsp;·&nbsp; <a href="https://harmos.ai" target="_blank" rel="noopener">harmos.ai</a> &nbsp;·&nbsp; <a href="https://nooriva.ai" target="_blank" rel="noopener">nooriva.ai</a> &nbsp;·&nbsp; <a href="https://ourchemistry.ai" target="_blank" rel="noopener">ourchemistry.ai</a></span>
+    <span><a href="index.html">◂ All gateways</a> &nbsp;·&nbsp; <a href="https://harmos.ai" target="_blank" rel="noopener">harmos.ai</a> &nbsp;·&nbsp; <a href="https://nooriva.ai" target="_blank" rel="noopener">nooriva.ai</a> &nbsp;·&nbsp; <a href="https://ourchemistry.ai" target="_blank" rel="noopener">ourchemistry.ai</a></span>
   </div>
 </section>
 
@@ -1812,6 +1873,34 @@ BRAIN.find(b => b.k.includes('quantum')).card = 'D-01';
     });
     setTimeout(tick, 1000);
   })();
+})();
+</script>
+
+<script>
+/* notify form — AJAX with native fallback */
+(function(){
+  const nf = document.getElementById('notifyForm');
+  if (!nf) return;
+  nf.addEventListener('submit', async function(e){
+    e.preventDefault();
+    const btn = nf.querySelector('button');
+    const orig = btn.textContent;
+    btn.textContent = 'Locking in\u2026'; btn.disabled = true;
+    try {
+      const r = await fetch('/', { method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(new FormData(nf)).toString() });
+      if (!r.ok) throw new Error('nf-' + r.status);
+      nf.innerHTML = '<div class="nf-label" style="color:var(--teal)">Locked in \u2014 the signal reaches you first, 1 Jan 2027.</div>';
+    } catch (err) {
+      btn.textContent = orig; btn.disabled = false;
+      let s = nf.querySelector('.nf-err');
+      if (!s) { s = document.createElement('div'); s.className = 'nf-err';
+        s.style.cssText = 'margin-top:10px;font-family:\'JetBrains Mono\',monospace;font-size:10px;letter-spacing:.14em;color:var(--gold)';
+        nf.appendChild(s); }
+      s.textContent = 'Signal lost \u2014 retry, or write to wali@harmos.ai directly.';
+    }
+  });
 })();
 </script>
 </body>
