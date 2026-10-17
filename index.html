@@ -67,46 +67,36 @@
 <!-- TOP BAR -->
 <header class="g-top">
   <div class="g-id"><img src="assets/logo.png" alt="" width="26" height="26"><span>WALI&nbsp;AHMAD</span></div>
-  <div class="g-choose">CHOOSE YOUR GATEWAY</div>
-  <div class="g-hint">KEYS 1–4</div>
+  <div class="g-choose">THE SOVEREIGN GATEWAY</div>
+  <div class="g-hint">KEY ⏎</div>
 </header>
 
 <!-- TITLE -->
 <div class="g-title">
   <h1>This is Wali&rsquo;s <em>universe.</em></h1>
-  <p>Four rooms. One universe. Step into any.</p>
+  <p>One door. One universe. Step inside.</p>
 </div>
 
-<!-- LANES -->
-<main class="lanes" role="navigation" aria-label="Site gateways">
-  <a class="lane" style="--ac:#3ce8cf" href="sovereign.html" data-key="1">
-    <span class="ln-no">I</span>
-    <span class="ln-name">Sovereign</span>
-    <span class="ln-sub">The Command Deck</span>
-    <span class="ln-desc">The flagship. App-shell command center — orbit, store, build and proof, engineered like an operating system.</span>
-    <span class="ln-go">Enter →</span>
+<!-- MONOLITH STAGE -->
+<main class="stage">
+  <a class="mono" href="sovereign.html" id="mono" aria-label="Enter Sovereign — The Command Deck">
+    <span class="mn-no">I</span>
+    <span class="mn-name">Sovereign</span>
+    <span class="mn-sub">The Command Deck</span>
+    <span class="mn-desc">The flagship. App-shell command center — orbit, store, build and proof, engineered like an operating system.</span>
+    <span class="mn-go">Enter →</span>
   </a>
-  <a class="lane" style="--ac:#a78bfa" href="option-a-aurora.html" data-key="2">
-    <span class="ln-no">II</span>
-    <span class="ln-name">Aurora</span>
-    <span class="ln-sub">The Observatory</span>
-    <span class="ln-desc">The cinematic one. Slow light, deep space and long-form story — the universe as a film, not a feed.</span>
-    <span class="ln-go">Enter →</span>
-  </a>
-  <a class="lane" style="--ac:#f0b429" href="option-b-index.html" data-key="3">
-    <span class="ln-no">III</span>
-    <span class="ln-name">Ledger</span>
-    <span class="ln-sub">The Grand Index</span>
-    <span class="ln-desc">The editorial one. Every offering, venture and credential set in type like a printed registry of record.</span>
-    <span class="ln-go">Enter →</span>
-  </a>
-  <a class="lane" style="--ac:#fb7185" href="option-c-clubhouse.html" data-key="4">
-    <span class="ln-no">IV</span>
-    <span class="ln-name">Clubhouse</span>
-    <span class="ln-sub">The Inner Circle</span>
-    <span class="ln-desc">The social one. Cards on the table, voice-first energy — the universe as a private room with the lights low.</span>
-    <span class="ln-go">Enter →</span>
-  </a>
+
+  <div class="cd" aria-label="Countdown to global launch">
+    <span class="cd-label">T-MINUS · GLOBAL LAUNCH · 01.01.2027</span>
+    <span class="cd-clock" id="cdClock">---D : --H : --M : --S</span>
+  </div>
+
+  <div class="stats">
+    <span>72 OFFERINGS</span><i>·</i><span>28 PROGRAMS</span><i>·</i><span>USPTO #63/915,788</span><i>·</i><span>1M+ FOLLOWERS</span>
+  </div>
+
+  <div class="enter-hint">PRESS ⏎ ENTER TO STEP INSIDE</div>
 </main>
 
 <!-- FOOT -->
@@ -134,7 +124,7 @@ body{font-family:"Space Grotesk",sans-serif;color:var(--ink);height:100dvh;displ
 
 /* ambient */
 .torus-bg{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none;z-index:0}
-.torus-bg img{width:min(96vh,900px);opacity:.14;filter:saturate(1.1);animation:spin 90s linear infinite}
+.torus-bg img{width:min(112vh,1100px);opacity:.16;filter:saturate(1.1);animation:spin 90s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
 .grain{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.5;
   background:radial-gradient(ellipse 90% 70% at 50% 42%,transparent 40%,rgba(3,5,9,.75) 100%)}
@@ -147,40 +137,60 @@ body{font-family:"Space Grotesk",sans-serif;color:var(--ink);height:100dvh;displ
 .g-hint{color:var(--dim)}
 
 /* title */
-.g-title{position:relative;z-index:5;text-align:center;padding:2vh 20px 3.5vh}
-.g-title h1{font-family:"Cormorant Garamond",serif;font-weight:400;font-size:clamp(30px,4.4vw,54px);letter-spacing:.01em}
+.g-title{position:relative;z-index:5;text-align:center;padding:1vh 20px 0}
+.g-title h1{font-family:"Cormorant Garamond",serif;font-weight:400;font-size:clamp(30px,4.2vw,52px);letter-spacing:.01em}
 .g-title h1 em{font-style:italic;background:linear-gradient(90deg,var(--teal),var(--gold));
   -webkit-background-clip:text;background-clip:text;color:transparent}
 .g-title p{margin-top:8px;font-family:"JetBrains Mono",monospace;font-size:10.5px;letter-spacing:.34em;color:var(--dim);text-transform:uppercase}
 
-/* lanes */
-.lanes{position:relative;z-index:5;flex:1;display:flex;gap:1px;background:var(--hair);
-  border-top:1px solid var(--hair);border-bottom:1px solid var(--hair);min-height:0}
-.lane{flex:1;background:rgba(5,8,16,.82);backdrop-filter:blur(4px);text-decoration:none;color:var(--ink);
-  display:flex;flex-direction:column;padding:34px 30px 28px;position:relative;overflow:hidden;
-  transition:flex .55s var(--ease), background .4s}
-.lane::before{content:"";position:absolute;inset:0;opacity:0;transition:opacity .5s;
-  background:radial-gradient(ellipse 120% 60% at 50% 108%, color-mix(in srgb, var(--ac) 22%, transparent), transparent 65%)}
-.lane::after{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;background:var(--ac);
-  transform:scaleX(0);transition:transform .55s var(--ease)}
-.lane:hover,.lane:focus-visible{flex:1.55;background:rgba(8,12,22,.9)}
-.lane:hover::before,.lane:focus-visible::before{opacity:1}
-.lane:hover::after,.lane:focus-visible::after{transform:scaleX(1)}
-.ln-no{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.4em;color:var(--ac)}
-.ln-name{font-family:"Cormorant Garamond",serif;font-style:italic;font-size:clamp(26px,2.6vw,40px);margin-top:16px;line-height:1.05}
-.ln-sub{font-family:"JetBrains Mono",monospace;font-size:9.5px;letter-spacing:.3em;text-transform:uppercase;
+/* stage */
+.stage{position:relative;z-index:5;flex:1;min-height:0;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:clamp(14px,2.6vh,26px);padding:10px 20px}
+
+/* the monolith */
+.mono{--ac:var(--teal);position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;
+  width:min(560px,92vw);padding:clamp(26px,4vh,44px) clamp(24px,4vw,52px);
+  background:rgba(5,8,16,.72);backdrop-filter:blur(8px);text-decoration:none;color:var(--ink);
+  border:1px solid var(--hair);overflow:hidden;
+  transition:transform .55s var(--ease), border-color .45s, box-shadow .55s var(--ease), background .4s}
+.mono::before{content:"";position:absolute;inset:0;opacity:.5;transition:opacity .5s;
+  background:radial-gradient(ellipse 120% 70% at 50% 115%, rgba(60,232,207,.16), transparent 65%)}
+.mono::after{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;background:var(--ac);
+  transform:scaleX(.18);transform-origin:center;transition:transform .55s var(--ease)}
+.mono:hover,.mono:focus-visible{transform:translateY(-4px) scale(1.015);background:rgba(8,12,22,.85);
+  border-color:rgba(60,232,207,.45);box-shadow:0 30px 80px -30px rgba(60,232,207,.28), 0 0 0 1px rgba(60,232,207,.08)}
+.mono:hover::before,.mono:focus-visible::before{opacity:1}
+.mono:hover::after,.mono:focus-visible::after{transform:scaleX(1)}
+.mn-no{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.4em;color:var(--teal)}
+.mn-name{font-family:"Cormorant Garamond",serif;font-style:italic;font-size:clamp(38px,5vw,58px);margin-top:12px;line-height:1.02}
+.mn-sub{font-family:"JetBrains Mono",monospace;font-size:9.5px;letter-spacing:.32em;text-transform:uppercase;
   color:var(--dim);margin-top:10px}
-.ln-desc{font-size:13.5px;line-height:1.75;color:#a9bac4;margin-top:auto;padding-top:26px;font-weight:300;
-  opacity:0;transform:translateY(8px);transition:opacity .45s,transform .45s var(--ease)}
-.lane:hover .ln-desc,.lane:focus-visible .ln-desc{opacity:1;transform:none}
-.ln-go{font-family:"JetBrains Mono",monospace;font-size:10.5px;letter-spacing:.3em;color:var(--ac);margin-top:20px}
+.mn-desc{font-size:13.5px;line-height:1.75;color:#a9bac4;margin-top:18px;font-weight:300;max-width:42ch}
+.mn-go{font-family:"JetBrains Mono",monospace;font-size:10.5px;letter-spacing:.3em;color:var(--teal);margin-top:22px;
+  transition:letter-spacing .45s var(--ease)}
+.mono:hover .mn-go{letter-spacing:.42em}
+
+/* countdown */
+.cd{display:flex;flex-direction:column;align-items:center;gap:8px}
+.cd-label{font-family:"JetBrains Mono",monospace;font-size:9px;letter-spacing:.34em;color:var(--dim)}
+.cd-clock{font-family:"JetBrains Mono",monospace;font-size:clamp(17px,2.2vw,24px);letter-spacing:.18em;color:var(--teal);
+  text-shadow:0 0 24px rgba(60,232,207,.35);font-variant-numeric:tabular-nums}
+
+/* stats strip */
+.stats{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;
+  font-family:"JetBrains Mono",monospace;font-size:9.5px;letter-spacing:.22em;color:#a9bac4}
+.stats i{color:var(--teal);font-style:normal;opacity:.6}
+
+/* enter hint */
+.enter-hint{font-family:"JetBrains Mono",monospace;font-size:9.5px;letter-spacing:.32em;color:var(--dim);
+  animation:pulse 2.6s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:.45}50%{opacity:1}}
 
 /* entrance stagger */
-.lanes .lane,.g-title,.g-top,.g-foot{animation:rise .9s var(--ease) both}
+.g-top,.g-title,.mono,.cd,.stats,.enter-hint,.g-foot{animation:rise .9s var(--ease) both}
 .g-top{animation-delay:1.15s} .g-title{animation-delay:1.25s}
-.lane:nth-child(1){animation-delay:1.35s} .lane:nth-child(2){animation-delay:1.45s}
-.lane:nth-child(3){animation-delay:1.55s} .lane:nth-child(4){animation-delay:1.65s}
-.g-foot{animation-delay:1.75s}
+.mono{animation-delay:1.4s} .cd{animation-delay:1.52s}
+.stats{animation-delay:1.62s} .enter-hint{animation-delay:1.72s} .g-foot{animation-delay:1.82s}
 @keyframes rise{from{opacity:0;transform:translateY(26px);filter:blur(6px)}to{opacity:1;transform:none;filter:none}}
 
 /* foot */
@@ -190,19 +200,19 @@ body{font-family:"Space Grotesk",sans-serif;color:var(--ink);height:100dvh;displ
 
 @media (max-width:900px){
   .g-top{padding:16px 18px} .g-hint{display:none} .g-choose{display:none}
-  .g-title{padding:1vh 18px 2vh}
+  .g-title{padding:0 18px}
   .g-title p{font-size:9px;letter-spacing:.26em}
-  .lanes{flex-direction:column}
-  .lane{padding:0 20px;justify-content:center;min-height:0}
-  .lane:hover{flex:1.6}
-  .ln-no{position:absolute;top:12px;left:20px}
-  .ln-name{margin-top:0;font-size:26px}
-  .ln-sub{margin-top:5px}
-  .ln-desc{display:none}
-  .ln-go{position:absolute;right:20px;top:50%;transform:translateY(-50%);margin-top:0}
-  .lane::after{left:0;right:auto;top:0;bottom:0;width:2px;height:auto;transform:scaleY(0);transform-origin:top}
-  .lane:hover::after{transform:scaleY(1)}
+  .stage{justify-content:center;gap:18px;padding:8px 16px}
+  .mono{padding:24px 20px}
+  .mn-desc{font-size:12.5px;margin-top:12px}
+  .mn-go{margin-top:16px}
+  .cd-clock{font-size:16px;letter-spacing:.12em}
+  .stats{font-size:8.5px;gap:7px;letter-spacing:.16em}
   .g-foot{flex-direction:column;gap:6px;align-items:center;text-align:center;padding:14px 16px calc(16px + env(safe-area-inset-bottom,0px))}
+}
+@media (max-height:720px){
+  .mn-desc{display:none}
+  .stage{gap:12px}
 }
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.01ms!important;animation-delay:0s!important;transition-duration:.01ms!important}
@@ -210,11 +220,26 @@ body{font-family:"Space Grotesk",sans-serif;color:var(--ink);height:100dvh;displ
 </style>
 
 <script>
-/* keyboard gateway */
-const lanes = [...document.querySelectorAll('.lane')];
+/* live countdown → 01.01.2027 00:00 UTC */
+const target = Date.UTC(2027, 0, 1, 0, 0, 0);
+const clock = document.getElementById('cdClock');
+const pad = (n, w) => String(n).padStart(w, '0');
+function tick(){
+  const d = target - Date.now();
+  if (d <= 0){ clock.textContent = 'THE DOORS ARE OPEN'; return; }
+  const s = Math.floor(d / 1000);
+  clock.textContent =
+    pad(Math.floor(s / 86400), 3) + 'D : ' +
+    pad(Math.floor(s % 86400 / 3600), 2) + 'H : ' +
+    pad(Math.floor(s % 3600 / 60), 2) + 'M : ' +
+    pad(s % 60, 2) + 'S';
+}
+tick(); setInterval(tick, 1000);
+
+/* keyboard gateway — Enter, Space or 1 steps inside */
+const mono = document.getElementById('mono');
 addEventListener('keydown', e => {
-  const l = lanes.find(x => x.dataset.key === e.key);
-  if (l) l.click();
+  if (e.key === 'Enter' || e.key === ' ' || e.key === '1'){ e.preventDefault(); mono.click(); }
 });
 </script>
 </body>
