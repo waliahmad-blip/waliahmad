@@ -262,7 +262,7 @@ section{position:relative; z-index:1; padding:110px 60px; max-width:1560px; marg
 .pr{font-family:"Cormorant Garamond",serif; font-size:26px; color:var(--ink)}
 .pr small{display:block; font-family:"JetBrains Mono",monospace; font-size:8.5px; letter-spacing:.18em;
   text-transform:uppercase; color:var(--dim); margin-top:4px}
-.bt{font-family:"JetBrains Mono",monospace; font-size:10px; letter-spacing:.16em; text-transform:uppercase;
+.bt{white-space:nowrap; font-family:"JetBrains Mono",monospace; font-size:10px; letter-spacing:.16em; text-transform:uppercase;
   color:#0a0e14; background:rgba(var(--hueRGB),1); padding:11px 20px; border-radius:100px; font-weight:500;
   transition:box-shadow .4s, transform .4s var(--ease)}
 .bt:hover{box-shadow:0 0 26px rgba(var(--hueRGB),.5); transform:translateY(-2px)}
@@ -716,7 +716,9 @@ a.rec-item:hover{background:rgba(60,232,207,.045); padding-left:14px}
 
 /* ================= DESKTOP APP-SHELL (>=901px): no page scroll, view router ================= */
 @media (min-width:901px){
-  body[data-view]{overflow:hidden}
+  body[data-view]{overflow-x:hidden; scrollbar-width:thin; scrollbar-color:rgba(60,232,207,.35) transparent}
+  body[data-view]::-webkit-scrollbar{width:6px}
+  body[data-view]::-webkit-scrollbar-thumb{background:rgba(60,232,207,.3); border-radius:3px}
   body[data-view] section, body[data-view] .telemetry, body[data-view] .hero{display:none}
   body[data-view="orbit"] .hero{display:grid}
   body[data-view="orbit"] .telemetry{display:grid}
@@ -729,9 +731,7 @@ a.rec-item:hover{background:rgba(60,232,207,.045); padding-left:14px}
   body[data-view="build"] .build-sec{display:none}
   body[data-view="build"] .build-sec.on{display:block}
   body[data-view="build"] .segbar{display:flex}
-  body[data-view] section, body[data-view] .hero, body[data-view] .telemetry{
-    height:100dvh; overflow-y:auto; overflow-x:hidden; scrollbar-width:none}
-  body[data-view] section::-webkit-scrollbar, body[data-view] .hero::-webkit-scrollbar{display:none}
+  /* views scroll naturally — body is the scroller, only the active view is displayed */
   /* left rail dock */
   .tabbar{display:flex; position:fixed; left:26px; top:50%; transform:translateY(-50%); bottom:auto; right:auto; width:auto;
     flex-direction:column; gap:6px; padding:12px 10px; border-radius:22px; z-index:400;
@@ -896,46 +896,47 @@ a.rec-item:hover{background:rgba(60,232,207,.045); padding-left:14px}
 <!-- LANE A — INSTANT -->
 <section id="instant">
   <div class="sec-head">
-    <div class="no" data-reveal>Lane A — Automated · Instant Delivery</div>
+    <div class="no" data-reveal>Lane A — Institutional IP Licenses</div>
     <h2 data-split>Order the build. <em>Own the proof.</em></h2>
-    <p data-reveal>Twenty-six production-grade artifacts from the Harmos build — pay, download, deploy. No calls, no waiting, no black boxes. Every file ships with a SHA-256 integrity hash.</p>
+    <p data-reveal>Twenty-six production-grade IP modules from the Harmos build — licensed annually to institutions, cryptographically verifiable end to end. Every license ships with a signed Proof Pack: SHA-256 manifests, mathematical verification summaries, threat models. Exclusive IP acquisition by private briefing under NDA.</p>
   </div>
   <div class="instant-grid">
-    <div class="cell"><span class="auto-tag">Instant</span><span class="c-id">A-01 · RAG</span><h3>RAG Pipeline Starter Kit</h3><p>Production retrieval stack — chunking, embeddings, vector store, eval harness. Python, plug-your-docs ready.</p><div class="buy"><span class="pr">$149<small>Instant download</small></span><a class="bt" href="mailto:wali.ahmad@harmos.ai?subject=Order%20A-01">Buy →</a></div></div>
-    <div class="cell"><span class="auto-tag">Instant</span><span class="c-id">A-02 · Agents</span><h3>AI Agent Template Pack</h3><p>Support, sales and research agents — orchestration configs, memory patterns, tool-use scaffolds.</p><div class="buy"><span class="pr">$99<small>Instant download</small></span><a class="bt" href="mailto:wali.ahmad@harmos.ai?subject=Order%20A-02">Buy →</a></div></div>
-    <div class="cell"><span class="auto-tag">Instant</span><span class="c-id">A-03 · Models</span><h3>ML Model Zoo</h3><p>Pre-trained churn, fraud and sentiment classifiers with full training notebooks.</p><div class="buy"><span class="pr">$199<small>Instant download</small></span><a class="bt" href="mailto:wali.ahmad@harmos.ai?subject=Order%20A-03">Buy →</a></div></div>
-    <div class="cell"><span class="auto-tag">Instant</span><span class="c-id">A-04 · LLM</span><h3>LLM Adapter Packs</h3><p>Task-tuned LoRA adapters for support, legal and code — drop onto any open base model.</p><div class="buy"><span class="pr">$129<small>Instant download</small></span><a class="bt" href="mailto:wali.ahmad@harmos.ai?subject=Order%20A-04">Buy →</a></div></div>
-    <div class="cell"><span class="auto-tag">Instant</span><span class="c-id">A-05 · Prompts</span><h3>Agentic Prompt Vault</h3><p>400+ tested system prompts and agent patterns — versioned, eval-scored, production-proven.</p><div class="buy"><span class="pr">$79<small>Instant download</small></span><a class="bt" href="mailto:wali.ahmad@harmos.ai?subject=Order%20A-05">Buy →</a></div></div>
-    <div class="cell"><span class="auto-tag">Instant</span><span class="c-id">A-06 · Edge</span><h3>Model Quantization Toolkit</h3><p>GGUF conversion, 4-bit compression and edge-deployment scripts for any open model.</p><div class="buy"><span class="pr">$89<small>Instant download</small></span><a class="bt" href="mailto:wali.ahmad@harmos.ai?subject=Order%20A-06">Buy →</a></div></div>
-    <div class="cell"><span class="auto-tag">Instant</span><span class="c-id">A-07 · NLP</span><h3>NLP Document Pipelines</h3><p>Extraction, classification and OCR pipelines for contracts, forms and filings.</p><div class="buy"><span class="pr">$119<small>Instant download</small></span><a class="bt" href="mailto:wali.ahmad@harmos.ai?subject=Order%20A-07">Buy →</a></div></div>
-    <div class="cell"><span class="auto-tag">Instant</span><span class="c-id">A-08 · Vision</span><h3>Vision Starter Models</h3><p>Detection and segmentation kits with training notebooks — retrain on your data fast.</p><div class="buy"><span class="pr">$159<small>Instant download</small></span><a class="bt" href="mailto:wali.ahmad@harmos.ai?subject=Order%20A-08">Buy →</a></div></div>
-    <div class="cell"><span class="auto-tag">Instant</span><span class="c-id">A-09 · Blockchain</span><h3>Smart Contract Library</h3><p>Escrow, treasury 70/20/10 split, staking pools — audited Solidity, Base L2 deploy-ready.</p><div class="buy"><span class="pr">$299<small>Instant download</small></span><a class="bt" href="mailto:wali.ahmad@harmos.ai?subject=Order%20A-09">Buy →</a></div></div>
-    <div class="cell"><span class="auto-tag">Instant</span><span class="c-id">A-10 · Web3</span><h3>Tokenomics Calculator</h3><p>Supply, vesting and emissions simulator with Monte Carlo scenarios for your launch.</p><div class="buy"><span class="pr">$49<small>Instant download</small></span><a class="bt" href="mailto:wali.ahmad@harmos.ai?subject=Order%20A-10">Buy →</a></div></div>
-    <div class="cell"><span class="auto-tag">Instant</span><span class="c-id">A-11 · Web3</span><h3>dApp Frontend Templates</h3><p>Wallet-wired React kits for tokens, escrow and marketplaces — connect and ship.</p><div class="buy"><span class="pr">$139<small>Instant download</small></span><a class="bt" href="mailto:wali.ahmad@harmos.ai?subject=Order%20A-11">Buy →</a></div></div>
-    <div class="cell"><span class="auto-tag">Instant</span><span class="c-id">A-12 · Web3</span><h3>Validator Node Guide</h3><p>Setup, operations and slashing-defense playbooks for validator infrastructure.</p><div class="buy"><span class="pr">$129<small>Instant download</small></span><a class="bt" href="mailto:wali.ahmad@harmos.ai?subject=Order%20A-12">Buy →</a></div></div>
-    <div class="cell"><span class="auto-tag">Instant</span><span class="c-id">A-13 · PQC</span><h3>PQC Migration Toolkit</h3><p>NIST-standard transition policies, lattice-crypto checklists, crypto-agility runbook.</p><div class="buy"><span class="pr">$249<small>Instant download</small></span><a class="bt" href="mailto:wali.ahmad@harmos.ai?subject=Order%20A-13">Buy →</a></div></div>
-    <div class="cell"><span class="auto-tag">Instant</span><span class="c-id">A-14 · Quantum</span><h3>Quantum Notebook Pack</h3><p>Qiskit circuits, labs and graded exercises — distilled from the Stanford coursework.</p><div class="buy"><span class="pr">$79<small>Instant download</small></span><a class="bt" href="mailto:wali.ahmad@harmos.ai?subject=Order%20A-14">Buy →</a></div></div>
-    <div class="cell"><span class="auto-tag">Instant</span><span class="c-id">A-15 · Policy</span><h3>Zero-Trust Policy Bundle</h3><p>Zero-trust policy templates and architecture maps — knowledge products, not services.</p><div class="buy"><span class="pr">$99<small>Instant download</small></span><a class="bt" href="mailto:wali.ahmad@harmos.ai?subject=Order%20A-15">Buy →</a></div></div>
-    <div class="cell"><span class="auto-tag">Instant</span><span class="c-id">A-16 · Audit</span><h3>AI Website Audit</h3><p>Instant automated report — performance, SEO, conversion — generated in seconds.</p><div class="buy"><span class="pr">$29<small>Automated report</small></span><a class="bt" href="mailto:wali.ahmad@harmos.ai?subject=Order%20A-16">Buy →</a></div></div>
-    <div class="cell"><span class="auto-tag">Instant</span><span class="c-id">A-17 · Scanner</span><h3>PQC Readiness Scanner</h3><p>Automated cryptographic posture score for your stack, with remediation list.</p><div class="buy"><span class="pr">$79<small>Automated scan</small></span><a class="bt" href="mailto:wali.ahmad@harmos.ai?subject=Order%20A-17">Buy →</a></div></div>
-    <div class="cell"><span class="auto-tag">Instant</span><span class="c-id">A-18 · Scanner</span><h3>Smart Contract Analyzer</h3><p>Automated vulnerability scan of any Solidity contract — instant PDF report.</p><div class="buy"><span class="pr">$49<small>Automated scan</small></span><a class="bt" href="mailto:wali.ahmad@harmos.ai?subject=Order%20A-18">Buy →</a></div></div>
-    <div class="cell"><span class="auto-tag">Instant</span><span class="c-id">A-19 · API</span><h3>Contract Summarizer API</h3><p>Instant API key — pay-per-call summarization for legal and business documents.</p><div class="buy"><span class="pr">usage<small>Pay per call</small></span><a class="bt" href="mailto:wali.ahmad@harmos.ai?subject=Order%20A-19">Buy →</a></div></div>
-    <div class="cell"><span class="auto-tag">Instant</span><span class="c-id">A-20 · Proof</span><h3>Verified Delivery Seals</h3><p>Cryptographic proof badges for your own deliveries — Harmos-grade verification.</p><div class="buy"><span class="pr">$5–25<small>Per seal</small></span><a class="bt" href="mailto:wali.ahmad@harmos.ai?subject=Order%20A-20">Buy →</a></div></div>
-    <div class="cell"><span class="auto-tag">Instant</span><span class="c-id">A-21 · AI</span><h3>Pitch-Deck AI Reviewer</h3><p>Instant scored feedback on narrative, market sizing and moat — investor-grade.</p><div class="buy"><span class="pr">$39<small>Automated review</small></span><a class="bt" href="mailto:wali.ahmad@harmos.ai?subject=Order%20A-21">Buy →</a></div></div>
-    <div class="cell"><span class="auto-tag">Instant</span><span class="c-id">A-22 · Web</span><h3>Sovereign Website Templates</h3><p>Award-grade HTML/React templates in this design language — Harmos agent slot pre-wired.</p><div class="buy"><span class="pr">$129<small>Instant download</small></span><a class="bt" href="mailto:wali.ahmad@harmos.ai?subject=Order%20A-22">Buy →</a></div></div>
-    <div class="cell"><span class="auto-tag">Instant</span><span class="c-id">A-23 · Growth</span><h3>SEO Content Engine</h3><p>Automated research-to-publish pipeline feeding your domain every week.</p><div class="buy"><span class="pr">$99/mo<small>Subscription</small></span><a class="bt" href="mailto:wali.ahmad@harmos.ai?subject=Order%20A-23">Buy →</a></div></div>
-    <div class="cell"><span class="auto-tag">Instant</span><span class="c-id">A-24 · Intel</span><h3>Market Intelligence Brief</h3><p>Weekly automated brief — AI, crypto and quantum moves that matter.</p><div class="buy"><span class="pr">$15/mo<small>Subscription</small></span><a class="bt" href="mailto:wali.ahmad@harmos.ai?subject=Order%20A-24">Buy →</a></div></div>
-    <div class="cell"><span class="auto-tag">Instant</span><span class="c-id">A-25 · Agents</span><h3>Agent Persona Packs</h3><p>Voices, behaviors and guardrails that give your agents a consistent identity.</p><div class="buy"><span class="pr">$39<small>Instant download</small></span><a class="bt" href="mailto:wali.ahmad@harmos.ai?subject=Order%20A-25">Buy →</a></div></div>
-    <div class="cell"><span class="auto-tag">Instant</span><span class="c-id">A-26 · Books</span><h3>Books — Digital Editions</h3><p>The Thinking Millionaire and The 1/137 Blue Print — PDF/ePub, instant delivery.</p><div class="buy"><span class="pr">$19–29<small>Digital editions</small></span><a class="bt" href="mailto:wali.ahmad@harmos.ai?subject=Order%20A-26">Buy →</a></div></div>
+    <div class="cell" style="grid-column:1/-1; border-color:rgba(240,180,41,.4); background:linear-gradient(135deg, rgba(240,180,41,.06), rgba(60,232,207,.04))"><span class="auto-tag" style="color:var(--gold); border-color:rgba(240,180,41,.4)">Evaluation</span><span class="c-id">A-00 · Full Suite</span><h3>The Evaluation Environment</h3><p>Watermarked, read-only access to the entire 26-module suite for your engineering team — a paid proof of concept, fully credited toward any annual license on signature.</p><div class="buy"><span class="pr">$4,999<small>Credited toward license</small></span><a class="bt" href="mailto:wali.ahmad@harmos.ai?subject=Procurement%20Briefing%20A-00">Procure →</a></div></div>
+    <div class="cell"><span class="auto-tag">License</span><span class="c-id">A-01 · RAG</span><h3>Verifiable RAG Architecture Engine</h3><p>Production retrieval stack — chunking, embeddings, vector store, eval harness. Python, plug-your-docs ready.</p><div class="buy"><span class="pr">$125,000<small>Annual site license</small></span><a class="bt" href="mailto:wali.ahmad@harmos.ai?subject=Procurement%20Briefing%20A-01">Procure →</a></div></div>
+    <div class="cell"><span class="auto-tag">License</span><span class="c-id">A-02 · Agents</span><h3>Autonomous Agentic Swarm Framework</h3><p>Support, sales and research agents — orchestration configs, memory patterns, tool-use scaffolds.</p><div class="buy"><span class="pr">$85,000<small>Annual site license</small></span><a class="bt" href="mailto:wali.ahmad@harmos.ai?subject=Procurement%20Briefing%20A-02">Procure →</a></div></div>
+    <div class="cell"><span class="auto-tag">License</span><span class="c-id">A-03 · Models</span><h3>Edge-Deployed Quantized Model Vault</h3><p>Pre-trained churn, fraud and sentiment classifiers with full training notebooks.</p><div class="buy"><span class="pr">$95,000<small>Annual site license</small></span><a class="bt" href="mailto:wali.ahmad@harmos.ai?subject=Procurement%20Briefing%20A-03">Procure →</a></div></div>
+    <div class="cell"><span class="auto-tag">License</span><span class="c-id">A-04 · LLM</span><h3>Multi-Model Routing &amp; Failover Matrix</h3><p>Task-tuned LoRA adapters for support, legal and code — drop onto any open base model.</p><div class="buy"><span class="pr">$75,000<small>Annual site license</small></span><a class="bt" href="mailto:wali.ahmad@harmos.ai?subject=Procurement%20Briefing%20A-04">Procure →</a></div></div>
+    <div class="cell"><span class="auto-tag">License</span><span class="c-id">A-05 · Prompts</span><h3>Red-Teamed &amp; Compliance-Graded Prompt IP</h3><p>400+ tested system prompts and agent patterns — versioned, eval-scored, production-proven.</p><div class="buy"><span class="pr">$45,000<small>Annual site license</small></span><a class="bt" href="mailto:wali.ahmad@harmos.ai?subject=Procurement%20Briefing%20A-05">Procure →</a></div></div>
+    <div class="cell"><span class="auto-tag">License</span><span class="c-id">A-06 · Edge</span><h3>Hardware-Level Inference Optimization Suite</h3><p>GGUF conversion, 4-bit compression and edge-deployment scripts for any open model.</p><div class="buy"><span class="pr">$85,000<small>Annual site license</small></span><a class="bt" href="mailto:wali.ahmad@harmos.ai?subject=Procurement%20Briefing%20A-06">Procure →</a></div></div>
+    <div class="cell"><span class="auto-tag">License</span><span class="c-id">A-07 · NLP</span><h3>Zero-Trust Unstructured Data Extraction Engine</h3><p>Extraction, classification and OCR pipelines for contracts, forms and filings.</p><div class="buy"><span class="pr">$110,000<small>Annual site license</small></span><a class="bt" href="mailto:wali.ahmad@harmos.ai?subject=Procurement%20Briefing%20A-07">Procure →</a></div></div>
+    <div class="cell"><span class="auto-tag">License</span><span class="c-id">A-08 · Vision</span><h3>Cryptographically Verified Computer Vision Models</h3><p>Detection and segmentation kits with training notebooks — retrain on your data fast.</p><div class="buy"><span class="pr">$120,000<small>Annual site license</small></span><a class="bt" href="mailto:wali.ahmad@harmos.ai?subject=Procurement%20Briefing%20A-08">Procure →</a></div></div>
+    <div class="cell"><span class="auto-tag">License</span><span class="c-id">A-09 · Blockchain</span><h3>Formally Verified Smart Contract Vault</h3><p>Escrow, treasury 70/20/10 split, staking pools — audited Solidity, Base L2 deploy-ready.</p><div class="buy"><span class="pr">$350,000<small>Annual site license</small></span><a class="bt" href="mailto:wali.ahmad@harmos.ai?subject=Procurement%20Briefing%20A-09">Procure →</a></div></div>
+    <div class="cell"><span class="auto-tag">License</span><span class="c-id">A-10 · Web3</span><h3>Institutional Web3 Financial Modeling Suite</h3><p>Supply, vesting and emissions simulator with Monte Carlo scenarios for your launch.</p><div class="buy"><span class="pr">$65,000<small>Annual site license</small></span><a class="bt" href="mailto:wali.ahmad@harmos.ai?subject=Procurement%20Briefing%20A-10">Procure →</a></div></div>
+    <div class="cell"><span class="auto-tag">License</span><span class="c-id">A-11 · Web3</span><h3>Wallet-Abstracted Sovereign UI/UX Architecture</h3><p>Wallet-wired React kits for tokens, escrow and marketplaces — connect and ship.</p><div class="buy"><span class="pr">$85,000<small>Annual site license</small></span><a class="bt" href="mailto:wali.ahmad@harmos.ai?subject=Procurement%20Briefing%20A-11">Procure →</a></div></div>
+    <div class="cell"><span class="auto-tag">License</span><span class="c-id">A-12 · Web3</span><h3>Institutional Staking &amp; Node Infrastructure Playbook</h3><p>Setup, operations and slashing-defense playbooks for validator infrastructure.</p><div class="buy"><span class="pr">$75,000<small>Annual site license</small></span><a class="bt" href="mailto:wali.ahmad@harmos.ai?subject=Procurement%20Briefing%20A-12">Procure →</a></div></div>
+    <div class="cell"><span class="auto-tag">License</span><span class="c-id">A-13 · PQC</span><h3>Harmos Post-Quantum Cryptographic Agility Engine</h3><p>NIST-standard transition policies, lattice-crypto checklists, crypto-agility runbook.</p><div class="buy"><span class="pr">$850,000<small>Annual site license</small></span><a class="bt" href="mailto:wali.ahmad@harmos.ai?subject=Procurement%20Briefing%20A-13">Procure →</a></div></div>
+    <div class="cell"><span class="auto-tag">License</span><span class="c-id">A-14 · Quantum</span><h3>Quantum-Resistant R&amp;D Sandbox Environment</h3><p>Qiskit circuits, labs and graded exercises — distilled from the Stanford coursework.</p><div class="buy"><span class="pr">$45,000<small>Annual site license</small></span><a class="bt" href="mailto:wali.ahmad@harmos.ai?subject=Procurement%20Briefing%20A-14">Procure →</a></div></div>
+    <div class="cell"><span class="auto-tag">License</span><span class="c-id">A-15 · Policy</span><h3>SOC2/ISO27001/NIST Automated GRC Policy Matrix</h3><p>Zero-trust policy templates and architecture maps — knowledge products, not services.</p><div class="buy"><span class="pr">$125,000<small>Annual site license</small></span><a class="bt" href="mailto:wali.ahmad@harmos.ai?subject=Procurement%20Briefing%20A-15">Procure →</a></div></div>
+    <div class="cell"><span class="auto-tag">License</span><span class="c-id">A-16 · Audit</span><h3>AI Attack-Surface &amp; Vulnerability Penetration Suite</h3><p>Instant automated report — performance, SEO, conversion — generated in seconds.</p><div class="buy"><span class="pr">$65,000<small>Annual site license</small></span><a class="bt" href="mailto:wali.ahmad@harmos.ai?subject=Procurement%20Briefing%20A-16">Procure →</a></div></div>
+    <div class="cell"><span class="auto-tag">License</span><span class="c-id">A-17 · Scanner</span><h3>Automated CBOM &amp; Cryptographic Inventory Scanner</h3><p>Automated cryptographic posture score for your stack, with remediation list.</p><div class="buy"><span class="pr">$150,000<small>Annual site license</small></span><a class="bt" href="mailto:wali.ahmad@harmos.ai?subject=Procurement%20Briefing%20A-17">Procure →</a></div></div>
+    <div class="cell"><span class="auto-tag">License</span><span class="c-id">A-18 · Scanner</span><h3>Continuous Formal-Verification CI/CD Pipeline</h3><p>Automated vulnerability scan of any Solidity contract — instant PDF report.</p><div class="buy"><span class="pr">$185,000<small>Annual site license</small></span><a class="bt" href="mailto:wali.ahmad@harmos.ai?subject=Procurement%20Briefing%20A-18">Procure →</a></div></div>
+    <div class="cell"><span class="auto-tag">License</span><span class="c-id">A-19 · API</span><h3>Legally-Binding AI Contract Analysis API</h3><p>Instant API key — pay-per-call summarization for legal and business documents.</p><div class="buy"><span class="pr">$120,000<small>Annual site license</small></span><a class="bt" href="mailto:wali.ahmad@harmos.ai?subject=Procurement%20Briefing%20A-19">Procure →</a></div></div>
+    <div class="cell"><span class="auto-tag">License</span><span class="c-id">A-20 · Proof</span><h3>Supply-Chain SHA-256 Provenance PKI Platform</h3><p>Cryptographic proof badges for your own deliveries — Harmos-grade verification.</p><div class="buy"><span class="pr">$150,000<small>Annual site license</small></span><a class="bt" href="mailto:wali.ahmad@harmos.ai?subject=Procurement%20Briefing%20A-20">Procure →</a></div></div>
+    <div class="cell"><span class="auto-tag">License</span><span class="c-id">A-21 · AI</span><h3>Venture-Capital Due Diligence &amp; Risk Engine</h3><p>Instant scored feedback on narrative, market sizing and moat — investor-grade.</p><div class="buy"><span class="pr">$45,000<small>Annual site license</small></span><a class="bt" href="mailto:wali.ahmad@harmos.ai?subject=Procurement%20Briefing%20A-21">Procure →</a></div></div>
+    <div class="cell"><span class="auto-tag">License</span><span class="c-id">A-22 · Web</span><h3>Air-Gappable High-Security Frontend Architecture</h3><p>Award-grade HTML/React templates in this design language — Harmos agent slot pre-wired.</p><div class="buy"><span class="pr">$85,000<small>Annual site license</small></span><a class="bt" href="mailto:wali.ahmad@harmos.ai?subject=Procurement%20Briefing%20A-22">Procure →</a></div></div>
+    <div class="cell"><span class="auto-tag">License</span><span class="c-id">A-23 · Growth</span><h3>Programmatic Enterprise Search-Dominance Engine</h3><p>Automated research-to-publish pipeline feeding your domain every week.</p><div class="buy"><span class="pr">$180,000<small>Annual site license</small></span><a class="bt" href="mailto:wali.ahmad@harmos.ai?subject=Procurement%20Briefing%20A-23">Procure →</a></div></div>
+    <div class="cell"><span class="auto-tag">License</span><span class="c-id">A-24 · Intel</span><h3>Institutional OSINT &amp; Alternative Data Synthesizer</h3><p>Weekly automated brief — AI, crypto and quantum moves that matter.</p><div class="buy"><span class="pr">$95,000<small>Annual site license</small></span><a class="bt" href="mailto:wali.ahmad@harmos.ai?subject=Procurement%20Briefing%20A-24">Procure →</a></div></div>
+    <div class="cell"><span class="auto-tag">License</span><span class="c-id">A-25 · Agents</span><h3>Brand-Aligned &amp; Jailbreak-Proof AI Persona IP</h3><p>Voices, behaviors and guardrails that give your agents a consistent identity.</p><div class="buy"><span class="pr">$35,000<small>Annual site license</small></span><a class="bt" href="mailto:wali.ahmad@harmos.ai?subject=Procurement%20Briefing%20A-25">Procure →</a></div></div>
+    <div class="cell"><span class="auto-tag">Dual-tier</span><span class="c-id">A-26 · Books</span><h3>Verifiable Economy Engineering Playbooks</h3><p>The Thinking Millionaire and The 1/137 Blue Print — PDF/ePub, instant delivery.</p><div class="buy"><span class="pr">$49<small>Personal · institutional $25,000/yr</small></span><a class="bt" href="mailto:wali.ahmad@harmos.ai?subject=Procurement%20Briefing%20A-26">Procure →</a></div></div>
   </div>
 </section>
 
 <!-- LANE B — COMMISSIONED -->
 <section id="commissioned">
   <div class="sec-head">
-    <div class="no" data-reveal>Lane B — Commissioned · Built to Order</div>
+    <div class="no" data-reveal>Lane B — Commissioned · Tier-1 Technical Consultancy</div>
     <h2 data-split>You commission it. <em>I engineer the proof.</em></h2>
-    <p data-reveal>Twenty-three build-to-order systems. Fixed quote within 24 hours, weekly proof drops, cryptographic delivery certificate at handover.</p>
+    <p data-reveal>Twenty-three commissioned engineering programs, priced as technology transfer — $65,000 to $850,000. Fixed quote within 24 hours, weekly proof drops, and a cryptographic delivery certificate with full Proof Pack at handover.</p>
   </div>
   <div class="comm-wrap">
     <div class="constellation-box" data-reveal>
@@ -944,139 +945,139 @@ a.rec-item:hover{background:rgba(60,232,207,.045); padding-left:14px}
     </div>
     <div class="offers" id="offers">
       <article class="offer" data-node="0">
-        <div class="offer-top"><span class="idx">B-01</span><h3>Custom ML Models</h3><span class="price">from $5,000</span></div>
+        <div class="offer-top"><span class="idx">B-01</span><h3>Custom Edge-Deployed AI Architecture</h3><span class="price">$150,000</span></div>
         <p>Predictive, classification and forecasting models built on your data — supervised, ensemble or deep learning, delivered with training notebooks, eval reports and a deployment pipeline.</p>
         <div class="flow">Order → Data audit → Build → Verified delivery · 2–4 weeks</div>
         <a class="cta" href="mailto:wali.ahmad@harmos.ai?subject=Commission%20B-01">Commission this →</a>
       </article>
       <article class="offer" data-node="1">
-        <div class="offer-top"><span class="idx">B-02</span><h3>Custom AI Agents</h3><span class="price">from $3,500</span></div>
+        <div class="offer-top"><span class="idx">B-02</span><h3>Autonomous Agentic Swarm Engineering</h3><span class="price">$125,000</span></div>
         <p>Autonomous agents for support, sales, ops or research — tool use, memory, multi-agent orchestration, optionally behaviorally aligned the DBA way on your commercial outcomes.</p>
         <div class="flow">Order → Workflow map → Build → Verified delivery · 1–3 weeks</div>
         <a class="cta" href="mailto:wali.ahmad@harmos.ai?subject=Commission%20B-02">Commission this →</a>
       </article>
       <article class="offer" data-node="2">
-        <div class="offer-top"><span class="idx">B-03</span><h3>Enterprise RAG Systems</h3><span class="price">from $4,000</span></div>
+        <div class="offer-top"><span class="idx">B-03</span><h3>Verifiable RAG &amp; Knowledge Graph Build</h3><span class="price">$185,000</span></div>
         <p>Your entire knowledge base, queryable. Secure retrieval over contracts, research or medical records — with source citations, eval scores and sovereign deployment options.</p>
         <div class="flow">Order → Corpus audit → Build → Verified delivery · 2–3 weeks</div>
         <a class="cta" href="mailto:wali.ahmad@harmos.ai?subject=Commission%20B-03">Commission this →</a>
       </article>
       <article class="offer" data-node="3">
-        <div class="offer-top"><span class="idx">B-04</span><h3>LLM Fine-Tuning</h3><span class="price">from $6,000</span></div>
+        <div class="offer-top"><span class="idx">B-04</span><h3>Domain-Specific LLM Alignment &amp; Tuning</h3><span class="price">$165,000</span></div>
         <p>Domain adaptation on your corpus — SFT, DPO, full eval suite and a deployment recipe you can rerun without me.</p>
         <div class="flow">Order → Data audit → Tune → Verified delivery · 2–4 weeks</div>
         <a class="cta" href="mailto:wali.ahmad@harmos.ai?subject=Commission%20B-04">Commission this →</a>
       </article>
       <article class="offer" data-node="4">
-        <div class="offer-top"><span class="idx">B-05</span><h3>Computer Vision Systems</h3><span class="price">from $7,000</span></div>
+        <div class="offer-top"><span class="idx">B-05</span><h3>Cryptographically Verified CV Pipelines</h3><span class="price">$180,000</span></div>
         <p>Detection, tracking and inspection — edge or cloud, with annotated pipelines and accuracy reports.</p>
         <div class="flow">Order → Data audit → Build → Verified delivery · 3–5 weeks</div>
         <a class="cta" href="mailto:wali.ahmad@harmos.ai?subject=Commission%20B-05">Commission this →</a>
       </article>
       <article class="offer" data-node="5">
-        <div class="offer-top"><span class="idx">B-06</span><h3>Legal &amp; Medical NLP</h3><span class="price">from $5,000</span></div>
+        <div class="offer-top"><span class="idx">B-06</span><h3>Compliance-Grade NLP Extraction Engine</h3><span class="price">$145,000</span></div>
         <p>Compliant document intelligence — extraction, summarization and redaction with human-review checkpoints.</p>
         <div class="flow">Order → Corpus audit → Build → Verified delivery · 2–4 weeks</div>
         <a class="cta" href="mailto:wali.ahmad@harmos.ai?subject=Commission%20B-06">Commission this →</a>
       </article>
       <article class="offer" data-node="6">
-        <div class="offer-top"><span class="idx">B-07</span><h3>Recommendation Engines</h3><span class="price">from $4,500</span></div>
+        <div class="offer-top"><span class="idx">B-07</span><h3>Sovereign Recommendation Architecture</h3><span class="price">$120,000</span></div>
         <p>Personalization and ranking tuned on your catalog — collaborative, content-based or hybrid, measured uplift.</p>
         <div class="flow">Order → Data audit → Build → Verified delivery · 2–4 weeks</div>
         <a class="cta" href="mailto:wali.ahmad@harmos.ai?subject=Commission%20B-07">Commission this →</a>
       </article>
       <article class="offer" data-node="7">
-        <div class="offer-top"><span class="idx">B-08</span><h3>AI Chatbot Integration</h3><span class="price">from $2,000</span></div>
+        <div class="offer-top"><span class="idx">B-08</span><h3>Secure Conversational AI Deployment</h3><span class="price">$65,000</span></div>
         <p>Your knowledge, your tone — embedded on your site, WhatsApp or Slack, with handoff to humans built in.</p>
         <div class="flow">Order → Workflow map → Build → Verified delivery · 1–2 weeks</div>
         <a class="cta" href="mailto:wali.ahmad@harmos.ai?subject=Commission%20B-08">Commission this →</a>
       </article>
       <article class="offer" data-node="8">
-        <div class="offer-top"><span class="idx">B-09</span><h3>AI Automation Pipelines</h3><span class="price">from $3,500</span></div>
+        <div class="offer-top"><span class="idx">B-09</span><h3>Zero-Trust Workflow Orchestration</h3><span class="price">$95,000</span></div>
         <p>Back-office and ops automation — agents that read, decide and act, with audit trails on every step.</p>
         <div class="flow">Order → Workflow map → Build → Verified delivery · 1–3 weeks</div>
         <a class="cta" href="mailto:wali.ahmad@harmos.ai?subject=Commission%20B-09">Commission this →</a>
       </article>
       <article class="offer" data-node="9">
-        <div class="offer-top"><span class="idx">B-10</span><h3>Award-Grade Websites</h3><span class="price">from $2,500</span></div>
+        <div class="offer-top"><span class="idx">B-10</span><h3>Sovereign Web Architecture &amp; UI</h3><span class="price">$85,000</span></div>
         <p>Designed and engineered like this page — character reveals, canvas, agent embedded. The site as the pitch.</p>
         <div class="flow">Order → Design lock → Build → Verified delivery · 1–3 weeks</div>
         <a class="cta" href="mailto:wali.ahmad@harmos.ai?subject=Commission%20B-10">Commission this →</a>
       </article>
       <article class="offer" data-node="10">
-        <div class="offer-top"><span class="idx">B-11</span><h3>SaaS MVPs</h3><span class="price">from $8,000</span></div>
+        <div class="offer-top"><span class="idx">B-11</span><h3>Institutional-Grade SaaS Foundation</h3><span class="price">$250,000</span></div>
         <p>A full working product — auth, billing, dashboard, AI core — shipped in six to ten weeks, investor-demo ready.</p>
         <div class="flow">Order → Scope lock → Build → Verified delivery · 6–10 weeks</div>
         <a class="cta" href="mailto:wali.ahmad@harmos.ai?subject=Commission%20B-11">Commission this →</a>
       </article>
       <article class="offer" data-node="11">
-        <div class="offer-top"><span class="idx">B-12</span><h3>Analytics Dashboards</h3><span class="price">from $3,000</span></div>
+        <div class="offer-top"><span class="idx">B-12</span><h3>Command &amp; Control Data Telemetry</h3><span class="price">$75,000</span></div>
         <p>Real-time executive dashboards on your data — the numbers that matter, rendered beautifully.</p>
         <div class="flow">Order → Data audit → Build → Verified delivery · 1–3 weeks</div>
         <a class="cta" href="mailto:wali.ahmad@harmos.ai?subject=Commission%20B-12">Commission this →</a>
       </article>
       <article class="offer" data-node="12">
-        <div class="offer-top"><span class="idx">B-13</span><h3>Mobile App AI Features</h3><span class="price">from $5,000</span></div>
+        <div class="offer-top"><span class="idx">B-13</span><h3>On-Device Edge AI Deployment</h3><span class="price">$135,000</span></div>
         <p>On-device ML for iOS and Android — vision, NLP, personalization — quantized to run fast on phones.</p>
         <div class="flow">Order → Scope lock → Build → Verified delivery · 3–5 weeks</div>
         <a class="cta" href="mailto:wali.ahmad@harmos.ai?subject=Commission%20B-13">Commission this →</a>
       </article>
       <article class="offer" data-node="13">
-        <div class="offer-top"><span class="idx">B-14</span><h3>Founder Bundle</h3><span class="price">from $6,500</span></div>
+        <div class="offer-top"><span class="idx">B-14</span><h3>Fractional CTO / Technical Sprint</h3><span class="price">$185,000</span></div>
         <p>The whole launch stack in one order — website, embedded agent, automation pipeline. One architect, no seams.</p>
         <div class="flow">Order → Scope lock → Build → Verified delivery · 3–5 weeks</div>
         <a class="cta" href="mailto:wali.ahmad@harmos.ai?subject=Commission%20B-14">Commission this →</a>
       </article>
       <article class="offer" data-node="14">
-        <div class="offer-top"><span class="idx">B-15</span><h3>dApp Development</h3><span class="price">from $8,000</span></div>
+        <div class="offer-top"><span class="idx">B-15</span><h3>Institutional dApp &amp; Wallet Abstraction</h3><span class="price">$225,000</span></div>
         <p>Tokens, escrow and treasury protocols on Base L2 — contracts written, tested and deployed with tokenomics.</p>
         <div class="flow">Order → Tokenomics design → Build → Verified delivery · 3–6 weeks</div>
         <a class="cta" href="mailto:wali.ahmad@harmos.ai?subject=Commission%20B-15">Commission this →</a>
       </article>
       <article class="offer" data-node="15">
-        <div class="offer-top"><span class="idx">B-16</span><h3>Smart Contracts + Audit</h3><span class="price">from $4,000</span></div>
+        <div class="offer-top"><span class="idx">B-16</span><h3>Formally Verified Smart Contract Suite</h3><span class="price">$195,000</span></div>
         <p>Contracts written and reviewed — full test coverage, gas report and a written audit memo.</p>
         <div class="flow">Order → Spec → Build → Verified delivery · 2–4 weeks</div>
         <a class="cta" href="mailto:wali.ahmad@harmos.ai?subject=Commission%20B-16">Commission this →</a>
       </article>
       <article class="offer" data-node="16">
-        <div class="offer-top"><span class="idx">B-17</span><h3>Token Design &amp; Launch</h3><span class="price">from $10,000</span></div>
+        <div class="offer-top"><span class="idx">B-17</span><h3>Web3 Economic &amp; Technical Launchpad</h3><span class="price">$350,000</span></div>
         <p>End-to-end — tokenomics, contracts, launch infrastructure and the dashboard your holders will watch.</p>
         <div class="flow">Order → Tokenomics design → Build → Verified delivery · 4–8 weeks</div>
         <a class="cta" href="mailto:wali.ahmad@harmos.ai?subject=Commission%20B-17">Commission this →</a>
       </article>
       <article class="offer" data-node="17">
-        <div class="offer-top"><span class="idx">B-18</span><h3>Escrow &amp; Marketplace Platforms</h3><span class="price">from $12,000</span></div>
+        <div class="offer-top"><span class="idx">B-18</span><h3>Cryptographic Multi-Sig Escrow Vault</h3><span class="price">$300,000</span></div>
         <p>Full-stack Web3 marketplaces with dispute resolution, treasury splits and verified-delivery rails built in.</p>
         <div class="flow">Order → Spec → Build → Verified delivery · 6–10 weeks</div>
         <a class="cta" href="mailto:wali.ahmad@harmos.ai?subject=Commission%20B-18">Commission this →</a>
       </article>
       <article class="offer" data-node="0">
-        <div class="offer-top"><span class="idx">B-19</span><h3>PQC Migration Implementation</h3><span class="price">from $15,000</span></div>
+        <div class="offer-top"><span class="idx">B-19</span><h3>Enterprise PQC Migration &amp; Agility</h3><span class="price">$750,000+</span></div>
         <p>Enterprise-wide post-quantum transition — inventory, hybrid rollout, crypto-agility. Government programs from $75K.</p>
         <div class="flow">Order → Threat model → Migrate → Verified delivery · 4–8 weeks</div>
         <a class="cta" href="mailto:wali.ahmad@harmos.ai?subject=Commission%20B-19">Commission this →</a>
       </article>
       <article class="offer" data-node="1">
-        <div class="offer-top"><span class="idx">B-20</span><h3>Custom Cryptographic Protocols</h3><span class="price">from $12,000</span></div>
+        <div class="offer-top"><span class="idx">B-20</span><h3>Bespoke Cryptographic Protocol Design</h3><span class="price">$450,000</span></div>
         <p>Novel primitives designed and implemented — lattice-based systems, QRNG/PUF hardware sovereignty.</p>
         <div class="flow">Order → Threat model → Design → Verified delivery · 4–8 weeks</div>
         <a class="cta" href="mailto:wali.ahmad@harmos.ai?subject=Commission%20B-20">Commission this →</a>
       </article>
       <article class="offer" data-node="2">
-        <div class="offer-top"><span class="idx">B-21</span><h3>Air-Gapped Deployments</h3><span class="price">from $25,000</span></div>
+        <div class="offer-top"><span class="idx">B-21</span><h3>Classified / Air-Gapped Infrastructure</h3><span class="price">$850,000</span></div>
         <p>Sovereign infrastructure, fully isolated — your models, your data, your jurisdiction. State programs from $150K.</p>
         <div class="flow">Order → Threat model → Build → Verified delivery · 6–12 weeks</div>
         <a class="cta" href="mailto:wali.ahmad@harmos.ai?subject=Commission%20B-21">Commission this →</a>
       </article>
       <article class="offer" data-node="3">
-        <div class="offer-top"><span class="idx">B-22</span><h3>ZKML Systems</h3><span class="price">from $18,000</span></div>
+        <div class="offer-top"><span class="idx">B-22</span><h3>Zero-Knowledge Machine Learning Proofs</h3><span class="price">$550,000</span></div>
         <p>Verifiable inference — zero-knowledge proofs that your model ran honestly, on the inputs you claim.</p>
         <div class="flow">Order → Spec → Build → Verified delivery · 4–8 weeks</div>
         <a class="cta" href="mailto:wali.ahmad@harmos.ai?subject=Commission%20B-22">Commission this →</a>
       </article>
       <article class="offer" data-node="4">
-        <div class="offer-top"><span class="idx">B-23</span><h3>White-Label Agent Deployment</h3><span class="price">from $20,000</span></div>
+        <div class="offer-top"><span class="idx">B-23</span><h3>OEM Agentic Infrastructure Licensing</h3><span class="price">$450,000</span></div>
         <p>Your brand, my engine — a Harmos-class agent deployed under your name, aligned on your outcomes.</p>
         <div class="flow">Order → Scope lock → Build → Verified delivery · 4–6 weeks</div>
         <a class="cta" href="mailto:wali.ahmad@harmos.ai?subject=Commission%20B-23">Commission this →</a>
@@ -1109,23 +1110,23 @@ a.rec-item:hover{background:rgba(60,232,207,.045); padding-left:14px}
   <div class="rec-cols">
     <div>
       <h4>Lane C — Authority · 9 Engagements</h4>
-      <a class="rec-item" href="mailto:wali.ahmad@harmos.ai?subject=Engage%20C-01"><span class="t">C-01 · Advisory Retainer</span><span class="d">Fractional CTO / CAIO · $10,000/mo</span></a>
-      <a class="rec-item" href="mailto:wali.ahmad@harmos.ai?subject=Engage%20C-02"><span class="t">C-02 · Boardroom Briefings</span><span class="d">Executive session · $12,000/day</span></a>
-      <a class="rec-item" href="mailto:wali.ahmad@harmos.ai?subject=Engage%20C-03"><span class="t">C-03 · Keynote</span><span class="d">Global stage · $15,000</span></a>
-      <a class="rec-item" href="mailto:wali.ahmad@harmos.ai?subject=Engage%20C-04"><span class="t">C-04 · Expert Witness</span><span class="d">AI/crypto · $950–1,500/hr · $25K min</span></a>
-      <a class="rec-item" href="mailto:wali.ahmad@harmos.ai?subject=Engage%20C-05"><span class="t">C-05 · Technical Due Diligence</span><span class="d">VC / PE · from $15,000</span></a>
-      <a class="rec-item" href="mailto:wali.ahmad@harmos.ai?subject=Engage%20C-06"><span class="t">C-06 · Patent Licensing</span><span class="d">2 filed · USPTO/PCT · royalties</span></a>
-      <a class="rec-item" href="mailto:wali.ahmad@harmos.ai?subject=Engage%20C-07"><span class="t">C-07 · White-Label Sovereign Stack</span><span class="d">License the architecture · six figures</span></a>
-      <a class="rec-item" href="mailto:wali.ahmad@harmos.ai?subject=Engage%20C-08"><span class="t">C-08 · Government &amp; Defense Advisory</span><span class="d">National programs · program pricing</span></a>
-      <a class="rec-item" href="mailto:wali.ahmad@harmos.ai?subject=Engage%20C-09"><span class="t">C-09 · Book Tours &amp; Lectures</span><span class="d">Universities · forums · on request</span></a>
+      <a class="rec-item" href="mailto:wali.ahmad@harmos.ai?subject=Engage%20C-01"><span class="t">C-01 · Fractional Chief AI/Security Officer</span><span class="d">Ongoing strategic oversight · $45,000/mo</span></a>
+      <a class="rec-item" href="mailto:wali.ahmad@harmos.ai?subject=Engage%20C-02"><span class="t">C-02 · Executive Technical Strategy Day</span><span class="d">C-suite alignment · $35,000/day + equity</span></a>
+      <a class="rec-item" href="mailto:wali.ahmad@harmos.ai?subject=Engage%20C-03"><span class="t">C-03 · Global Keynote &amp; Summit Address</span><span class="d">Top-tier global stage · $55,000</span></a>
+      <a class="rec-item" href="mailto:wali.ahmad@harmos.ai?subject=Engage%20C-04"><span class="t">C-04 · Elite Cyber/Crypto Expert Witness</span><span class="d">Complex AI/crypto litigation · $2,500/hr</span></a>
+      <a class="rec-item" href="mailto:wali.ahmad@harmos.ai?subject=Engage%20C-05"><span class="t">C-05 · Deep Tech M&amp;A Technical Audit</span><span class="d">VC / PE pre-acquisition · $85,000 per audit</span></a>
+      <a class="rec-item" href="mailto:wali.ahmad@harmos.ai?subject=Engage%20C-06"><span class="t">C-06 · IP Licensing &amp; Royalties</span><span class="d">2 filed · USPTO/PCT · $250K upfront + 5–10% royalties</span></a>
+      <a class="rec-item" href="mailto:wali.ahmad@harmos.ai?subject=Engage%20C-07"><span class="t">C-07 · Enterprise OEM Master Agreement</span><span class="d">License the full verifiable stack · $500,000 base + rev share</span></a>
+      <a class="rec-item" href="mailto:wali.ahmad@harmos.ai?subject=Engage%20C-08"><span class="t">C-08 · Sovereign / Defense Prime Contract</span><span class="d">National programs · $1.5M–$5M per program</span></a>
+      <a class="rec-item" href="mailto:wali.ahmad@harmos.ai?subject=Engage%20C-09"><span class="t">C-09 · Executive Book Tour &amp; Private Briefings</span><span class="d">Corporate-sponsored · $35,000 guarantee + travel</span></a>
     </div>
     <div>
       <h4>Lane E — Network · 5 Programs</h4>
-      <a class="rec-item" href="mailto:wali.ahmad@harmos.ai?subject=Network%20E-01"><span class="t">E-01 · B2B Matchmaking</span><span class="d">Curated introductions · % of deal</span></a>
-      <a class="rec-item" href="mailto:wali.ahmad@harmos.ai?subject=Network%20E-02"><span class="t">E-02 · Sponsored Intelligence</span><span class="d">Brief sponsorships · per campaign</span></a>
-      <a class="rec-item" href="mailto:wali.ahmad@harmos.ai?subject=Network%20E-03"><span class="t">E-03 · Equity-for-Advisory</span><span class="d">Select startups · 0.5–2%</span></a>
-      <a class="rec-item" href="mailto:wali.ahmad@harmos.ai?subject=Network%20E-04"><span class="t">E-04 · Validator Revenue Share</span><span class="d">Network participation · rev share</span></a>
-      <a class="rec-item" href="mailto:wali.ahmad@harmos.ai?subject=Network%20E-05"><span class="t">E-05 · Builders Circle</span><span class="d">Private community · $50–150/mo</span></a>
+      <a class="rec-item" href="mailto:wali.ahmad@harmos.ai?subject=Network%20E-01"><span class="t">E-01 · Strategic Deal Origination</span><span class="d">5–10% of closed deal + $25K intro fee</span></a>
+      <a class="rec-item" href="mailto:wali.ahmad@harmos.ai?subject=Network%20E-02"><span class="t">E-02 · Elite Audience Sponsorship</span><span class="d">$25,000–$50,000/campaign</span></a>
+      <a class="rec-item" href="mailto:wali.ahmad@harmos.ai?subject=Network%20E-03"><span class="t">E-03 · Strategic Advisory Board Seat</span><span class="d">1–3% advisory shares + $50K cash</span></a>
+      <a class="rec-item" href="mailto:wali.ahmad@harmos.ai?subject=Network%20E-04"><span class="t">E-04 · Institutional Node Partnership</span><span class="d">Rev share + $50K setup fee</span></a>
+      <a class="rec-item" href="mailto:wali.ahmad@harmos.ai?subject=Network%20E-05"><span class="t">E-05 · The Verifiable Economy Syndicate</span><span class="d">Vetted founder network · $1,500/mo or $15K/yr</span></a>
     </div>
   </div>
 </section>
@@ -1140,18 +1141,18 @@ a.rec-item:hover{background:rgba(60,232,207,.045); padding-left:14px}
   <div class="rec-cols">
     <div>
       <h4>Courses &amp; Cohorts</h4>
-      <a class="rec-item" href="mailto:wali.ahmad@harmos.ai?subject=Course%20D-01"><span class="t">D-01 · PQC for Executives</span><span class="d">4-week cohort · $1,450</span></a>
-      <a class="rec-item" href="mailto:wali.ahmad@harmos.ai?subject=Course%20D-02"><span class="t">D-02 · Generative &amp; Agentic AI Strategy</span><span class="d">4-week cohort · $1,200</span></a>
-      <a class="rec-item" href="mailto:wali.ahmad@harmos.ai?subject=Course%20D-03"><span class="t">D-03 · Quantum Mechanics → Quantum Computing</span><span class="d">6-week cohort · $980</span></a>
-      <a class="rec-item" href="mailto:wali.ahmad@harmos.ai?subject=Course%20D-04"><span class="t">D-04 · DBA Masterclass</span><span class="d">Doctoral methods · $2,400</span></a>
-      <a class="rec-item" href="mailto:wali.ahmad@harmos.ai?subject=Course%20D-05"><span class="t">D-05 · Blockchain &amp; FinTech</span><span class="d">4-week cohort · $890</span></a>
-      <a class="rec-item" href="mailto:wali.ahmad@harmos.ai?subject=Course%20D-06"><span class="t">D-06 · AI Cybersecurity Operations</span><span class="d">Teaching only — no services · $760</span></a>
+      <a class="rec-item" href="mailto:wali.ahmad@harmos.ai?subject=Course%20D-01"><span class="t">D-01 · Executive PQC Readiness Seminar</span><span class="d">Board-level quantum-threat briefing · $12,500/seat</span></a>
+      <a class="rec-item" href="mailto:wali.ahmad@harmos.ai?subject=Course%20D-02"><span class="t">D-02 · Enterprise GenAI Governance Cohort</span><span class="d">AI deployment strategy &amp; risk · $8,500/seat</span></a>
+      <a class="rec-item" href="mailto:wali.ahmad@harmos.ai?subject=Course%20D-03"><span class="t">D-03 · Applied Quantum Computing Masterclass</span><span class="d">R&amp;D leaders · $7,500/seat</span></a>
+      <a class="rec-item" href="mailto:wali.ahmad@harmos.ai?subject=Course%20D-04"><span class="t">D-04 · Elite Technical Mastermind (DBA)</span><span class="d">Vetted founders/CTOs · $18,000/seat</span></a>
+      <a class="rec-item" href="mailto:wali.ahmad@harmos.ai?subject=Course%20D-05"><span class="t">D-05 · Institutional Web3 Architecture</span><span class="d">Tokenomics &amp; contracts for finance · $6,500/seat</span></a>
+      <a class="rec-item" href="mailto:wali.ahmad@harmos.ai?subject=Course%20D-06"><span class="t">D-06 · AI-Driven SecOps Certification</span><span class="d">Security teams · $5,500/seat</span></a>
     </div>
     <div>
       <h4>Mentorship · Training · Books</h4>
-      <a class="rec-item" href="mailto:wali.ahmad@harmos.ai?subject=Course%20D-07"><span class="t">D-07 · 1:1 Founder Mentorship</span><span class="d">Reader $180/mo · Builder $1.5K/mo · Sovereign $12K/qtr</span></a>
-      <a class="rec-item" href="mailto:wali.ahmad@harmos.ai?subject=Course%20D-08"><span class="t">D-08 · Corporate Training</span><span class="d">Teams · on-site or remote · $20K–60K</span></a>
-      <a class="rec-item" href="mailto:wali.ahmad@harmos.ai?subject=Course%20D-09"><span class="t">D-09 · Certification Coaching</span><span class="d">1:1 exam prep · $500</span></a>
+      <a class="rec-item" href="mailto:wali.ahmad@harmos.ai?subject=Course%20D-07"><span class="t">D-07 · Private Advisory &amp; Mentorship</span><span class="d">Elite founder access · $3,500/mo or $35K/qtr</span></a>
+      <a class="rec-item" href="mailto:wali.ahmad@harmos.ai?subject=Course%20D-08"><span class="t">D-08 · Enterprise Team Upskilling Cohort</span><span class="d">20-person engineering teams · $95,000/cohort</span></a>
+      <a class="rec-item" href="mailto:wali.ahmad@harmos.ai?subject=Course%20D-09"><span class="t">D-09 · Certification Coaching</span><span class="d">1:1 exam prep · $2,500</span></a>
       <a class="rec-item" href="mailto:wali.ahmad@harmos.ai?subject=Book%20TTM"><span class="t">The Thinking Millionaire</span><span class="d">Wealth architecture · signed · $49</span></a>
       <a class="rec-item" href="mailto:wali.ahmad@harmos.ai?subject=Book%201-137"><span class="t">The 1/137 Blue Print</span><span class="d">Physics of precision · signed · $59</span></a>
       <a class="rec-item" href="mailto:wali.ahmad@harmos.ai?subject=Book%20Bundle"><span class="t">Both Books, Signed</span><span class="d">Ships worldwide · $98</span></a>
@@ -1619,28 +1620,28 @@ addEventListener('keydown', e => { if (e.key === 'Escape') closeHarmos(); });
 function setTier(btn){ document.querySelectorAll('.hm-tier').forEach(b => b.classList.remove('on')); btn.classList.add('on'); }
 
 const BRAIN = [
-  { k:['instant','buy','store','lane a','download'], r:'Lane A holds <b>26 instant-download builds</b> — RAG pipelines, agent packs, smart-contract kits, dashboards and more, $29–$299. Pay, download, deploy tonight. Each ships with a SHA-256 integrity hash.', c:['Browse the store','#instant'] },
-  { k:['rag','retrieval','docs','document','knowledge'], r:'The <b>A-01 RAG Pipeline Starter Kit</b> ($149) is a production retrieval stack — chunking, embeddings, vector store, eval harness. Plug your docs in. For a custom enterprise build, commission <b>B-03</b>.', c:['Get A-01 — $149','mailto:wali.ahmad@harmos.ai?subject=Order%20A-01'] },
-  { k:['ml model','machine learning','custom model','predict','forecast','churn','fraud'], r:'Commissioned ML starts at <b>B-01 · Custom ML Models, from $5,000</b> — training notebooks, eval reports and a deployment pipeline included. Fixed quote within 24 hours of your email.', c:['Commission B-01','mailto:wali.ahmad@harmos.ai?subject=Commission%20B-01'] },
+  { k:['instant','buy','store','lane a','download'], r:'Lane A holds <b>26 institutional IP modules</b> — verifiable RAG engines, agentic swarm frameworks, formally verified contract vaults and more, licensed annually from <b>$35,000 to $850,000</b>. Every license ships with a signed Proof Pack: SHA-256 manifests and mathematical verification summaries. The <b>$4,999 Evaluation Environment</b> is fully credited toward any license.', c:['Browse the store','#instant'] },
+  { k:['rag','retrieval','docs','document','knowledge'], r:'The <b>A-01 Verifiable RAG Architecture Engine</b> ($125,000/yr site license) is a production retrieval stack — chunking, embeddings, vector store, eval harness — with cryptographic source verification. For a bespoke build, commission <b>B-03</b>.', c:['Request A-01 briefing','mailto:wali.ahmad@harmos.ai?subject=Procurement%20Briefing%20A-01'] },
+  { k:['ml model','machine learning','custom model','predict','forecast','churn','fraud'], r:'Commissioned ML starts at <b>B-01 · Custom Edge-Deployed AI Architecture, $150,000</b> — training notebooks, eval reports and a deployment pipeline included. Fixed quote within 24 hours of your email.', c:['Commission B-01','mailto:wali.ahmad@harmos.ai?subject=Commission%20B-01'] },
   { k:['harmos','trust layer','verifiable','sovereign','node'], r:'<b>harmos.ai</b> — the Zero-Trust AI Execution Verification Gateway. HARMOS Q-DECK: three sovereigns, one quorum, every computation cryptographically proven under <b>USPTO #63/915,788</b>. Free, Pro and Max tiers; global launch <b>1 January 2027</b> across 18 markets.', c:['Visit harmos.ai','https://harmos.ai'] },
   { k:['dba','mlta','patent','alignment','zk','proof'], r:'Two patents filed 2025 (USPTO/PCT): <b>MLTA</b> — Multi-Layer Trust Architecture: lattice PQC provenance, QRNG/PUF hardware sovereignty, zk-SNARK/STARK verification. <b>DBA</b> — Deep Behavioral Alignment: models aligned on verified commercial outcomes, not RLHF guesswork.', c:['See the credential ledger','#credentials'] },
-  { k:['keynote','speak','stage','talk','lecture'], r:'<b>C-03 · Keynote — $15,000</b>, global stage. Also boardroom briefings at $12,000/day and university book tours on request.', c:['Book the keynote','mailto:wali.ahmad@harmos.ai?subject=Engage%20C-03'] },
-  { k:['agent','chatbot','automation'], r:'Start with <b>A-02 · AI Agent Template Pack ($99)</b> — support, sales and research agents with orchestration configs and memory patterns. Custom agentic systems: commission <b>B-02</b>.', c:['Get A-02 — $99','mailto:wali.ahmad@harmos.ai?subject=Order%20A-02'] },
+  { k:['keynote','speak','stage','talk','lecture'], r:'<b>C-03 · Global Keynote — $55,000</b>. Executive strategy days at $35,000/day + equity, and private book-tour briefings from a $35,000 guarantee.', c:['Book the keynote','mailto:wali.ahmad@harmos.ai?subject=Engage%20C-03'] },
+  { k:['agent','chatbot','automation'], r:'Start with the <b>A-02 Autonomous Agentic Swarm Framework</b> ($85,000/yr site license) — multi-agent systems with enterprise guardrails and audit trails. Bespoke agentic engineering: commission <b>B-02</b>.', c:['Request A-02 briefing','mailto:wali.ahmad@harmos.ai?subject=Procurement%20Briefing%20A-02'] },
   { k:['blockchain','web3','smart contract','token','crypto','base'], r:'Lane A ships smart-contract kits and tokenomics templates instantly; Lane B builds full chains, audits and PQC migrations to order. Harmos itself runs dual-lane Web2/Web3 on <b>Base L2</b>.', c:['See Web3 builds','#instant'] },
-  { k:['quantum','qiskit','pqc','post-quantum'], r:'Quantum is home turf — Stanford Quantum Mechanics (A), UMBC Post-Quantum Cryptography (A), UMD Quantum Physics, plus three Packt quantum tracks (Qiskit, quantum computing, Python for quantum). <b>D-01 · PQC for Executives</b> ($1,450) is the 4-week cohort; <b>D-03</b> takes you from quantum mechanics to quantum computing.', c:['Join D-01','mailto:wali.ahmad@harmos.ai?subject=Course%20D-01'] },
+  { k:['quantum','qiskit','pqc','post-quantum'], r:'Quantum is home turf — Stanford Quantum Mechanics (A), UMBC Post-Quantum Cryptography (A), UMD Quantum Physics, plus three Packt quantum tracks (Qiskit, quantum computing, Python for quantum). <b>D-01 · Executive PQC Readiness Seminar</b> ($12,500/seat) is the board-level briefing; <b>D-03</b> takes you from quantum mechanics to quantum computing.', c:['Join D-01','mailto:wali.ahmad@harmos.ai?subject=Course%20D-01'] },
   { k:['website','web site','landing','site','frontend'], r:'Instant website systems live in Lane A; bespoke, award-grade sites are commissioned in Lane B — like the orbital build you are looking at right now.', c:['See website offers','#instant'] },
   { k:['book','thinking millionaire','1/137','blueprint','blue print'], r:'Two signed books: <b>The Thinking Millionaire</b> ($49) — wealth architecture; <b>The 1/137 Blue Print</b> ($59) — the physics of precision. Both, signed and shipped worldwide: $98.', c:['Order both — $98','mailto:wali.ahmad@harmos.ai?subject=Book%20Bundle'] },
-  { k:['mentor','coach','learn','course','academy','cohort','1:1'], r:'Lane D is the Academy: six cohorts, 1:1 founder mentorship from $180/mo, corporate training $20K–60K, certification coaching $500. All taught from shipped systems, not slideware.', c:['Enter the Academy','#academy'] },
+  { k:['mentor','coach','learn','course','academy','cohort','1:1'], r:'Lane D is the Academy: executive cohorts from <b>$5,500–$18,000/seat</b>, private advisory at <b>$3,500/mo</b>, enterprise team upskilling at <b>$95,000/cohort</b>. All taught from shipped systems, not slideware.', c:['Enter the Academy','#academy'] },
   { k:['nooriva','glow','wellness','saffron'], r:'<b>nooriva.ai</b> — NOORISH GOLD: twelve botanical glow rituals on one golden base (Kashmiri saffron, steam-distilled rose, date essence) — Rose Halo, Saffron Mist, Berry Bloom, Cherry Veil and more. The Nooriva AI companion runs Free to Rs 9,999/mo with skin triage and Glow Score; NOORIVA Club hosts weekly circles. COD in 10 Pakistani cities — official launch <b>14 January 2027</b>.', c:['Visit nooriva.ai','https://nooriva.ai'] },
   { k:['chemistry','matchmaking','ourchemistry'], r:'<b>ourchemistry.ai</b> — The Science of Us: voice-first, photo-free, values-deep dating &amp; matrimony. Mind before face — a 7-Day Bond Protocol, 64-D Voice DNA biometrics, Merkle Vanish erasure, 10 languages. Built to outclass Tinder, Muzmatch and Salams. Grand reveal <b>14 February 2027</b>.', c:['Visit ourchemistry.ai','https://ourchemistry.ai'] },
-  { k:['price','cost','quote','how much','budget'], r:'Instant builds: <b>$19–$299</b>. Commissioned systems: <b>from $2,500</b>. Authority engagements: retainers at $10,000/mo, keynotes $15,000, expert witness $950–1,500/hr. Email any item ID for a fixed quote within 24 hours.', c:['Request a quote','mailto:wali.ahmad@harmos.ai?subject=Quote%20Request'] },
+  { k:['price','cost','quote','how much','budget'], r:'IP licenses: <b>$35,000–$850,000/yr</b> — the $4,999 Evaluation Environment is credited toward any license. Commissioned systems: <b>$65,000–$850,000</b>. Authority engagements: retainer $45,000/mo, keynotes $55,000, expert witness $2,500/hr. Exclusive IP acquisition by private briefing under NDA.', c:['Request a quote','mailto:wali.ahmad@harmos.ai?subject=Quote%20Request'] },
   { k:['contact','email','phone','call','reach'], r:'Direct line to the founder: <b>wali.ahmad@harmos.ai</b> · +1-737-282-8249. Lahore → Delaware → the world.', c:['Email Wali','mailto:wali.ahmad@harmos.ai'] },
   { k:['security','cyber','harvard','hack'], r:'Security is the foundation, not the storefront — Harvard Master\u2019s candidate in Cybersecurity & Ethical Hacking, Harvard CS50 Cybersecurity (A+), IBM GenAI for Cybersecurity (A), UMBC Post-Quantum Cryptography (A) and Maryland Cryptography (A+). No security engagements are sold yet; they get announced on the page first.', c:['See credentials','#credentials'] },
 ];
 function botReply(q){
   const s = q.toLowerCase();
   for (const b of BRAIN) if (b.k.some(k => s.includes(k))) return b;
-  return { r:'I route everything on this site — <b>72 offerings across five lanes</b>: instant downloads, commissioned builds, authority engagements, the Academy and the network. Ask about RAG, agents, blockchain, quantum, pricing — or say "store".', c:['Browse all 72','#instant'] };
+  return { r:'I route everything on this site — <b>72 offerings across five lanes</b>: institutional IP licenses, commissioned builds, authority engagements, the Academy and the network. Ask about RAG, agents, blockchain, quantum, pricing — or say "store".', c:['Browse all 72','#instant'] };
 }
 function hmSend(e){
   e.preventDefault();
@@ -1752,7 +1753,7 @@ const CATS = {
 const tools = document.createElement('div');
 tools.className = 'store-tools';
 tools.innerHTML =
-  '<input class="store-search" id="storeSearch" placeholder="Search 26 instant builds…">' +
+  '<input class="store-search" id="storeSearch" placeholder="Search 26 IP modules…">' +
   '<div class="store-chips"><button class="f-chip on" data-f="all">All</button>' +
   Object.keys(CATS).map(c => `<button class="f-chip" data-f="${c}">${c}</button>`).join('') + '</div>' +
   '<div class="store-count" id="storeCount">26 ITEMS</div>';
@@ -1810,8 +1811,8 @@ grid.querySelectorAll('.cell').forEach(cell => {
       `<div class="sh-title">${t}</div>` +
       `<div class="sh-price">${pr}</div>` +
       `<div class="sh-desc">${d}</div>` +
-      `<div class="sh-flow">${sub} · SHA-256 integrity hash · pay, download, deploy</div>` +
-      `<a class="sh-cta" href="${href}">Buy now →</a>`);
+      `<div class="sh-flow">${sub} · Signed Proof Pack · SHA-256 manifests · annual site license</div>` +
+      `<a class="sh-cta" href="${href}">Initiate procurement →</a>`);
   });
 });
 /* Lane B row → sheet */
@@ -1836,12 +1837,12 @@ document.querySelectorAll('#offers .offer').forEach(off => {
 
 /* ============ CHAT PRODUCT CARDS ============ */
 const CHAT_CARDS = {
-  'A-01': { cat:'A-01 · RAG', t:'RAG Pipeline Starter Kit', p:'$149', h:'mailto:wali.ahmad@harmos.ai?subject=Order%20A-01' },
-  'A-02': { cat:'A-02 · Agents', t:'AI Agent Template Pack', p:'$99', h:'mailto:wali.ahmad@harmos.ai?subject=Order%20A-02' },
-  'A-09': { cat:'A-09 · Blockchain', t:'Smart Contract Library', p:'$299', h:'mailto:wali.ahmad@harmos.ai?subject=Order%20A-09' },
-  'A-22': { cat:'A-22 · Web', t:'Sovereign Website Templates', p:'$129', h:'mailto:wali.ahmad@harmos.ai?subject=Order%20A-22' },
-  'B-01': { cat:'B-01 · Commissioned', t:'Custom ML Models', p:'from $5,000', h:'mailto:wali.ahmad@harmos.ai?subject=Commission%20B-01' },
-  'D-01': { cat:'D-01 · Cohort', t:'PQC for Executives', p:'$1,450', h:'mailto:wali.ahmad@harmos.ai?subject=Course%20D-01' }
+  'A-01': { cat:'A-01 · RAG', t:'Verifiable RAG Architecture Engine', p:'$125,000/yr', h:'mailto:wali.ahmad@harmos.ai?subject=Procurement%20Briefing%20A-01' },
+  'A-02': { cat:'A-02 · Agents', t:'Autonomous Agentic Swarm Framework', p:'$85,000/yr', h:'mailto:wali.ahmad@harmos.ai?subject=Procurement%20Briefing%20A-02' },
+  'A-09': { cat:'A-09 · Blockchain', t:'Formally Verified Smart Contract Vault', p:'$350,000/yr', h:'mailto:wali.ahmad@harmos.ai?subject=Procurement%20Briefing%20A-09' },
+  'A-22': { cat:'A-22 · Web', t:'Air-Gappable High-Security Frontend Architecture', p:'$85,000/yr', h:'mailto:wali.ahmad@harmos.ai?subject=Procurement%20Briefing%20A-22' },
+  'B-01': { cat:'B-01 · Commissioned', t:'Custom Edge-Deployed AI Architecture', p:'$150,000', h:'mailto:wali.ahmad@harmos.ai?subject=Commission%20B-01' },
+  'D-01': { cat:'D-01 · Executive Ed', t:'Executive PQC Readiness Seminar', p:'$12,500/seat', h:'mailto:wali.ahmad@harmos.ai?subject=Course%20D-01' }
 };
 function chatCardHTML(id){
   const c = CHAT_CARDS[id]; if (!c) return '';
